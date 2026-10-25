@@ -136,7 +136,7 @@ footer a{color:var(--c1)}
         <div class="zz"><button type="button" class="st" id="t-ZZ" data-uf="ZZ" title="Brasileiros que votam em embaixadas e consulados; o TSE usa o código ZZ">🌐 Voto no exterior</button><span class="mono" id="zzlbl">–</span></div>
         <div class="legend" id="legend"></div>
       </div>
-      <div class="detail" id="detail"><div class="eyebrow">Detalhe</div><h2>Toque num estado</h2><div class="sub">O detalhe mostra os dois turnos lado a lado, com abstenção. O voto no exterior (código ZZ no TSE) aparece abaixo do mapa.</div></div>
+      <div class="detail" id="detail"><div class="eyebrow">Detalhe</div><h2>Brasil</h2><div class="sub">Toque num estado para ver o detalhe dele. Clique fora do mapa, ou aperte Esc, para voltar ao Brasil. O voto no exterior (código ZZ no TSE) aparece abaixo do mapa.</div></div>
     </div>
   </section>
 
@@ -342,10 +342,12 @@ function candRows(d){
   return rows;
 }
 function renderDetail(){
-  const box = document.getElementById("detail"); if(!selected) return;
-  const d2 = S.t2[selected], d1 = S.t1[selected];
+  const box = document.getElementById("detail");
+  const key = selected || "BR", nome = selected ? NOMES[selected] : "Brasil";
+  const d2 = S.t2[key], d1 = S.t1[key];
+  if (!d2 && !d1) return;
   const dAbs = d2 && d1 && d2.pabs!=null && d1.pabs!=null ? d2.pabs - d1.pabs : null;
-  box.innerHTML = `<div class="eyebrow">Detalhe</div><h2 tabindex="-1" id="dh">${NOMES[selected]}</h2>
+  box.innerHTML = `<div class="eyebrow">Detalhe</div><h2 tabindex="-1" id="dh">${nome}</h2>${selected?`<div><button type="button" id="backBr" style="margin-top:6px">← Voltar ao Brasil</button></div>`:""}
     <div class="sub">2º turno: ${d2?fmtP(d2.pst):"–"} das seções totalizadas${d2&&d2.ts?` (${fmtN(d2.st)} de ${fmtN(d2.ts)})`:""}${d2&&d2.te?` · eleitorado ${fmtN(d2.te)}`:""}</div>
     <div class="prog" aria-hidden="true"><i style="width:${d2?d2.pst:0}%"></i></div>
     <div style="margin-top:12px"><div class="eyebrow">2º turno (parcial)</div>${candRows(d2)}</div>
@@ -355,8 +357,13 @@ function renderDetail(){
         <div class="delta ${dAbs>0?"up":dAbs<0?"down":""}">vs 1º turno: ${fmtD(dAbs)}</div></div>
       <div class="kpi"><div class="l">Abstenção 1º turno</div><div class="v">${fmtP(d1&&d1.pabs)}</div><div class="mono">${d1?fmtN(d1.abs):"–"} eleitores</div></div>
     </div>`;
-  if (window.innerWidth<=640) box.scrollIntoView({behavior:"smooth",block:"start"});
+  const bb = document.getElementById("backBr"); if (bb) bb.onclick = clearSel;
+  if (selected && window.innerWidth<=640) box.scrollIntoView({behavior:"smooth",block:"start"});
 }
+function clearSel(){ selected = null; renderMap(); renderDetail(); }
+// Clique no fundo do mapa (fora de qualquer estado) ou Esc volta ao nível nacional
+document.addEventListener("click", e => { if (selected && !e.target.closest("path.st, button, a, input, select, textarea, #detail, table")) clearSel(); });
+document.addEventListener("keydown", e => { if (e.key === "Escape" && selected) clearSel(); });
 
 function renderTable(){
   if (!S.t2.BR) return;
