@@ -55,6 +55,11 @@ button[aria-pressed="true"]{background:var(--c1);color:#fff;border-color:var(--c
 .bar i{display:block;height:100%;transition:width .6s}
 .bar::after{content:"";position:absolute;left:50%;top:-3px;bottom:-3px;width:2px;background:var(--fg);opacity:.5}
 .sub{font-size:.78rem;color:var(--muted);margin-top:6px}
+.proj{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;margin-top:14px}
+.proj .cand .pc{font-size:1.9rem}
+.proj .rng{font-size:.8rem;color:var(--muted);font-variant-numeric:tabular-nums}
+.verdict{margin-top:14px;padding:12px 14px;border-radius:8px;background:var(--bg);font-size:.92rem;display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.verdict .chip{font-size:.8rem;padding:4px 12px}
 .regs{display:grid;gap:10px;margin-top:12px}
 .reg{display:grid;grid-template-columns:150px minmax(0,1fr);gap:6px 14px;align-items:center;padding:10px 0;border-bottom:1px solid var(--line)}
 .reg:last-child{border-bottom:0}
@@ -135,6 +140,12 @@ footer a{color:var(--c1)}
   </section>
 
   <div id="erro" class="err" role="alert" hidden></div>
+
+  <section class="card" aria-labelledby="h-proj" id="projcard" hidden>
+    <h2 id="h-proj">Projeção indicativa do resultado final</h2>
+    <div class="sub">Estimativa simples, feita nesta página: para cada UF, os votos já contados somados aos eleitores que faltam, supondo o mesmo comparecimento do 1º turno naquela UF e a mesma divisão de votos que a UF mostra até agora. A faixa reflete o quanto ainda falta apurar. Não corrige o viés de capitais apurarem antes do interior; trate como indicação, não como resultado.</div>
+    <div id="proj"></div>
+  </section>
 
   <section class="card" aria-labelledby="h-reg">
     <h2 id="h-reg">Resumo por região</h2>
@@ -473,6 +484,50 @@ function renderChart(){
     + `<span><i class="sw" style="background:${mix(PROG,.25)}"></i>% de seções totalizadas</span><span>${hist.length} leitura(s) desde ${fmtT(t0)}</span>`;
 }
 
+// Projeção: votos atuais + eleitores que faltam × comparecimento do 1º T na UF × divisão atual da UF
+function projectNational(){
+  const br = S.t2.BR; if (!br || !br.tot || finalists.length<2) return null;
+  const [a,b] = finalists;
+  // swing nacional (2 candidatos normalizados) para UFs ainda sem votos
+  const n1 = d1 => { const m = byN(d1); const pa = m[a]?m[a].pvap:0, pb = m[b]?m[b].pvap:0, t = pa+pb; return t ? pa/t : .5; };
+  const curShare = d2 => { const m = byN(d2); const va = m[a]?m[a].vap:0, vb = m[b]?m[b].vap:0; return va+vb ? va/(va+vb) : null; };
+  const brShare = curShare(br), brSwing = brShare!=null && S.t1.BR ? brShare - n1(S.t1.BR) : 0;
+  let va = 0, vb = 0, remTot = 0, unc = 0;
+  UFS.forEach(u => {
+    const d2 = S.t2[u], d1 = S.t1[u]; if (!d2) return;
+    const m = byN(d2); const cva = m[a]?m[a].vap:0, cvb = m[b]?m[b].vap:0;
+    const turnout = d1 && d1.pabs!=null ? 1 - d1.pabs/100 : 0.79;
+    const validRatio = d1 && d1.est ? d1.tot/(d1.est*(1-(d1.pabs||0)/100)) : 0.95; // válidos ÷ comparecimento no 1º T
+    const rem = d2.esnt * turnout * validRatio;
+    let sh = curShare(d2);
+    if (sh == null) sh = Math.min(1, Math.max(0, (d1 ? n1(d1) : .5) + brSwing));
+    // incerteza: quanto menos apurado na UF, mais a divisão dos que faltam pode diferir (até ±8 p.p. com 0% apurado)
+    const spread = 0.08 * (1 - Math.min(1, d2.pst/100));
+    va += cva + rem*sh; vb += cvb + rem*(1-sh); remTot += rem; unc += rem*spread;
+  });
+  const tot = va+vb; if (!tot) return null;
+  const pa = va/tot*100, half = unc/tot*100;
+  const counted = br.tot, remainingShare = remTot/(counted+remTot);
+  return {a, b, pa, pb:100-pa, half, remainingShare, counted, remTot,
+    decided: (()=>{ const m = byN(br); const lead = Math.abs((m[a]?m[a].vap:0)-(m[b]?m[b].vap:0)); return lead > br.esnt; })()};
+}
+function renderProjection(){
+  const card = document.getElementById("projcard"), box = document.getElementById("proj");
+  const P = projectNational(); if (!P){ card.hidden = true; return; }
+  card.hidden = false;
+  const br = byN(S.t2.BR);
+  const lo = n => Math.max(0, (n===P.a?P.pa:P.pb) - P.half), hi = n => Math.min(100, (n===P.a?P.pa:P.pb) + P.half);
+  box.innerHTML = `<div class="proj">${[P.a,P.b].map(n=>`<div class="cand" style="--cc:${colorOf[n]}"><div class="nm">${esc((br[n]||{nome:n}).nome)}</div>
+      <div class="pc">${fmtP(n===P.a?P.pa:P.pb)}</div><div class="rng">faixa estimada ${fmtP(lo(n))} a ${fmtP(hi(n))}</div></div>`).join("")}</div>`;
+  const leadN = P.pa>=50 ? P.a : P.b, leadP = Math.max(P.pa,P.pb), leadNome = esc((br[leadN]||{nome:leadN}).nome);
+  let status, color;
+  if (P.decided){ status = `${leadNome} eleito: a vantagem em votos já supera todos os eleitores das seções que faltam.`; color = "#2E7D32"; }
+  else if (leadP - P.half > 50){ status = `${leadNome} lidera e a faixa estimada inteira fica acima de 50%. Ainda não é matematicamente definido.`; color = colorOf[leadN]; }
+  else { status = `Disputa em aberto: a faixa estimada cruza os 50%. Falta apurar o equivalente a ${fmtP(P.remainingShare*100)} dos votos esperados.`; color = "#616161"; }
+  box.innerHTML += `<div class="verdict"><span class="chip" style="background:${color}">${P.decided?"Definido":leadP-P.half>50?"Tendência":"Em aberto"}</span><span>${status}</span></div>
+    <div class="sub">Votos válidos contados: ${fmtN(P.counted)} · votos válidos ainda esperados: ${fmtN(Math.round(P.remTot))} (${fmtP(P.remainingShare*100)} do total projetado).</div>`;
+}
+
 function renderTable(){
   if (!S.t2.BR) return;
   const rows = UFS.filter(u=>S.t2[u]||S.t1[u]).map(u=>({u, d2:S.t2[u], d1:S.t1[u], L:leader(S.t2[u])}))
@@ -520,7 +575,7 @@ async function load(){
   if (!t1Loaded) msgs.push("Os arquivos do 1º turno não responderam. O resumo nacional do 1º turno usa os números finais do TSE; o comparativo por estado fica vazio.");
   else if (t1Fails) msgs.push(`${t1Fails} arquivo(s) do 1º turno não responderam.`);
   erro.hidden = !msgs.length; erro.innerHTML = msgs.join("<br>");
-  renderBr(); recordHistory(); renderRegions(); renderChart(); renderMap(); renderDetail(); renderTable();
+  renderBr(); renderProjection(); recordHistory(); renderRegions(); renderChart(); renderMap(); renderDetail(); renderTable();
   busy = false; left = 60;
   tick(S.t2.BR ? `TSE: ${S.t2.BR.data} ${S.t2.BR.hora}` : "");
 }
