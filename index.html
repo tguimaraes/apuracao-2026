@@ -157,10 +157,16 @@ footer a{color:var(--c1)}
   </section>
 
   <section class="card" aria-labelledby="h-evo">
-    <h2 id="h-evo">Evolução da apuração</h2>
-    <div class="sub" id="evo-sub">Percentual de votos válidos de cada candidato no Brasil ao longo da noite. A área verde ao fundo é o % de seções totalizadas. A série começa quando esta página foi aberta pela primeira vez neste navegador e continua mesmo se você recarregar.</div>
-    <svg class="chart" id="chart" viewBox="0 0 720 260" role="img" aria-labelledby="h-evo evo-sub"></svg>
+    <h2 id="h-evo">Evolução da diferença entre os candidatos <span class="eyebrow" style="font-weight:400">· dados do TSE</span></h2>
+    <div class="sub" id="evo-sub">Quem está à frente no Brasil e por quantos pontos percentuais, conforme a apuração avança. Acima da linha zero, Lula lidera; abaixo, Flávio Bolsonaro. O eixo horizontal é o % de seções totalizadas, então a curva mostra como a vantagem se moveu a cada fatia apurada. A série começa quando esta página foi aberta pela primeira vez neste navegador e sobrevive a recarregar.</div>
+    <div class="modes" role="group" aria-label="Eixo horizontal">
+      <button type="button" data-xaxis="pst" aria-pressed="true">Por % apurado</button>
+      <button type="button" data-xaxis="t" aria-pressed="false">Por horário</button>
+    </div>
+    <svg class="chart" id="chart" viewBox="0 0 720 280" role="img" aria-labelledby="h-evo evo-sub"></svg>
     <div class="legend" id="chart-legend"></div>
+    <div class="tbl"><table id="histtbl" style="min-width:560px"><caption>Últimas leituras, da mais recente para a mais antiga. "Mudança" é a variação da margem em relação à leitura anterior.</caption>
+      <thead><tr><th scope="col">Horário TSE</th><th scope="col">Apurado</th><th scope="col">Lula</th><th scope="col">Flávio</th><th scope="col">Margem</th><th scope="col">Dif. em votos</th><th scope="col">Mudança</th></tr></thead><tbody id="histbody"></tbody></table></div>
   </section>
 
   <section class="card" aria-labelledby="h-mapa">
@@ -453,38 +459,50 @@ function recordHistory(){
   if (last && last.k === key) return;
   const [dd,mm,yy] = (d.data||"").split("/"), t = new Date(`${yy}-${mm}-${dd}T${d.hora||"00:00:00"}-03:00`).getTime();
   const pt = {k:key, t: isNaN(t)?Date.now():t, pst:d.pst};
-  d.cands.forEach(c=>pt[c.n]=c.pvap);
+  d.cands.forEach(c=>{ pt[c.n]=c.pvap; pt["v"+c.n]=c.vap; });
   hist.push(pt);
   try { localStorage.setItem(HIST_KEY, JSON.stringify(hist)); } catch(e){}
 }
+let xaxis = "pst";
+document.querySelectorAll("[data-xaxis]").forEach(b => b.onclick = () => { xaxis = b.dataset.xaxis;
+  document.querySelectorAll("[data-xaxis]").forEach(x => x.setAttribute("aria-pressed", x===b)); renderChart(); });
 function renderChart(){
-  const svg = document.getElementById("chart"), leg = document.getElementById("chart-legend");
-  const W=720,H=260,ml=44,mr=16,mt=14,mb=34, iw=W-ml-mr, ih=H-mt-mb;
-  if (hist.length<1){ svg.innerHTML = `<text x="${W/2}" y="${H/2}" text-anchor="middle">Aguardando os primeiros dados da apuração…</text>`; return; }
-  const t0 = hist[0].t, t1 = Math.max(hist[hist.length-1].t, t0+10*60*1000);
-  const vals = finalists.flatMap(n=>hist.map(p=>p[n]||0));
-  let ymin = Math.floor(Math.min(...vals)/5)*5-5, ymax = Math.ceil(Math.max(...vals)/5)*5+5;
-  ymin = Math.max(0, Math.min(ymin, 45)); ymax = Math.min(100, Math.max(ymax, 55));
-  const x = t => ml + (t-t0)/(t1-t0)*iw, y = v => mt + (1-(v-ymin)/(ymax-ymin))*ih, yp = v => mt + (1-v/100)*ih;
+  const svg = document.getElementById("chart"), leg = document.getElementById("chart-legend"), tb = document.getElementById("histbody");
+  const W=720,H=280,ml=52,mr=70,mt=16,mb=36, iw=W-ml-mr, ih=H-mt-mb;
+  const A = "13", B = "22"; // margem = Lula − Flávio
+  const pts = hist.filter(p => p[A]!=null && p[B]!=null).map(p => ({...p, m: p[A]-p[B], dv: (p["v"+A]||0)-(p["v"+B]||0)}));
+  if (!pts.length){ svg.innerHTML = `<text x="${W/2}" y="${H/2}" text-anchor="middle">Aguardando os primeiros dados da apuração…</text>`; tb.innerHTML=""; return; }
   const fmtT = t => new Date(t).toLocaleTimeString("pt-BR",{hour:"2-digit",minute:"2-digit"});
+  const xv = p => xaxis==="pst" ? p.pst : p.t;
+  let x0 = xaxis==="pst" ? 0 : pts[0].t, x1 = xaxis==="pst" ? 100 : Math.max(pts[pts.length-1].t, pts[0].t + 10*60*1000);
+  const maxAbs = Math.max(4, Math.ceil(Math.max(...pts.map(p=>Math.abs(p.m)))/2)*2 + 1);
+  const x = v => ml + (v-x0)/(x1-x0)*iw, y = m => mt + (1-(m+maxAbs)/(2*maxAbs))*ih;
   let g = "";
-  for (let v=ymin; v<=ymax; v+=5) g += `<line class="grid" x1="${ml}" x2="${W-mr}" y1="${y(v)}" y2="${y(v)}"></line><text x="${ml-6}" y="${y(v)+4}" text-anchor="end">${v}%</text>`;
-  g += `<line class="half" x1="${ml}" x2="${W-mr}" y1="${y(50)}" y2="${y(50)}"></line>`;
-  const nT = 5; for (let i=0;i<=nT;i++){ const t=t0+(t1-t0)*i/nT; g += `<text x="${x(t)}" y="${H-10}" text-anchor="middle">${fmtT(t)}</text>`; }
-  // área de seções totalizadas (escala 0 a 100 à direita)
-  const area = hist.map((p,i)=>`${i?"L":"M"}${x(p.t).toFixed(1)},${yp(p.pst).toFixed(1)}`).join(" ");
-  g += `<path class="pst" d="${area} L${x(hist[hist.length-1].t).toFixed(1)},${yp(0)} L${x(t0).toFixed(1)},${yp(0)} Z"></path>`;
-  g += `<text x="${W-mr}" y="${mt+10}" text-anchor="end" style="fill:var(--prog)">seções totalizadas: ${fmtP(hist[hist.length-1].pst)}</text>`;
-  finalists.forEach(n=>{
-    const d = hist.map((p,i)=>`${i?"L":"M"}${x(p.t).toFixed(1)},${y(p[n]||0).toFixed(1)}`).join(" ");
-    const lp = hist[hist.length-1];
-    g += `<path class="ln" stroke="${colorOf[n]}" d="${d}"></path><circle cx="${x(lp.t)}" cy="${y(lp[n]||0)}" r="4" fill="${colorOf[n]}"></circle>
-          <text x="${x(lp.t)+7}" y="${y(lp[n]||0)+4}" style="fill:${colorOf[n]};font-weight:700">${fmtP(lp[n])}</text>`;
-  });
+  // fundo: metade de cima tingida de Lula, de baixo de Flávio
+  g += `<rect x="${ml}" y="${mt}" width="${iw}" height="${ih/2}" fill="${colorOf[A]}" opacity=".05"></rect><rect x="${ml}" y="${mt+ih/2}" width="${iw}" height="${ih/2}" fill="${colorOf[B]}" opacity=".05"></rect>`;
+  const step = maxAbs>12 ? 5 : maxAbs>6 ? 2 : 1;
+  for (let m=-Math.floor(maxAbs/step)*step; m<=maxAbs; m+=step){ if (m===0) continue; g += `<line class="grid" x1="${ml}" x2="${W-mr}" y1="${y(m)}" y2="${y(m)}"></line><text x="${ml-6}" y="${y(m)+4}" text-anchor="end">${m>0?"+":""}${m}</text>`; }
+  g += `<line x1="${ml}" x2="${W-mr}" y1="${y(0)}" y2="${y(0)}" stroke="var(--fg)" stroke-width="1.5"></line><text x="${ml-6}" y="${y(0)+4}" text-anchor="end" style="font-weight:700;fill:var(--fg)">0</text>`;
+  g += `<text x="${ml+6}" y="${mt+14}" style="fill:${colorOf[A]};font-weight:700">Lula à frente</text><text x="${ml+6}" y="${mt+ih-6}" style="fill:${colorOf[B]};font-weight:700">Flávio à frente</text>`;
+  const nT = 5; for (let i=0;i<=nT;i++){ const v=x0+(x1-x0)*i/nT; g += `<text x="${x(v)}" y="${H-12}" text-anchor="middle">${xaxis==="pst"? v.toFixed(0)+"%" : fmtT(v)}</text>`; }
+  g += `<text x="${ml+iw/2}" y="${H-1}" text-anchor="middle">${xaxis==="pst"?"seções totalizadas":"horário de Brasília"}</text>`;
+  // área colorida por quem lidera + linha
+  const path = pts.map((p,i)=>`${i?"L":"M"}${x(xv(p)).toFixed(1)},${y(p.m).toFixed(1)}`).join(" ");
+  const base = `L${x(xv(pts[pts.length-1])).toFixed(1)},${y(0)} L${x(xv(pts[0])).toFixed(1)},${y(0)} Z`;
+  g += `<clipPath id="cpA"><rect x="0" y="0" width="${W}" height="${y(0)}"></rect></clipPath><clipPath id="cpB"><rect x="0" y="${y(0)}" width="${W}" height="${H}"></rect></clipPath>`;
+  g += `<path d="${path} ${base}" fill="${colorOf[A]}" opacity=".3" clip-path="url(#cpA)"></path><path d="${path} ${base}" fill="${colorOf[B]}" opacity=".3" clip-path="url(#cpB)"></path>`;
+  g += `<path class="ln" d="${path}" stroke="var(--fg)" stroke-width="2"></path>`;
+  pts.forEach(p => { g += `<circle cx="${x(xv(p))}" cy="${y(p.m)}" r="2.5" fill="${p.m>=0?colorOf[A]:colorOf[B]}"></circle>`; });
+  const lp = pts[pts.length-1], lc = lp.m>=0?colorOf[A]:colorOf[B];
+  g += `<circle cx="${x(xv(lp))}" cy="${y(lp.m)}" r="5" fill="${lc}"></circle><text x="${x(xv(lp))+8}" y="${y(lp.m)+4}" style="fill:${lc};font-weight:700">${fmtD(lp.m)}</text>`;
   svg.innerHTML = g;
-  const b = byN(S.t2.BR);
-  leg.innerHTML = finalists.map(n=>`<span><i class="sw" style="background:${colorOf[n]}"></i>${esc((b[n]||{nome:n}).nome)}</span>`).join("")
-    + `<span><i class="sw" style="background:${mix(PROG,.25)}"></i>% de seções totalizadas</span><span>${hist.length} leitura(s) desde ${fmtT(t0)}</span>`;
+  const br = byN(S.t2.BR);
+  leg.innerHTML = `<span><i class="sw" style="background:${colorOf[A]}"></i>${esc((br[A]||{nome:"Lula"}).nome)} à frente</span><span><i class="sw" style="background:${colorOf[B]}"></i>${esc((br[B]||{nome:"Flávio"}).nome)} à frente</span><span>${pts.length} leitura(s) desde ${fmtT(pts[0].t)}</span>`;
+  tb.innerHTML = [...pts].reverse().slice(0,12).map((p,i,arr)=>{ const prev = arr[i+1]; const ch = prev ? p.m - prev.m : null;
+    const lead = p.m>=0?A:B;
+    return `<tr><td style="text-align:left">${p.k.split(" ")[1]||""}</td><td>${fmtP(p.pst)}</td><td style="color:${colorOf[A]}">${fmtP(p[A])}</td><td style="color:${colorOf[B]}">${fmtP(p[B])}</td>
+      <td><span class="chip" style="background:${colorOf[lead]}">${esc((br[lead]||{nome:lead}).nome)} ${fmtD(Math.abs(p.m)).replace("+","")}</span></td>
+      <td>${fmtN(Math.abs(p.dv))}</td><td class="delta" style="color:${ch==null?"var(--muted)":ch>0?colorOf[A]:ch<0?colorOf[B]:"var(--muted)"}">${ch==null?"–":(ch>0?"▲ Lula ":ch<0?"▲ Flávio ":"")+fmtD(Math.abs(ch)).replace("+","")}</td></tr>`; }).join("");
 }
 
 // Projeção: votos atuais + eleitores que faltam × comparecimento do 1º T na UF × divisão atual da UF
