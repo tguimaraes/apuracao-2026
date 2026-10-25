@@ -58,7 +58,7 @@ button[aria-pressed="true"]{background:var(--c1);color:#fff;border-color:var(--c
 .bar::after{content:"";position:absolute;left:50%;top:-3px;bottom:-3px;width:2px;background:var(--fg);opacity:.5}
 .sub{font-size:.78rem;color:var(--muted);margin-top:6px}
 .proj{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;margin-top:14px}
-.proj .cand .pc{font-size:1.9rem}
+.proj .cand .pc{font-size:1.5rem}
 .proj .rng{font-size:.8rem;color:var(--muted);font-variant-numeric:tabular-nums}
 .verdict{margin-top:14px;padding:12px 14px;border-radius:8px;background:var(--bg);font-size:.92rem;display:flex;gap:10px;align-items:center;flex-wrap:wrap}
 .verdict .chip{font-size:.8rem;padding:4px 12px}
@@ -146,7 +146,7 @@ footer a{color:var(--c1)}
 
   <section class="card" aria-labelledby="h-proj" id="projcard" hidden>
     <h2 id="h-proj">Projeção indicativa do resultado final <span class="eyebrow" style="font-weight:400">· cálculo próprio</span></h2>
-    <div class="sub">Estimativa simples, feita nesta página: para cada UF, os votos já contados somados aos eleitores que faltam, supondo o mesmo comparecimento do 1º turno naquela UF e a mesma divisão de votos que a UF mostra até agora. A faixa reflete o quanto ainda falta apurar. Não corrige o viés de capitais apurarem antes do interior; trate como indicação, não como resultado.</div>
+    <div class="sub">Estimativa simples, feita nesta página, em dois cenários somados UF a UF. <b>Tendência atual</b>: quem falta na UF vota como quem já foi apurado nela. <b>Base 1º turno</b>: quem falta vota como a UF votou no 1º turno (só entre os dois finalistas), ajustado pelo swing nacional observado. Capitais costumam apurar antes do interior, e os dois cenários cercam parte desse efeito; o que não cercam entra na faixa de incerteza. É indicação, não resultado.</div>
     <div id="proj"></div>
   </section>
 
@@ -505,48 +505,61 @@ function renderChart(){
       <td>${fmtN(Math.abs(p.dv))}</td><td class="delta" style="color:${ch==null?"var(--muted)":ch>0?colorOf[A]:ch<0?colorOf[B]:"var(--muted)"}">${ch==null?"–":(ch>0?"▲ Lula ":ch<0?"▲ Flávio ":"")+fmtD(Math.abs(ch)).replace("+","")}</td></tr>`; }).join("");
 }
 
-// Projeção: votos atuais + eleitores que faltam × comparecimento do 1º T na UF × divisão atual da UF
+// Projeção em dois cenários, UF a UF, somados nacionalmente.
+// Cenário A (tendência atual): os votos que faltam na UF se dividem como os já apurados na UF.
+// Cenário B (base do 1º turno): os votos que faltam se dividem como o 1º turno da UF entre os dois finalistas,
+//   mais o swing nacional observado até agora. Captura parte do viés "capital apura antes do interior".
 function projectNational(){
   const br = S.t2.BR; if (!br || !br.tot || finalists.length<2) return null;
   const [a,b] = finalists;
-  // swing nacional (2 candidatos normalizados) para UFs ainda sem votos
-  const n1 = d1 => { const m = byN(d1); const pa = m[a]?m[a].pvap:0, pb = m[b]?m[b].pvap:0, t = pa+pb; return t ? pa/t : .5; };
+  const n1 = d1 => { const m = byN(d1); const pa = m[a]?m[a].pvap:0, pb = m[b]?m[b].pvap:0, t = pa+pb; return t ? pa/t : null; };
   const curShare = d2 => { const m = byN(d2); const va = m[a]?m[a].vap:0, vb = m[b]?m[b].vap:0; return va+vb ? va/(va+vb) : null; };
-  const brShare = curShare(br), brSwing = brShare!=null && S.t1.BR ? brShare - n1(S.t1.BR) : 0;
-  let va = 0, vb = 0, remTot = 0, unc = 0;
+  const brShare = curShare(br), brN1 = S.t1.BR ? n1(S.t1.BR) : null, brSwing = brShare!=null && brN1!=null ? brShare - brN1 : 0;
+  const clamp = v => Math.min(1, Math.max(0, v));
+  let vaA=0, vbA=0, vaB=0, vbB=0, remTot=0, unc=0;
   UFS.forEach(u => {
     const d2 = S.t2[u], d1 = S.t1[u]; if (!d2) return;
     const m = byN(d2); const cva = m[a]?m[a].vap:0, cvb = m[b]?m[b].vap:0;
-    const turnout = d1 && d1.pabs!=null ? 1 - d1.pabs/100 : 0.79;
-    const validRatio = d1 && d1.est ? d1.tot/(d1.est*(1-(d1.pabs||0)/100)) : 0.95; // válidos ÷ comparecimento no 1º T
+    // comparecimento esperado: abstenção do 1º T na UF, ou a do 2º T já observada se for maior
+    const abs1 = d1 && d1.pabs!=null ? d1.pabs/100 : 0.21, abs2 = d2.pabs!=null && d2.est ? d2.pabs/100 : abs1;
+    const turnout = 1 - Math.max(abs1, abs2);
+    const validRatio = d1 && d1.est ? d1.tot/(d1.est*(1-abs1)) : 0.95;
     const rem = d2.esnt * turnout * validRatio;
-    let sh = curShare(d2);
-    if (sh == null) sh = Math.min(1, Math.max(0, (d1 ? n1(d1) : .5) + brSwing));
-    // incerteza: quanto menos apurado na UF, mais a divisão dos que faltam pode diferir (até ±8 p.p. com 0% apurado)
-    const spread = 0.08 * (1 - Math.min(1, d2.pst/100));
-    va += cva + rem*sh; vb += cvb + rem*(1-sh); remTot += rem; unc += rem*spread;
+    const shA0 = curShare(d2), sh1 = d1 ? n1(d1) : null;
+    const shB = clamp((sh1!=null ? sh1 : (brN1!=null?brN1:.5)) + brSwing);
+    const shA = shA0!=null ? shA0 : shB;
+    // incerteza por UF: até ±12 p.p. na divisão dos que faltam quando nada foi apurado, caindo com a raiz do % apurado
+    const spread = 0.12 * Math.sqrt(1 - Math.min(1, d2.pst/100));
+    vaA += cva + rem*shA; vbA += cvb + rem*(1-shA);
+    vaB += cva + rem*shB; vbB += cvb + rem*(1-shB);
+    remTot += rem; unc += rem*spread;
   });
-  const tot = va+vb; if (!tot) return null;
-  const pa = va/tot*100, half = unc/tot*100;
+  const totA = vaA+vbA, totB = vaB+vbB; if (!totA || !totB) return null;
+  const pA = vaA/totA*100, pB = vaB/totB*100, half = unc/totA*100;
   const counted = br.tot, remainingShare = remTot/(counted+remTot);
-  return {a, b, pa, pb:100-pa, half, remainingShare, counted, remTot,
-    decided: (()=>{ const m = byN(br); const lead = Math.abs((m[a]?m[a].vap:0)-(m[b]?m[b].vap:0)); return lead > br.esnt; })()};
+  const m = byN(br), leadVotes = Math.abs((m[a]?m[a].vap:0)-(m[b]?m[b].vap:0));
+  return {a, b, pA, pB, half, remainingShare, counted, remTot, decided: leadVotes > br.esnt,
+    lo: Math.min(pA,pB)-half, hi: Math.max(pA,pB)+half};
 }
 function renderProjection(){
   const card = document.getElementById("projcard"), box = document.getElementById("proj");
   const P = projectNational(); if (!P){ card.hidden = true; return; }
   card.hidden = false;
-  const br = byN(S.t2.BR);
-  const lo = n => Math.max(0, (n===P.a?P.pa:P.pb) - P.half), hi = n => Math.min(100, (n===P.a?P.pa:P.pb) + P.half);
-  box.innerHTML = `<div class="proj">${[P.a,P.b].map(n=>`<div class="cand" style="--cc:${colorOf[n]}"><div class="nm">${esc((br[n]||{nome:n}).nome)}</div>
-      <div class="pc">${fmtP(n===P.a?P.pa:P.pb)}</div><div class="rng">faixa estimada ${fmtP(lo(n))} a ${fmtP(hi(n))}</div></div>`).join("")}</div>`;
-  const leadN = P.pa>=50 ? P.a : P.b, leadP = Math.max(P.pa,P.pb), leadNome = esc((br[leadN]||{nome:leadN}).nome);
-  let status, color;
-  if (P.decided){ status = `${leadNome} eleito: a vantagem em votos já supera todos os eleitores das seções que faltam.`; color = "#2E7D32"; }
-  else if (leadP - P.half > 50){ status = `${leadNome} lidera e a faixa estimada inteira fica acima de 50%. Ainda não é matematicamente definido.`; color = colorOf[leadN]; }
-  else { status = `Disputa em aberto: a faixa estimada cruza os 50%. Falta apurar o equivalente a ${fmtP(P.remainingShare*100)} dos votos esperados.`; color = "#616161"; }
-  box.innerHTML += `<div class="verdict"><span class="chip" style="background:${color}">${P.decided?"Definido":leadP-P.half>50?"Tendência":"Em aberto"}</span><span>${status}</span></div>
-    <div class="sub">Votos válidos contados: ${fmtN(P.counted)} · votos válidos ainda esperados: ${fmtN(Math.round(P.remTot))} (${fmtP(P.remainingShare*100)} do total projetado).</div>`;
+  const br = byN(S.t2.BR), nome = n => esc((br[n]||{nome:n}).nome);
+  const cen = (n, p) => n===P.a ? p : 100-p;
+  const lo = n => Math.max(0, n===P.a ? P.lo : 100-P.hi), hi = n => Math.min(100, n===P.a ? P.hi : 100-P.lo);
+  box.innerHTML = `<div class="proj">${[P.a,P.b].map(n=>`<div class="cand" style="--cc:${colorOf[n]}"><div class="nm">${nome(n)}</div>
+      <div class="pc">${fmtP(lo(n))} a ${fmtP(hi(n))}</div>
+      <div class="rng">cenário tendência atual: <b>${fmtP(cen(n,P.pA))}</b> · cenário base 1º turno: <b>${fmtP(cen(n,P.pB))}</b></div></div>`).join("")}</div>`;
+  const leadN = P.pA>=50 ? P.a : P.b, leadNome = nome(leadN);
+  const agree = (P.pA>=50) === (P.pB>=50);
+  let status, color, tag;
+  if (P.decided){ tag="Definido"; status = `${leadNome} eleito: a vantagem em votos já supera todos os eleitores das seções que faltam.`; color = "#2E7D32"; }
+  else if (agree && lo(leadN) > 50){ tag="Tendência"; status = `${leadNome} lidera nos dois cenários e toda a faixa fica acima de 50%. Ainda não é matematicamente definido.`; color = colorOf[leadN]; }
+  else if (agree){ tag="Tendência frágil"; status = `${leadNome} lidera nos dois cenários, mas a faixa de incerteza ainda cruza os 50%.`; color = "#F9A825"; }
+  else { tag="Em aberto"; status = `Os dois cenários apontam vencedores diferentes: o resultado depende de como vota quem ainda falta apurar.`; color = "#616161"; }
+  box.innerHTML += `<div class="verdict"><span class="chip" style="background:${color}">${tag}</span><span>${status}</span></div>
+    <div class="sub">Votos válidos contados: ${fmtN(P.counted)} · ainda esperados: ${fmtN(Math.round(P.remTot))} (${fmtP(P.remainingShare*100)} do total projetado). Faixa = os dois cenários, mais uma margem por UF de até ±12 pontos na divisão dos votos que faltam, que encolhe conforme a UF avança.</div>`;
 }
 
 function renderTable(){
