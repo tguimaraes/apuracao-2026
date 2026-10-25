@@ -83,7 +83,7 @@ svg#mapa{width:100%;height:auto;display:block;max-width:100%}
 .mini{grid-column:1/-1;height:6px;border-radius:3px;background:var(--line);overflow:hidden}
 .mini i{display:block;height:100%}
 .tbl{overflow-x:auto;margin-top:10px}
-table{width:100%;border-collapse:collapse;font-size:.82rem;font-variant-numeric:tabular-nums;min-width:720px}
+table{width:100%;border-collapse:collapse;font-size:.82rem;font-variant-numeric:tabular-nums;min-width:900px}
 caption{text-align:left;font-size:.78rem;color:var(--muted);padding:0 0 8px}
 th{font-size:.68rem;text-transform:uppercase;letter-spacing:.05em;color:var(--muted);font-weight:500;text-align:right;padding:8px 6px;border-bottom:1px solid var(--line);vertical-align:bottom}
 th:first-child,td:first-child{text-align:left}
@@ -142,7 +142,7 @@ footer a{color:var(--c1)}
 
   <section class="card" aria-labelledby="h-tab">
     <h2 id="h-tab">Comparativo por estado</h2>
-    <div class="tbl"><table><caption>Ordenado pela margem entre os dois finalistas no 2º turno. Abstenção do 2º turno calculada sobre as seções já totalizadas.</caption><thead id="thead"></thead><tbody id="tbody"></tbody></table></div>
+    <div class="tbl"><table><caption>Ordenado pela margem entre os dois finalistas no 2º turno. Comparecimento = votos já contados. Eleitores que faltam = eleitorado das seções ainda não totalizadas; quando a vantagem em votos supera esse número, o estado está matematicamente definido (✓). Abstenção do 2º turno calculada sobre as seções já totalizadas.</caption><thead id="thead"></thead><tbody id="tbody"></tbody></table></div>
   </section>
 
   <footer>Fonte: arquivos públicos de divulgação do <a href="https://resultados.tse.jus.br/oficial/app/index.html" target="_blank" rel="noopener">TSE</a>, eleições 6258 (2º turno) e 6257 (1º turno). O painel atualiza sozinho a cada 60 segundos. Projeto independente, sem vínculo com o TSE.</footer>
@@ -197,7 +197,7 @@ function parse(j){
   if ((pabs==null || pabs===0) && est) pabs = abs/est*100;
   return { cands, tot,
     pst: pct(s.pst ?? findKey(j,"pst")) || 0, st: num(s.st ?? findKey(j,"st")), ts: num(s.ts ?? findKey(j,"ts")),
-    te: num(e.te), est, comp: num(e.c), pcomp: pct(e.pc), abs, pabs: est ? pabs : null,
+    te: num(e.te), est, esnt: num(e.esnt) || Math.max(0, num(e.te)-est), comp: num(e.c), pcomp: pct(e.pc), abs, pabs: est ? pabs : null,
     brancos: num(v.vb), pbrancos: pct(v.pvb), nulos: num(v.tvn ?? v.vn), pnulos: pct(v.ptvn ?? v.pvn),
     data: j.dg || findKey(j,"dg") || "", hora: j.hg || findKey(j,"hg") || "" };
 }
@@ -251,7 +251,7 @@ function renderBr(){
       <div class="mono">votos válidos a redistribuir</div></div>`;
   document.getElementById("thead").innerHTML =
     `<tr><th scope="col">UF</th><th scope="col">Apurado</th>${ordered.map(c=>`<th scope="col">${esc(c.nome)}<br>2º T</th><th scope="col">${esc(c.nome)}<br>1º T</th>`).join("")}
-     <th scope="col">Margem<br>2º T</th><th scope="col">Abst.<br>2º T</th><th scope="col">Abst.<br>1º T</th><th scope="col">Δ abst.</th></tr>`;
+     <th scope="col">Margem<br>2º T</th><th scope="col">Compare-<br>cimento</th><th scope="col">Eleitores<br>que faltam</th><th scope="col">Abst.<br>2º T</th><th scope="col">Abst.<br>1º T</th><th scope="col">Δ abst.</th></tr>`;
 }
 
 function renderLegend(){
@@ -350,6 +350,7 @@ function renderDetail(){
   box.innerHTML = `<div class="eyebrow">Detalhe</div><h2 tabindex="-1" id="dh">${nome}</h2>${selected?`<div><button type="button" id="backBr" style="margin-top:6px">← Voltar ao Brasil</button></div>`:""}
     <div class="sub">2º turno: ${d2?fmtP(d2.pst):"–"} das seções totalizadas${d2&&d2.ts?` (${fmtN(d2.st)} de ${fmtN(d2.ts)})`:""}${d2&&d2.te?` · eleitorado ${fmtN(d2.te)}`:""}</div>
     <div class="prog" aria-hidden="true"><i style="width:${d2?d2.pst:0}%"></i></div>
+    ${d2?`<div class="sub">Comparecimento ${fmtN(d2.comp)} votos · eleitores que faltam ${fmtN(d2.esnt)}${(()=>{const L=leader(d2);return L?` · vantagem de ${fmtN(L.win.vap-L.lose.vap)} votos${(L.win.vap-L.lose.vap)>d2.esnt?" · matematicamente definido ✓":""}`:"";})()}</div>`:""}
     <div style="margin-top:12px"><div class="eyebrow">2º turno (parcial)</div>${candRows(d2)}</div>
     <div style="margin-top:16px"><div class="eyebrow">1º turno (final)</div>${candRows(d1)}</div>
     <div class="kpis">
@@ -375,7 +376,8 @@ function renderTable(){
     return `<tr><th scope="row" style="text-align:left;color:var(--fg);font-size:.82rem;text-transform:none;letter-spacing:0"><b>${u==="ZZ"?"EXT":u}</b> <span class="mono">${NOMES[u]}</span></th>
       <td><span class="pbar" aria-hidden="true"><i style="width:${d2?d2.pst:0}%"></i></span>${d2?fmtP(d2.pst):"–"}</td>
       ${finalists.map(n=>`<td>${b2[n]?fmtP(b2[n].pvap):"–"}</td><td class="t1">${b1[n]?fmtP(b1[n].pvap):"–"}</td>`).join("")}
-      <td>${L?`<span class="chip" style="background:${colorOf[L.win.n]}">${esc(L.win.nome)} ${L.margin.toLocaleString("pt-BR",{maximumFractionDigits:1})} p.p.</span>`:"–"}</td>
+      <td>${L?`<span class="chip" style="background:${colorOf[L.win.n]}">${esc(L.win.nome)} ${L.margin.toLocaleString("pt-BR",{maximumFractionDigits:1})} p.p.</span>${d2 && (L.win.vap-L.lose.vap) > d2.esnt ? ` <span class="chip" style="background:#2E7D32" title="A diferença em votos já é maior que todo o eleitorado das seções que faltam">✓ definido</span>` : ""}`:"–"}</td>
+      <td>${d2?fmtN(d2.comp):"–"}</td><td>${d2?fmtN(d2.esnt):"–"}${d2&&L?`<div class="mono">vantagem ${fmtN(L.win.vap-L.lose.vap)}</div>`:""}</td>
       <td>${fmtP(d2&&d2.pabs)}</td><td class="t1">${fmtP(d1&&d1.pabs)}</td>
       <td class="delta ${dAbs>0?"up":dAbs<0?"down":""}">${fmtD(dAbs)}</td></tr>`;
   }).join("");
