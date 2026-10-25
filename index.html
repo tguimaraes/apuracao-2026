@@ -247,8 +247,8 @@ function renderBr(){
     <div class="kpi"><div class="l">Brancos e nulos 2º turno</div><div class="v">${fmtP((d.pbrancos||0)+(d.pnulos||0))}</div>
       <div class="mono">${fmtN(d.brancos+d.nulos)} votos</div>
       <div class="delta">1º turno: ${d1 && !d1.fallback ? fmtP((d1.pbrancos||0)+(d1.pnulos||0)) : "–"}</div></div>
-    <div class="kpi"><div class="l">Outros candidatos no 1º turno</div><div class="v">${fmtP(outros(d1))}</div>
-      <div class="mono">votos válidos a redistribuir</div></div>`;
+    <div class="kpi"><div class="l">Votos em outros candidatos no 1º turno</div><div class="v">${fmtP(outros(d1))}</div>
+      <div class="mono">eleitores que precisam escolher de novo</div></div>`;
   document.getElementById("thead").innerHTML =
     `<tr><th scope="col">UF</th><th scope="col">Apurado</th>${ordered.map(c=>`<th scope="col">${esc(c.nome)}<br>2º T</th><th scope="col">${esc(c.nome)}<br>1º T</th>`).join("")}
      <th scope="col">Margem<br>2º T</th><th scope="col">Compare-<br>cimento</th><th scope="col">Eleitores<br>que faltam</th><th scope="col">Abst.<br>2º T</th><th scope="col">Abst.<br>1º T</th><th scope="col">Δ abst.</th></tr>`;
