@@ -55,6 +55,21 @@ button[aria-pressed="true"]{background:var(--c1);color:#fff;border-color:var(--c
 .bar i{display:block;height:100%;transition:width .6s}
 .bar::after{content:"";position:absolute;left:50%;top:-3px;bottom:-3px;width:2px;background:var(--fg);opacity:.5}
 .sub{font-size:.78rem;color:var(--muted);margin-top:6px}
+.regs{display:grid;gap:10px;margin-top:12px}
+.reg{display:grid;grid-template-columns:150px minmax(0,1fr);gap:6px 14px;align-items:center;padding:10px 0;border-bottom:1px solid var(--line)}
+.reg:last-child{border-bottom:0}
+.reg .nm{font-weight:500}
+.reg .meta{font-size:.74rem;color:var(--muted)}
+.reg .nums{display:flex;justify-content:space-between;font-size:.82rem;font-variant-numeric:tabular-nums;gap:8px;flex-wrap:wrap}
+.reg .nums b{font-size:1rem}
+.reg .bar{margin-top:6px;height:12px}
+@media (max-width:560px){.reg{grid-template-columns:1fr}}
+.chart{width:100%;height:auto;display:block;margin-top:10px}
+.chart text{font-family:var(--font);fill:var(--muted);font-size:11px}
+.chart .grid{stroke:var(--line);stroke-width:1}
+.chart .ln{fill:none;stroke-width:2.5;stroke-linejoin:round;stroke-linecap:round}
+.chart .pst{fill:var(--prog);opacity:.12}
+.chart .half{stroke:var(--fg);stroke-dasharray:4 4;opacity:.5}
 .kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:12px;margin-top:16px}
 .kpi{background:var(--bg);border-radius:8px;padding:12px 14px;min-width:0}
 .kpi .v{font-size:1.5rem;font-weight:700;font-variant-numeric:tabular-nums;line-height:1.2}
@@ -121,6 +136,19 @@ footer a{color:var(--c1)}
 
   <div id="erro" class="err" role="alert" hidden></div>
 
+  <section class="card" aria-labelledby="h-reg">
+    <h2 id="h-reg">Resumo por região</h2>
+    <div class="sub">Votos somados dos estados de cada região. O 1º turno aparece em cinza, para comparação.</div>
+    <div class="regs" id="regs"></div>
+  </section>
+
+  <section class="card" aria-labelledby="h-evo">
+    <h2 id="h-evo">Evolução da apuração</h2>
+    <div class="sub" id="evo-sub">Percentual de votos válidos de cada candidato no Brasil ao longo da noite. A área verde ao fundo é o % de seções totalizadas. A série começa quando esta página foi aberta pela primeira vez neste navegador e continua mesmo se você recarregar.</div>
+    <svg class="chart" id="chart" viewBox="0 0 720 260" role="img" aria-labelledby="h-evo evo-sub"></svg>
+    <div class="legend" id="chart-legend"></div>
+  </section>
+
   <section class="card" aria-labelledby="h-mapa">
     <h2 id="h-mapa">Mapa por UF</h2>
     <div class="sub">Escolha o que o mapa mostra e toque num estado para ver o detalhe. Pelo teclado, use Tab e Enter.</div>
@@ -142,7 +170,7 @@ footer a{color:var(--c1)}
 
   <section class="card" aria-labelledby="h-tab">
     <h2 id="h-tab">Comparativo por estado</h2>
-    <div class="tbl"><table><caption>Ordenado pela margem entre os dois finalistas no 2º turno. Comparecimento = votos já contados. Eleitores que faltam = eleitorado das seções ainda não totalizadas; quando a vantagem em votos supera esse número, o estado está matematicamente definido (✓). Abstenção do 2º turno calculada sobre as seções já totalizadas.</caption><thead id="thead"></thead><tbody id="tbody"></tbody></table></div>
+    <div class="tbl"><table><caption>Ordenado pela margem entre os dois finalistas no 2º turno. Δ = variação em pontos percentuais frente ao 1º turno; ★ marca quem mais cresceu na UF (lembrando que no 1º turno havia outros candidatos na base). Comparecimento = votos já contados. Eleitores que faltam = eleitorado das seções ainda não totalizadas; quando a vantagem em votos supera esse número, o estado está matematicamente definido (✓). Abstenção do 2º turno calculada sobre as seções já totalizadas.</caption><thead id="thead"></thead><tbody id="tbody"></tbody></table></div>
   </section>
 
   <footer>Fonte: arquivos públicos de divulgação do <a href="https://resultados.tse.jus.br/oficial/app/index.html" target="_blank" rel="noopener">TSE</a>, eleições 6258 (2º turno) e 6257 (1º turno). O painel atualiza sozinho a cada 60 segundos. Projeto independente, sem vínculo com o TSE.</footer>
@@ -159,6 +187,8 @@ const NOMES = {AC:"Acre",AL:"Alagoas",AP:"Amapá",AM:"Amazonas",BA:"Bahia",CE:"C
   PE:"Pernambuco",PI:"Piauí",RJ:"Rio de Janeiro",RN:"Rio Grande do Norte",RS:"Rio Grande do Sul",RO:"Rondônia",RR:"Roraima",
   SC:"Santa Catarina",SP:"São Paulo",SE:"Sergipe",TO:"Tocantins",ZZ:"Voto no exterior"};
 const UFS = Object.keys(NOMES);
+const REGIOES = {"Norte":["AC","AP","AM","PA","RO","RR","TO"],"Nordeste":["AL","BA","CE","MA","PB","PE","PI","RN","SE"],
+  "Centro-Oeste":["DF","GO","MT","MS"],"Sudeste":["ES","MG","RJ","SP"],"Sul":["PR","RS","SC"],"Exterior":["ZZ"]};
 const CAND_COLOR = {"13":"#C62828","22":"#1565C0"}; const COLORS = ["#C62828","#1565C0"], PROG = "#00897B", ABS = "#546E7A";
 // Estados pequenos cuja sigla fica fora do desenho
 const OUT = {DF:[0,-14],SE:[14,2],AL:[16,0],RN:[14,-4],PB:[16,0],ES:[16,0],RJ:[10,12]};
@@ -250,7 +280,7 @@ function renderBr(){
     <div class="kpi"><div class="l">Votos em outros candidatos no 1º turno</div><div class="v">${fmtP(outros(d1))}</div>
       <div class="mono">eleitores que precisam escolher de novo</div></div>`;
   document.getElementById("thead").innerHTML =
-    `<tr><th scope="col">UF</th><th scope="col">Apurado</th>${ordered.map(c=>`<th scope="col">${esc(c.nome)}<br>2º T</th><th scope="col">${esc(c.nome)}<br>1º T</th>`).join("")}
+    `<tr><th scope="col">UF</th><th scope="col">Apurado</th>${ordered.map(c=>`<th scope="col">${esc(c.nome)}<br>2º T e Δ vs 1º T</th><th scope="col">${esc(c.nome)}<br>1º T</th>`).join("")}
      <th scope="col">Margem<br>2º T</th><th scope="col">Compare-<br>cimento</th><th scope="col">Eleitores<br>que faltam</th><th scope="col">Abst.<br>2º T</th><th scope="col">Abst.<br>1º T</th><th scope="col">Δ abst.</th></tr>`;
 }
 
@@ -366,6 +396,83 @@ function clearSel(){ selected = null; renderMap(); renderDetail(); }
 document.addEventListener("click", e => { if (selected && !e.target.closest("path.st, button, a, input, select, textarea, #detail, table")) clearSel(); });
 document.addEventListener("keydown", e => { if (e.key === "Escape" && selected) clearSel(); });
 
+// Soma os estados de uma região num único resultado (mesma estrutura do parse)
+function aggregate(src, ufs){
+  const ds = ufs.map(u=>src[u]).filter(Boolean); if(!ds.length) return null;
+  const cm = {};
+  ds.forEach(d=>d.cands.forEach(c=>{ cm[c.n] = cm[c.n] || {n:c.n,nome:c.nome,vap:0}; cm[c.n].vap += c.vap; }));
+  const cands = Object.values(cm), tot = cands.reduce((s,c)=>s+c.vap,0);
+  cands.forEach(c=>c.pvap = tot ? c.vap/tot*100 : 0);
+  const sum = k => ds.reduce((s,d)=>s+(d[k]||0),0);
+  const ts=sum("ts"), st=sum("st"), est=sum("est"), abs=sum("abs");
+  return {cands, tot, ts, st, pst: ts?st/ts*100:0, te:sum("te"), est, esnt:sum("esnt"), comp:sum("comp"), abs, pabs: est?abs/est*100:null, n:ds.length, total:ufs.length};
+}
+function renderRegions(){
+  if (!S.t2.BR) return;
+  const box = document.getElementById("regs");
+  box.innerHTML = Object.entries(REGIOES).map(([nome,ufs])=>{
+    const d2 = aggregate(S.t2, ufs), d1 = aggregate(S.t1, ufs);
+    if (!d2 && !d1) return "";
+    const b2 = byN(d2), b1 = byN(d1), L = leader(d2);
+    const o1 = outros(d1);
+    const dAbs = d2 && d1 && d2.pabs!=null && d1.pabs!=null ? d2.pabs-d1.pabs : null;
+    return `<div class="reg">
+      <div><div class="nm">${nome}</div><div class="meta">${ufs.join(", ")}</div>
+        <div class="meta">${d2?fmtP(d2.pst):"–"} apurado${d2&&d2.n<d2.total?` · ${d2.n} de ${d2.total} UFs com dados`:""}</div>
+        <div class="meta">Abstenção ${fmtP(d2&&d2.pabs)}${dAbs!=null?` (${fmtD(dAbs)} vs 1º T)`:""}</div></div>
+      <div><div class="nums">${finalists.map(n=>`<span style="color:${colorOf[n]}"><b>${b2[n]?fmtP(b2[n].pvap):"–"}</b> ${esc((b2[n]||b1[n]||{nome:n}).nome)}<span class="meta"> · 1º T ${b1[n]?fmtP(b1[n].pvap):"–"}${b2[n]&&b1[n]?` (${fmtD(b2[n].pvap-b1[n].pvap)})`:""}</span></span>`).join("")}
+        ${L?`<span class="chip" style="background:${colorOf[L.win.n]}">+${L.margin.toLocaleString("pt-BR",{maximumFractionDigits:1})} p.p.</span>`:""}</div>
+        <div class="bar" aria-hidden="true">${finalists.map(n=>`<i style="width:${b2[n]?b2[n].pvap:0}%;background:${colorOf[n]}"></i>`).join("")}</div>
+        <div class="bar" aria-hidden="true" style="height:6px;margin-top:4px;opacity:.55">${finalists.map(n=>`<i style="width:${b1[n]?b1[n].pvap:0}%;background:${colorOf[n]}"></i>`).join("")}${o1?`<i style="width:${o1}%;background:var(--muted)"></i>`:""}</div>
+        <div class="meta">Barra fina: 1º turno (cinza = outros candidatos${o1?`, ${fmtP(o1)}`:""})</div></div>
+    </div>`;
+  }).join("");
+}
+
+// Série temporal da apuração nacional, guardada neste navegador
+const HIST_KEY = "apuracao2026_hist_" + T2;
+let hist = [];
+try { hist = JSON.parse(localStorage.getItem(HIST_KEY) || "[]"); } catch(e){ hist = []; }
+function recordHistory(){
+  const d = S.t2.BR; if (!d || !d.tot) return;
+  const key = d.data + " " + d.hora, last = hist[hist.length-1];
+  if (last && last.k === key) return;
+  const [dd,mm,yy] = (d.data||"").split("/"), t = new Date(`${yy}-${mm}-${dd}T${d.hora||"00:00:00"}-03:00`).getTime();
+  const pt = {k:key, t: isNaN(t)?Date.now():t, pst:d.pst};
+  d.cands.forEach(c=>pt[c.n]=c.pvap);
+  hist.push(pt);
+  try { localStorage.setItem(HIST_KEY, JSON.stringify(hist)); } catch(e){}
+}
+function renderChart(){
+  const svg = document.getElementById("chart"), leg = document.getElementById("chart-legend");
+  const W=720,H=260,ml=44,mr=16,mt=14,mb=34, iw=W-ml-mr, ih=H-mt-mb;
+  if (hist.length<1){ svg.innerHTML = `<text x="${W/2}" y="${H/2}" text-anchor="middle">Aguardando os primeiros dados da apuração…</text>`; return; }
+  const t0 = hist[0].t, t1 = Math.max(hist[hist.length-1].t, t0+10*60*1000);
+  const vals = finalists.flatMap(n=>hist.map(p=>p[n]||0));
+  let ymin = Math.floor(Math.min(...vals)/5)*5-5, ymax = Math.ceil(Math.max(...vals)/5)*5+5;
+  ymin = Math.max(0, Math.min(ymin, 45)); ymax = Math.min(100, Math.max(ymax, 55));
+  const x = t => ml + (t-t0)/(t1-t0)*iw, y = v => mt + (1-(v-ymin)/(ymax-ymin))*ih, yp = v => mt + (1-v/100)*ih;
+  const fmtT = t => new Date(t).toLocaleTimeString("pt-BR",{hour:"2-digit",minute:"2-digit"});
+  let g = "";
+  for (let v=ymin; v<=ymax; v+=5) g += `<line class="grid" x1="${ml}" x2="${W-mr}" y1="${y(v)}" y2="${y(v)}"></line><text x="${ml-6}" y="${y(v)+4}" text-anchor="end">${v}%</text>`;
+  g += `<line class="half" x1="${ml}" x2="${W-mr}" y1="${y(50)}" y2="${y(50)}"></line>`;
+  const nT = 5; for (let i=0;i<=nT;i++){ const t=t0+(t1-t0)*i/nT; g += `<text x="${x(t)}" y="${H-10}" text-anchor="middle">${fmtT(t)}</text>`; }
+  // área de seções totalizadas (escala 0 a 100 à direita)
+  const area = hist.map((p,i)=>`${i?"L":"M"}${x(p.t).toFixed(1)},${yp(p.pst).toFixed(1)}`).join(" ");
+  g += `<path class="pst" d="${area} L${x(hist[hist.length-1].t).toFixed(1)},${yp(0)} L${x(t0).toFixed(1)},${yp(0)} Z"></path>`;
+  g += `<text x="${W-mr}" y="${mt+10}" text-anchor="end" style="fill:var(--prog)">seções totalizadas: ${fmtP(hist[hist.length-1].pst)}</text>`;
+  finalists.forEach(n=>{
+    const d = hist.map((p,i)=>`${i?"L":"M"}${x(p.t).toFixed(1)},${y(p[n]||0).toFixed(1)}`).join(" ");
+    const lp = hist[hist.length-1];
+    g += `<path class="ln" stroke="${colorOf[n]}" d="${d}"></path><circle cx="${x(lp.t)}" cy="${y(lp[n]||0)}" r="4" fill="${colorOf[n]}"></circle>
+          <text x="${x(lp.t)+7}" y="${y(lp[n]||0)+4}" style="fill:${colorOf[n]};font-weight:700">${fmtP(lp[n])}</text>`;
+  });
+  svg.innerHTML = g;
+  const b = byN(S.t2.BR);
+  leg.innerHTML = finalists.map(n=>`<span><i class="sw" style="background:${colorOf[n]}"></i>${esc((b[n]||{nome:n}).nome)}</span>`).join("")
+    + `<span><i class="sw" style="background:${mix(PROG,.25)}"></i>% de seções totalizadas</span><span>${hist.length} leitura(s) desde ${fmtT(t0)}</span>`;
+}
+
 function renderTable(){
   if (!S.t2.BR) return;
   const rows = UFS.filter(u=>S.t2[u]||S.t1[u]).map(u=>({u, d2:S.t2[u], d1:S.t1[u], L:leader(S.t2[u])}))
@@ -375,7 +482,9 @@ function renderTable(){
     const dAbs = d2 && d1 && d2.pabs!=null && d1.pabs!=null ? d2.pabs-d1.pabs : null;
     return `<tr><th scope="row" style="text-align:left;color:var(--fg);font-size:.82rem;text-transform:none;letter-spacing:0"><b>${u==="ZZ"?"EXT":u}</b> <span class="mono">${NOMES[u]}</span></th>
       <td><span class="pbar" aria-hidden="true"><i style="width:${d2?d2.pst:0}%"></i></span>${d2?fmtP(d2.pst):"–"}</td>
-      ${finalists.map(n=>`<td>${b2[n]?fmtP(b2[n].pvap):"–"}</td><td class="t1">${b1[n]?fmtP(b1[n].pvap):"–"}</td>`).join("")}
+      ${(()=>{ const gs = finalists.map(n => b2[n]&&b1[n] ? b2[n].pvap-b1[n].pvap : null); const best = Math.max(...gs.filter(g=>g!=null));
+        return finalists.map((n,i)=>{ const g=gs[i]; const top = g!=null && g===best && gs.filter(x=>x!=null).length>1;
+          return `<td>${b2[n]?fmtP(b2[n].pvap):"–"}${g!=null?`<div class="delta ${g>0?"down":g<0?"up":""}" style="${top?"font-weight:700":""}">${g>0?"▲":g<0?"▼":""} ${fmtD(g)}${top?" ★":""}</div>`:""}</td><td class="t1">${b1[n]?fmtP(b1[n].pvap):"–"}</td>`; }).join(""); })()}
       <td>${L?`<span class="chip" style="background:${colorOf[L.win.n]}">${esc(L.win.nome)} ${L.margin.toLocaleString("pt-BR",{maximumFractionDigits:1})} p.p.</span>${d2 && (L.win.vap-L.lose.vap) > d2.esnt ? ` <span class="chip" style="background:#2E7D32" title="A diferença em votos já é maior que todo o eleitorado das seções que faltam">✓ definido</span>` : ""}`:"–"}</td>
       <td>${d2?fmtN(d2.comp):"–"}</td><td>${d2?fmtN(d2.esnt):"–"}${d2&&L?`<div class="mono">vantagem ${fmtN(L.win.vap-L.lose.vap)}</div>`:""}</td>
       <td>${fmtP(d2&&d2.pabs)}</td><td class="t1">${fmtP(d1&&d1.pabs)}</td>
@@ -411,7 +520,7 @@ async function load(){
   if (!t1Loaded) msgs.push("Os arquivos do 1º turno não responderam. O resumo nacional do 1º turno usa os números finais do TSE; o comparativo por estado fica vazio.");
   else if (t1Fails) msgs.push(`${t1Fails} arquivo(s) do 1º turno não responderam.`);
   erro.hidden = !msgs.length; erro.innerHTML = msgs.join("<br>");
-  renderBr(); renderMap(); renderDetail(); renderTable();
+  renderBr(); recordHistory(); renderRegions(); renderChart(); renderMap(); renderDetail(); renderTable();
   busy = false; left = 60;
   tick(S.t2.BR ? `TSE: ${S.t2.BR.data} ${S.t2.BR.hora}` : "");
 }
