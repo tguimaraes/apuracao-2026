@@ -193,6 +193,12 @@ footer a{color:var(--c1)}
     <div class="tbl"><table><caption>Ordenado pela margem entre os dois finalistas no 2º turno. Δ = variação em pontos percentuais frente ao 1º turno; ★ marca quem mais cresceu na UF (lembrando que no 1º turno havia outros candidatos na base). Comparecimento = votos já contados. Eleitores que faltam = eleitorado das seções ainda não totalizadas; quando a vantagem em votos supera esse número, o estado está matematicamente definido (✓). Abstenção do 2º turno calculada sobre as seções já totalizadas.</caption><thead id="thead"></thead><tbody id="tbody"></tbody></table></div>
   </section>
 
+  <section class="card" aria-labelledby="h-cap">
+    <h2 id="h-cap">Comparativo das capitais <span class="eyebrow" style="font-weight:400">· dados do TSE</span></h2>
+    <div class="sub">Mesmas colunas da tabela de estados, só com o município da capital de cada UF. Brasília é o DF inteiro. A última linha soma as 27 capitais. <span id="capsub"></span></div>
+    <div class="tbl"><table><caption>Ordenado pela margem no 2º turno. Capitais costumam totalizar antes do interior, por isso o % apurado aqui tende a estar à frente do estado.</caption><thead id="caphead"></thead><tbody id="capbody"></tbody></table></div>
+  </section>
+
   <footer>Fonte: arquivos públicos de divulgação do <a href="https://resultados.tse.jus.br/oficial/app/index.html" target="_blank" rel="noopener">TSE</a>, eleições 6258 (2º turno) e 6257 (1º turno). O painel atualiza sozinho a cada 60 segundos. Projeto independente, sem vínculo com o TSE.</footer>
 </main>
 
@@ -562,14 +568,10 @@ function renderProjection(){
     <div class="sub">Votos válidos contados: ${fmtN(P.counted)} · ainda esperados: ${fmtN(Math.round(P.remTot))} (${fmtP(P.remainingShare*100)} do total projetado). Faixa = os dois cenários, mais uma margem por UF de até ±12 pontos na divisão dos votos que faltam, que encolhe conforme a UF avança.</div>`;
 }
 
-function renderTable(){
-  if (!S.t2.BR) return;
-  const rows = UFS.filter(u=>S.t2[u]||S.t1[u]).map(u=>({u, d2:S.t2[u], d1:S.t1[u], L:leader(S.t2[u])}))
-    .sort((a,b)=>(b.L?b.L.margin:-1)-(a.L?a.L.margin:-1));
-  document.getElementById("tbody").innerHTML = rows.map(({u,d2,d1,L})=>{
-    const b2 = byN(d2), b1 = byN(d1);
-    const dAbs = d2 && d1 && d2.pabs!=null && d1.pabs!=null ? d2.pabs-d1.pabs : null;
-    return `<tr><th scope="row" style="text-align:left;color:var(--fg);font-size:.82rem;text-transform:none;letter-spacing:0"><b>${u==="ZZ"?"EXT":u}</b> <span class="mono">${NOMES[u]}</span></th>
+function rowHtml(label, sub, d2, d1){
+  const L = leader(d2), b2 = byN(d2), b1 = byN(d1);
+  const dAbs = d2 && d1 && d2.pabs!=null && d1.pabs!=null ? d2.pabs-d1.pabs : null;
+  return `<tr><th scope="row" style="text-align:left;color:var(--fg);font-size:.82rem;text-transform:none;letter-spacing:0"><b>${label}</b> <span class="mono">${sub}</span></th>
       <td><span class="pbar" aria-hidden="true"><i style="width:${d2?d2.pst:0}%"></i></span>${d2?fmtP(d2.pst):"–"}</td>
       ${(()=>{ const gs = finalists.map(n => b2[n]&&b1[n] ? b2[n].pvap-b1[n].pvap : null); const best = Math.max(...gs.filter(g=>g!=null));
         return finalists.map((n,i)=>{ const g=gs[i]; const top = g!=null && g===best && gs.filter(x=>x!=null).length>1;
@@ -578,7 +580,49 @@ function renderTable(){
       <td>${d2?fmtN(d2.comp):"–"}</td><td>${d2?fmtN(d2.esnt):"–"}${d2&&L?`<div class="mono">vantagem ${fmtN(L.win.vap-L.lose.vap)}</div>`:""}</td>
       <td>${fmtP(d2&&d2.pabs)}</td><td class="t1">${fmtP(d1&&d1.pabs)}</td>
       <td class="delta ${dAbs>0?"up":dAbs<0?"down":""}">${fmtD(dAbs)}</td></tr>`;
-  }).join("");
+}
+const byMargin = (x,y) => ((leader(y.d2)||{margin:-1}).margin) - ((leader(x.d2)||{margin:-1}).margin);
+function renderTable(){
+  if (!S.t2.BR) return;
+  const rows = UFS.filter(u=>S.t2[u]||S.t1[u]).map(u=>({u, d2:S.t2[u], d1:S.t1[u]})).sort(byMargin);
+  document.getElementById("tbody").innerHTML = rows.map(({u,d2,d1}) => rowHtml(u==="ZZ"?"EXT":u, NOMES[u], d2, d1)).join("");
+}
+
+// Capitais: códigos TSE dos municípios, confirmados contra o arquivo de configuração do TSE quando ele responde
+const CAPITAIS = {AC:["01392","Rio Branco"],AL:["27855","Maceió"],AP:["06050","Macapá"],AM:["02550","Manaus"],BA:["38490","Salvador"],
+  CE:["13897","Fortaleza"],DF:["97012","Brasília"],ES:["57053","Vitória"],GO:["93734","Goiânia"],MA:["09210","São Luís"],MT:["90670","Cuiabá"],
+  MS:["90514","Campo Grande"],MG:["41238","Belo Horizonte"],PA:["04278","Belém"],PB:["20910","João Pessoa"],PR:["75353","Curitiba"],
+  PE:["25313","Recife"],PI:["12190","Teresina"],RJ:["60011","Rio de Janeiro"],RN:["17612","Natal"],RS:["88013","Porto Alegre"],
+  RO:["00035","Porto Velho"],RR:["03018","Boa Vista"],SC:["81051","Florianópolis"],SP:["71072","São Paulo"],SE:["31054","Aracaju"],TO:["73440","Palmas"]};
+let capList = null, C = {t2:{}, t1:{}}, capT1Loaded = false;
+async function resolveCapitais(){
+  if (capList) return capList;
+  try {
+    const r = await fetch(`https://resultados.tse.jus.br/oficial/ele2026/${T2}/config/mun-e${T2.padStart(6,"0")}-cm.json`, {cache:"force-cache"});
+    if (r.ok){ const j = await r.json(); const out = {};
+      (j.abr||[]).forEach(a => (a.mu||[]).forEach(m => { if (String(m.c).toUpperCase()==="S") out[a.cd] = [String(m.cd).padStart(5,"0"), m.nm]; }));
+      if (Object.keys(out).length >= 20) { capList = out; return capList; }
+    }
+  } catch(e){}
+  capList = CAPITAIS; return capList;
+}
+const capFile = (ele, uf, cd) => `https://resultados.tse.jus.br/oficial/ele2026/${ele}/dados/${uf.toLowerCase()}/${uf.toLowerCase()}${cd}-c0001-e${ele.padStart(6,"0")}-u.json`;
+async function getCap(ele, uf, cd){ const r = await fetch(capFile(ele, uf, cd), {cache:"no-store"}); if(!r.ok) throw new Error(uf+" "+r.status); return parse(await r.json()); }
+async function loadCapitais(){
+  const caps = await resolveCapitais(), ufs = Object.keys(caps);
+  if (!capT1Loaded){ const r1 = await Promise.allSettled(ufs.map(u => getCap(T1, u, caps[u][0]))); r1.forEach((r,i)=>{ if(r.status==="fulfilled") C.t1[ufs[i]] = r.value; }); capT1Loaded = r1.some(r=>r.status==="fulfilled"); }
+  const r2 = await Promise.allSettled(ufs.map(u => getCap(T2, u, caps[u][0]))); r2.forEach((r,i)=>{ if(r.status==="fulfilled") C.t2[ufs[i]] = r.value; });
+  renderCapitais();
+}
+function renderCapitais(){
+  if (!S.t2.BR || !capList) return;
+  const ufs = Object.keys(capList).filter(u => C.t2[u] || C.t1[u]);
+  const rows = ufs.map(u => ({u, d2:C.t2[u], d1:C.t1[u]})).sort(byMargin);
+  document.getElementById("capbody").innerHTML = rows.map(({u,d2,d1}) => rowHtml(capList[u][1], u, d2, d1)).join("");
+  const agg2 = aggregate(C.t2, ufs), agg1 = aggregate(C.t1, ufs);
+  document.getElementById("capbody").innerHTML += rowHtml("Todas as capitais", ufs.length+" cidades", agg2, agg1).replace("<tr>", '<tr style="background:var(--bg);font-weight:500">');
+  document.getElementById("caphead").innerHTML = document.getElementById("thead").innerHTML.replace(">UF<", ">Capital<");
+  document.getElementById("capsub").textContent = `${rows.length} de ${Object.keys(capList).length} capitais com dados.`;
 }
 
 document.querySelectorAll("[data-mode]").forEach(b => b.onclick = () => {
@@ -609,7 +653,7 @@ async function load(){
   if (!t1Loaded) msgs.push("Os arquivos do 1º turno não responderam. O resumo nacional do 1º turno usa os números finais do TSE; o comparativo por estado fica vazio.");
   else if (t1Fails) msgs.push(`${t1Fails} arquivo(s) do 1º turno não responderam.`);
   erro.hidden = !msgs.length; erro.innerHTML = msgs.join("<br>");
-  renderBr(); renderProjection(); recordHistory(); renderRegions(); renderChart(); renderMap(); renderDetail(); renderTable();
+  renderBr(); renderProjection(); recordHistory(); renderRegions(); loadCapitais(); renderChart(); renderMap(); renderDetail(); renderTable();
   busy = false; left = 60;
   tick(S.t2.BR ? `Dados do TSE de ${S.t2.BR.data} às ${S.t2.BR.hora}` : "");
 }
