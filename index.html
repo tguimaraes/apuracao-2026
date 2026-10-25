@@ -36,6 +36,14 @@ body{background:var(--bg);color:var(--fg);font:15px/1.5 var(--font);
 .appbar button{background:rgba(255,255,255,.16);color:#fff;border:0}
 .appbar button:hover{background:rgba(255,255,255,.26)}
 .wrap{max-width:960px;margin:0 auto;display:grid;gap:16px}
+.scrim{position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:50;display:flex;align-items:center;justify-content:center;padding:16px}
+.modal{background:var(--card);color:var(--fg);border-radius:12px;box-shadow:0 19px 38px rgba(0,0,0,.30),0 15px 12px rgba(0,0,0,.22);padding:28px 28px 24px;max-width:560px;width:100%;display:grid;gap:8px;border-top:8px solid var(--cc,#2E7D32)}
+.modal .t{font-size:.78rem;text-transform:uppercase;letter-spacing:.1em;color:#2E7D32;font-weight:500}
+.modal .n{font-size:2rem;font-weight:700;line-height:1.15;text-wrap:balance}
+.modal .pc{font-size:3rem;font-weight:700;color:var(--cc,#2E7D32);line-height:1;font-variant-numeric:tabular-nums}
+.modal .d{font-size:.92rem;color:var(--muted)}
+.modal button{justify-self:start;margin-top:10px;background:var(--cc,#2E7D32);color:#fff;border:0}
+@media (prefers-reduced-motion:no-preference){.modal{animation:pop .35s cubic-bezier(.2,.8,.2,1)}@keyframes pop{from{transform:translateY(16px) scale(.97);opacity:0}to{transform:none;opacity:1}}}
 .eleito{background:#2E7D32;color:#fff;border-radius:8px;padding:18px 20px;box-shadow:var(--e2);display:grid;gap:4px}
 .eleito .t{font-size:.78rem;text-transform:uppercase;letter-spacing:.1em;opacity:.9}
 .eleito .n{font-size:1.6rem;font-weight:700;line-height:1.2}
@@ -129,6 +137,15 @@ footer a{color:var(--c1)}
 </head>
 <body>
 <a class="skip" href="#detail">Pular para o detalhe do estado</a>
+<div class="scrim" id="scrim" hidden>
+  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-t" aria-describedby="modal-d">
+    <div class="t">Matematicamente eleito · dados do TSE</div>
+    <div class="n" id="modal-t"></div>
+    <div class="pc" id="modal-pc"></div>
+    <div class="d" id="modal-d"></div>
+    <button type="button" id="modal-close">Ver a apuração completa</button>
+  </div>
+</div>
 <div class="appbar"><div class="in">
   <div><div class="eyebrow">Presidente · 2º turno · 25 de outubro de 2026</div><h1>Apuração por estado</h1><div class="eyebrow">Fonte: TSE · atualização automática</div></div>
   <div class="status"><span id="upd" role="status" aria-live="polite">Carregando dados do TSE…</span><button id="refresh" type="button">Atualizar</button></div>
@@ -552,7 +569,7 @@ function projectNational(){
   return {a, b, pA, pB, half, remainingShare, counted, remTot, decided: leadVotes > br.esnt,
     lo: Math.min(pA,pB)-half, hi: Math.max(pA,pB)+half};
 }
-let eleitoDesde = null;
+let eleitoDesde = null, modalShown = false;
 function renderEleito(){
   const box = document.getElementById("eleito"), br = S.t2.BR;
   if (!br || !br.tot || finalists.length<2){ box.hidden = true; return; }
@@ -564,6 +581,21 @@ function renderEleito(){
     box.innerHTML = `<div class="t">Matematicamente eleito · dados do TSE</div><div class="n">${esc(a.nome)} é o presidente eleito</div>
       <div class="d">Com ${fmtP(br.pst)} das seções totalizadas, a vantagem é de ${fmtN(vantagem)} votos, e restam apenas ${fmtN(faltam)} eleitores nas seções ainda não totalizadas. Mesmo que todos comparecessem e votassem no adversário, o resultado não mudaria. Critério atingido às ${eleitoDesde.split(" ")[1]} (horário do TSE). A proclamação oficial é do TSE.</div>`;
     document.title = `${a.nome} eleito · Apuração 2º Turno 2026`;
+    const key = "apuracao2026_modal_" + T2 + "_" + a.n; let seen = false;
+    try { seen = localStorage.getItem(key) === "1"; } catch(e){}
+    if (!seen && !modalShown){
+      modalShown = true;
+      const scrim = document.getElementById("scrim"), close = document.getElementById("modal-close");
+      scrim.querySelector(".modal").style.setProperty("--cc", colorOf[a.n] || "#2E7D32");
+      document.getElementById("modal-t").textContent = `${a.nome} é o presidente eleito`;
+      document.getElementById("modal-pc").textContent = fmtP(a.pvap);
+      document.getElementById("modal-d").textContent = `${fmtN(a.vap)} votos válidos, vantagem de ${fmtN(vantagem)} sobre ${b.nome} (${fmtP(b.pvap)}), com ${fmtP(br.pst)} das seções totalizadas. Restam ${fmtN(faltam)} eleitores nas seções pendentes: mesmo que todos votassem no adversário, o resultado não mudaria. A proclamação oficial é do TSE.`;
+      scrim.hidden = false; document.body.style.overflow = "hidden"; close.focus();
+      const dismiss = () => { scrim.hidden = true; document.body.style.overflow = ""; try { localStorage.setItem(key,"1"); } catch(e){} };
+      close.onclick = dismiss;
+      scrim.onclick = e => { if (e.target === scrim) dismiss(); };
+      document.addEventListener("keydown", e => { if (e.key === "Escape" && !scrim.hidden) dismiss(); });
+    }
   } else { box.hidden = true; }
 }
 function renderProjection(){
