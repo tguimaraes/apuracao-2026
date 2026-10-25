@@ -13,8 +13,8 @@
 /* Material Design: fundo cinza claro, cards brancos com elevação, acentos da paleta Material */
 :root{
   --bg:#F5F5F5; --card:#FFFFFF; --fg:#212121; --muted:#616161; --line:#E0E0E0; --empty:#E0E0E0;
-  --prog:#00897B; --up:#C62828; --down:#2E7D32; --abs:#546E7A; --focus:#1976D2;
-  --c1:#5E35B1; --c2:#EF6C00;
+  --prog:#00897B; --up:#E65100; --down:#2E7D32; --abs:#546E7A; --focus:#1976D2;
+  --c1:#37474F; --c2:#37474F; /* app bar e botões em cinza azulado neutro, sem puxar para um lado */
   --font:"Roboto",system-ui,-apple-system,"Segoe UI",sans-serif;
   --mono:"Roboto Mono",ui-monospace,Menlo,monospace;
   --e1:0 1px 3px rgba(0,0,0,.12),0 1px 2px rgba(0,0,0,.24);
@@ -159,7 +159,7 @@ const NOMES = {AC:"Acre",AL:"Alagoas",AP:"Amapá",AM:"Amazonas",BA:"Bahia",CE:"C
   PE:"Pernambuco",PI:"Piauí",RJ:"Rio de Janeiro",RN:"Rio Grande do Norte",RS:"Rio Grande do Sul",RO:"Rondônia",RR:"Roraima",
   SC:"Santa Catarina",SP:"São Paulo",SE:"Sergipe",TO:"Tocantins",ZZ:"Voto no exterior"};
 const UFS = Object.keys(NOMES);
-const COLORS = ["#5E35B1","#EF6C00"], PROG = "#00897B", ABS = "#546E7A";
+const CAND_COLOR = {"13":"#C62828","22":"#1565C0"}; const COLORS = ["#C62828","#1565C0"], PROG = "#00897B", ABS = "#546E7A";
 // Estados pequenos cuja sigla fica fora do desenho
 const OUT = {DF:[0,-14],SE:[14,2],AL:[16,0],RN:[14,-4],PB:[16,0],ES:[16,0],RJ:[10,12]};
 
@@ -223,7 +223,7 @@ const outros = d => d && d.cands.length>2 ? d.cands.filter(c=>!finalists.include
 function renderBr(){
   const d = S.t2.BR; if(!d) return;
   finalists = d.cands.map(c=>c.n).sort();
-  finalists.forEach((n,i)=>{ colorOf[n] = COLORS[i%2]; });
+  finalists.forEach((n,i)=>{ colorOf[n] = CAND_COLOR[n] || COLORS[i%2]; });
   const d1 = S.t1.BR, b1 = byN(d1);
   document.getElementById("secoes").textContent =
     `Seções totalizadas: ${fmtP(d.pst)}` + (d.ts ? ` (${fmtN(d.st)} de ${fmtN(d.ts)})` : "");
