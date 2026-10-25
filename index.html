@@ -36,6 +36,10 @@ body{background:var(--bg);color:var(--fg);font:15px/1.5 var(--font);
 .appbar button{background:rgba(255,255,255,.16);color:#fff;border:0}
 .appbar button:hover{background:rgba(255,255,255,.26)}
 .wrap{max-width:960px;margin:0 auto;display:grid;gap:16px}
+.eleito{background:#2E7D32;color:#fff;border-radius:8px;padding:18px 20px;box-shadow:var(--e2);display:grid;gap:4px}
+.eleito .t{font-size:.78rem;text-transform:uppercase;letter-spacing:.1em;opacity:.9}
+.eleito .n{font-size:1.6rem;font-weight:700;line-height:1.2}
+.eleito .d{font-size:.9rem;opacity:.95}
 .fonte{background:#E3F2FD;color:#0D47A1;border-left:4px solid #1565C0;border-radius:8px;padding:10px 14px;font-size:.86rem}
 .fonte a{color:inherit;font-weight:500}
 .card{background:var(--card);border-radius:8px;box-shadow:var(--e1);padding:20px;min-width:0}
@@ -131,6 +135,7 @@ footer a{color:var(--c1)}
 </div></div>
 
 <main class="wrap">
+  <div class="eleito" id="eleito" role="alert" aria-live="assertive" hidden></div>
   <div class="fonte" role="note">Dados oficiais do <strong>TSE (Tribunal Superior Eleitoral)</strong>, lidos direto dos arquivos públicos de divulgação em <a href="https://resultados.tse.jus.br/oficial/app/index.html" target="_blank" rel="noopener">resultados.tse.jus.br</a>, a cada 60 segundos. Este painel é um projeto independente e não tem vínculo com o TSE; a projeção é um cálculo próprio, não um dado do TSE.</div>
   <section class="card" aria-labelledby="h-brasil">
     <h2 id="h-brasil">Brasil <span class="eyebrow" style="font-weight:400">· dados do TSE</span></h2>
@@ -547,6 +552,20 @@ function projectNational(){
   return {a, b, pA, pB, half, remainingShare, counted, remTot, decided: leadVotes > br.esnt,
     lo: Math.min(pA,pB)-half, hi: Math.max(pA,pB)+half};
 }
+let eleitoDesde = null;
+function renderEleito(){
+  const box = document.getElementById("eleito"), br = S.t2.BR;
+  if (!br || !br.tot || finalists.length<2){ box.hidden = true; return; }
+  const [a,b] = [...br.cands].sort((x,y)=>y.vap-x.vap);
+  const vantagem = a.vap - b.vap, faltam = br.esnt;
+  if (vantagem > faltam){
+    if (!eleitoDesde) eleitoDesde = `${br.data} ${br.hora}`;
+    box.hidden = false;
+    box.innerHTML = `<div class="t">Matematicamente eleito · dados do TSE</div><div class="n">${esc(a.nome)} é o presidente eleito</div>
+      <div class="d">Com ${fmtP(br.pst)} das seções totalizadas, a vantagem é de ${fmtN(vantagem)} votos, e restam apenas ${fmtN(faltam)} eleitores nas seções ainda não totalizadas. Mesmo que todos comparecessem e votassem no adversário, o resultado não mudaria. Critério atingido às ${eleitoDesde.split(" ")[1]} (horário do TSE). A proclamação oficial é do TSE.</div>`;
+    document.title = `${a.nome} eleito · Apuração 2º Turno 2026`;
+  } else { box.hidden = true; }
+}
 function renderProjection(){
   const card = document.getElementById("projcard"), box = document.getElementById("proj");
   const P = projectNational(); if (!P){ card.hidden = true; return; }
@@ -653,7 +672,7 @@ async function load(){
   if (!t1Loaded) msgs.push("Os arquivos do 1º turno não responderam. O resumo nacional do 1º turno usa os números finais do TSE; o comparativo por estado fica vazio.");
   else if (t1Fails) msgs.push(`${t1Fails} arquivo(s) do 1º turno não responderam.`);
   erro.hidden = !msgs.length; erro.innerHTML = msgs.join("<br>");
-  renderBr(); renderProjection(); recordHistory(); renderRegions(); loadCapitais(); renderChart(); renderMap(); renderDetail(); renderTable();
+  renderBr(); renderEleito(); renderProjection(); recordHistory(); renderRegions(); loadCapitais(); renderChart(); renderMap(); renderDetail(); renderTable();
   busy = false; left = 60;
   tick(S.t2.BR ? `Dados do TSE de ${S.t2.BR.data} às ${S.t2.BR.hora}` : "");
 }
