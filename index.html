@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Apuração 2º Turno 2026</title>
+<title>Apuração 2º Turno 2026 · dados do TSE</title>
 <meta name="description" content="Apuração do 2º turno da eleição presidencial de 2026 por estado, com dados públicos do TSE, comparada ao 1º turno.">
 <meta property="og:title" content="Apuração 2º Turno 2026 por estado">
 <meta property="og:description" content="Mapa ao vivo com dados do TSE: quem lidera em cada UF, % apurado, abstenção e comparação com o 1º turno.">
@@ -36,6 +36,8 @@ body{background:var(--bg);color:var(--fg);font:15px/1.5 var(--font);
 .appbar button{background:rgba(255,255,255,.16);color:#fff;border:0}
 .appbar button:hover{background:rgba(255,255,255,.26)}
 .wrap{max-width:960px;margin:0 auto;display:grid;gap:16px}
+.fonte{background:#E3F2FD;color:#0D47A1;border-left:4px solid #1565C0;border-radius:8px;padding:10px 14px;font-size:.86rem}
+.fonte a{color:inherit;font-weight:500}
 .card{background:var(--card);border-radius:8px;box-shadow:var(--e1);padding:20px;min-width:0}
 h2{margin:0;font-size:1.15rem;font-weight:500}
 .eyebrow{font-size:.72rem;text-transform:uppercase;letter-spacing:.09em;color:var(--muted);font-weight:500}
@@ -124,13 +126,14 @@ footer a{color:var(--c1)}
 <body>
 <a class="skip" href="#detail">Pular para o detalhe do estado</a>
 <div class="appbar"><div class="in">
-  <div><div class="eyebrow">Presidente · 2º turno · 25 de outubro de 2026</div><h1>Apuração por estado</h1></div>
+  <div><div class="eyebrow">Presidente · 2º turno · 25 de outubro de 2026</div><h1>Apuração por estado</h1><div class="eyebrow">Fonte: TSE · atualização automática</div></div>
   <div class="status"><span id="upd" role="status" aria-live="polite">Carregando dados do TSE…</span><button id="refresh" type="button">Atualizar</button></div>
 </div></div>
 
 <main class="wrap">
+  <div class="fonte" role="note">Dados oficiais do <strong>TSE (Tribunal Superior Eleitoral)</strong>, lidos direto dos arquivos públicos de divulgação em <a href="https://resultados.tse.jus.br/oficial/app/index.html" target="_blank" rel="noopener">resultados.tse.jus.br</a>, a cada 60 segundos. Este painel é um projeto independente e não tem vínculo com o TSE; a projeção é um cálculo próprio, não um dado do TSE.</div>
   <section class="card" aria-labelledby="h-brasil">
-    <h2 id="h-brasil">Brasil</h2>
+    <h2 id="h-brasil">Brasil <span class="eyebrow" style="font-weight:400">· dados do TSE</span></h2>
     <div class="sub" id="secoes">Seções totalizadas: –</div>
     <div class="prog" role="progressbar" aria-labelledby="secoes" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" id="progWrap"><i id="progBr"></i></div>
     <div class="cands" id="candsBr"></div>
@@ -142,13 +145,13 @@ footer a{color:var(--c1)}
   <div id="erro" class="err" role="alert" hidden></div>
 
   <section class="card" aria-labelledby="h-proj" id="projcard" hidden>
-    <h2 id="h-proj">Projeção indicativa do resultado final</h2>
+    <h2 id="h-proj">Projeção indicativa do resultado final <span class="eyebrow" style="font-weight:400">· cálculo próprio</span></h2>
     <div class="sub">Estimativa simples, feita nesta página: para cada UF, os votos já contados somados aos eleitores que faltam, supondo o mesmo comparecimento do 1º turno naquela UF e a mesma divisão de votos que a UF mostra até agora. A faixa reflete o quanto ainda falta apurar. Não corrige o viés de capitais apurarem antes do interior; trate como indicação, não como resultado.</div>
     <div id="proj"></div>
   </section>
 
   <section class="card" aria-labelledby="h-reg">
-    <h2 id="h-reg">Resumo por região</h2>
+    <h2 id="h-reg">Resumo por região <span class="eyebrow" style="font-weight:400">· dados do TSE</span></h2>
     <div class="sub">Votos somados dos estados de cada região. O 1º turno aparece em cinza, para comparação.</div>
     <div class="regs" id="regs"></div>
   </section>
@@ -161,7 +164,7 @@ footer a{color:var(--c1)}
   </section>
 
   <section class="card" aria-labelledby="h-mapa">
-    <h2 id="h-mapa">Mapa por UF</h2>
+    <h2 id="h-mapa">Mapa por UF <span class="eyebrow" style="font-weight:400">· dados do TSE</span></h2>
     <div class="sub">Escolha o que o mapa mostra e toque num estado para ver o detalhe. Pelo teclado, use Tab e Enter.</div>
     <div class="modes" role="group" aria-label="O que o mapa mostra">
       <button type="button" data-mode="t2" aria-pressed="true">Líder 2º turno</button>
@@ -180,7 +183,7 @@ footer a{color:var(--c1)}
   </section>
 
   <section class="card" aria-labelledby="h-tab">
-    <h2 id="h-tab">Comparativo por estado</h2>
+    <h2 id="h-tab">Comparativo por estado <span class="eyebrow" style="font-weight:400">· dados do TSE</span></h2>
     <div class="tbl"><table><caption>Ordenado pela margem entre os dois finalistas no 2º turno. Δ = variação em pontos percentuais frente ao 1º turno; ★ marca quem mais cresceu na UF (lembrando que no 1º turno havia outros candidatos na base). Comparecimento = votos já contados. Eleitores que faltam = eleitorado das seções ainda não totalizadas; quando a vantagem em votos supera esse número, o estado está matematicamente definido (✓). Abstenção do 2º turno calculada sobre as seções já totalizadas.</caption><thead id="thead"></thead><tbody id="tbody"></tbody></table></div>
   </section>
 
@@ -577,7 +580,7 @@ async function load(){
   erro.hidden = !msgs.length; erro.innerHTML = msgs.join("<br>");
   renderBr(); renderProjection(); recordHistory(); renderRegions(); renderChart(); renderMap(); renderDetail(); renderTable();
   busy = false; left = 60;
-  tick(S.t2.BR ? `TSE: ${S.t2.BR.data} ${S.t2.BR.hora}` : "");
+  tick(S.t2.BR ? `Dados do TSE de ${S.t2.BR.data} às ${S.t2.BR.hora}` : "");
 }
 function tick(base){
   clearInterval(timer);
