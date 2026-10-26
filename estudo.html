@@ -100,7 +100,7 @@ sup a{text-decoration:none;font-size:.7em}
     </div>
     <div class="toc" aria-label="Seções">
       <a href="#aritmetica">1. A aritmética da virada</a><a href="#geografia">2. A geografia do voto</a><a href="#estados">3. Estado a estado</a>
-      <a href="#interior">4. Capitais, interior e agro</a><a href="#perfil">5. O perfil do eleitor</a><a href="#2022">6. Comparação com 2022</a><a href="#fatores">7. Os fatores</a><a href="#prorrogacao">8. A prorrogação de 2 horas</a><a href="#abstencao">9. Histórico da abstenção</a><a href="#atualizacoes">Atualizações</a><a href="#metodo">Método e fontes</a>
+      <a href="#interior">4. Capitais, interior e agro</a><a href="#perfil">5. O perfil do eleitor</a><a href="#2022">6. Comparação com 2022</a><a href="#fatores">7. Os fatores</a><a href="#prorrogacao">8. A prorrogação de 2 horas</a><a href="#abstencao">9. Histórico da abstenção</a><a href="#redes">10. Redes e ruas</a><a href="#atualizacoes">Atualizações</a><a href="#metodo">Método e fontes</a>
     </div>
     <div class="note">Fontes: resultados oficiais do TSE (eleições 6257 e 6258), consolidados pela imprensa; pesquisa Datafolha de 22/10/2026 para o perfil do eleitor; estudo de Marco Antonio Faganello (FGV/CEPESP) sobre interior e agro, publicado pela Agência Pública. Links completos na última seção. Onde as fontes divergem em centésimos, usei o número com 100% das seções totalizadas.</div>
   </section>
@@ -272,10 +272,52 @@ sup a{text-decoration:none;font-size:.7em}
     <div class="note">Para comparação com outro tipo de eleição: a abstenção não é um fenômeno só presidencial. Nas eleições municipais ela também vem subindo, o que reforça a leitura de uma tendência estrutural de afastamento sobre a qual 2026 operou como exceção pontual no 2º turno.</div>
   </section>
 
+  <section class="card" id="redes">
+    <div class="eyebrow">10</div>
+    <h2>Redes sociais e ruas: o engajamento mudou o resultado?</h2>
+    <p class="lead">Resposta curta: há três indícios convergentes de que a mobilização das três semanas finais moveu a eleição, e o canal mais provável foi o comparecimento, não a conversão de eleitor de um lado para o outro. Mas é impossível isolar o efeito com os dados públicos, e o engajamento digital bruto, sozinho, aponta na direção errada: Flávio tinha mais alcance no Instagram e no TikTok e perdeu. O que parece ter contado foi distribuição e chamada à ação (WhatsApp, porta a porta, vira-voto), e não audiência.</p>
+
+    <h3>O que as pesquisas mostram sobre as três semanas</h3>
+    <p>O gráfico abaixo reúne 51 pesquisas registradas entre 5 e 24 de outubro, com o percentual de Lula nos votos válidos pela data de fim do campo. A linha é a média móvel de três dias. Lula partiu de 47 a 48% na semana seguinte ao 1º turno e chegou a 49 a 50% na última semana. O resultado real, 51,8%, ficou acima de todas as pesquisas finais, que davam Flávio 51 × 49.</p>
+    <svg class="chart" id="c-polls" viewBox="0 0 860 340" role="img" aria-label="Percentual de Lula nas pesquisas do 2º turno entre 5 e 24 de outubro de 2026"></svg>
+    <div class="legend"><span><i class="sw" style="background:var(--lula)"></i>Pesquisas (Lula, votos válidos)</span><span><i class="sw" style="background:var(--fg)"></i>Média móvel de 3 dias</span><span>Marcadores: atos de rua e marcos da campanha digital. Fonte: Dado Bruto (agregador), TSE.</span></div>
+    <p>Duas coisas saltam. Primeiro, o movimento é lento e constante, cerca de meio ponto por semana, e começa logo após o 1º turno, antes dos grandes atos. Isso é mais compatível com um processo contínuo (propaganda, debates, apoios, redistribuição dos votos de centro) do que com um evento único. Segundo, as pesquisas erraram para o mesmo lado: todas subestimaram Lula em 2 a 3 pontos. Quando o erro é sistemático e na direção do candidato que mobilizou abstencionistas, a leitura usual é que a amostra de "eleitor provável" não capturou gente que decidiu ir votar nos últimos dias. É exatamente o público do vira-voto.</p>
+
+    <h3>Redes: audiência de um lado, distribuição do outro</h3>
+    <div class="tbl"><table><caption>Levantamento do Mobile Time em 21/10/2026 sobre perfis oficiais e dos principais aliados. Números de seguidores e engajamento podem incluir impulsionamento pago; a reportagem alerta para isso.</caption>
+      <thead><tr><th>Plataforma</th><th>Lado de Lula</th><th>Lado de Flávio</th><th>Quem liderava</th></tr></thead>
+      <tbody>
+        <tr><td>WhatsApp (canais)</td><td style="white-space:normal">Lula 2,2 mi; "Exército do Lula" (Janones) 7,4 mi em 21/10, com um post de 1,9 mi de compartilhamentos; relatos de 10 mi na semana final</td><td style="white-space:normal">Flávio 255 mil; "Tropa do Flávio" (Nikolas) 2,1 mi</td><td><span class="chip" style="background:var(--lula)">Lula</span></td></tr>
+        <tr><td>Instagram</td><td style="white-space:normal">Lula 18,2 mi; Janones 6,3 mi; reels de 3 a 10 mi de views</td><td style="white-space:normal">Flávio 15,1 mi; Nikolas 24,9 mi, reels de 30 a 50 mi, um vídeo com 153 mi</td><td><span class="chip" style="background:var(--flavio)">Flávio</span></td></tr>
+        <tr><td>TikTok</td><td style="white-space:normal">Lula 6,2 mi; Janones 2 mi</td><td style="white-space:normal">Nikolas 10 mi, posts acima de 1 mi de views</td><td><span class="chip" style="background:var(--flavio)">Flávio</span></td></tr>
+        <tr><td>X e busca do Google</td><td style="white-space:normal">Rede de Janones pautava os assuntos do momento; sugestões de busca neutras</td><td style="white-space:normal">Sugestões de busca com termos negativos ("milícia")</td><td><span class="chip" style="background:var(--lula)">Lula</span></td></tr>
+      </tbody></table></div>
+    <p>O padrão é claro: a direita dominou as plataformas de <b>audiência</b> (Instagram e TikTok, onde Nikolas Ferreira sozinho supera os dois candidatos), e a esquerda dominou as de <b>distribuição e ação</b> (WhatsApp, X). O canal de Janones não era mídia: era uma lista de tarefas diárias, com "missões" de engajamento e panfletagem, mirando explicitamente abstencionistas e eleitores de Renan Santos. Se o engajamento pesou, pesou por aí: menos como persuasão, mais como logística de comparecimento. E a seção 9 mostra o resultado: a maior queda de abstenção entre turnos da série histórica.</p>
+
+    <h3>Ruas: o que foi medido e o que foi declarado</h3>
+    <ul>
+      <li><b>Bloco do 22, Paulista, 18/10:</b> 71,9 mil pessoas no pico, segundo o Monitor do Debate Político da USP com Cebrap e More in Common (fotos aéreas e contagem por IA, margem de 12%). É a única multidão do 2º turno com medição independente.</li>
+      <li><b>Marcha pela Democracia, Paulista, semana anterior:</b> o PT declarou 1 milhão. Sem medição da USP, porque drones não foram autorizados. Trate como número de campanha.</li>
+      <li><b>Comícios de Lula:</b> pelo menos 37 cidades segundo o Poder360, com atos noturnos em BH, interior de Minas (Juiz de Fora), Copacabana e a Paulista. A campanha foi reorganizada com Camilo Santana e Rafael Fonteles na reta final, com foco em Nordeste e Minas, justamente onde Lula mais cresceu.</li>
+      <li><b>Encerramento, 24/10:</b> os dois fecharam com atos no Sudeste (Flávio no Rio, Lula em SP), com multidões não medidas.</li>
+    </ul>
+    <p>Multidão não é voto: 72 mil pessoas na Paulista são 0,2% do eleitorado paulista, e quem vai a ato já decidiu. O valor de um ato está na cobertura e na sinalização de força, que alimenta as redes no dia seguinte. Por isso rua e rede não são fatores separados: são o mesmo ciclo.</p>
+
+    <h3>O balanço dos indícios</h3>
+    <div class="fatores">
+      <div class="fator" style="--c:var(--ok)"><b>A favor de um efeito real</b><span>Pesquisas subiram meio ponto por semana para Lula; resultado 2 a 3 pontos acima das pesquisas finais, na direção de quem mobilizou abstencionistas; maior queda de abstenção entre turnos da história; Flávio capturou menos de um terço dos votos redistribuídos.</span></div>
+      <div class="fator" style="--c:var(--warn)"><b>Contra, ou pelo menos de cautela</b><span>Os dois lados mobilizaram muito, e o lado com mais alcance digital perdeu; a subida de Lula começou antes dos grandes atos; o erro das pesquisas pode ser metodológico, não de mobilização; não existe grupo de controle: não dá para saber o que aconteceria sem as redes.</span></div>
+      <div class="fator" style="--c:var(--outros)"><b>O que resolveria</b><span>Pesquisa pós-eleitoral perguntando quando o eleitor decidiu e se foi contatado por campanha; dados por seção cruzados com onde houve panfletagem; e a comparação de abstenção por zona eleitoral entre turnos.</span></div>
+    </div>
+    <p><b>Leitura deste estudo:</b> o engajamento provavelmente afetou o resultado por um canal específico, o comparecimento, com magnitude plausível de 1 a 3 pontos, concentrada no Nordeste e nas capitais. Isso é consistente com a seção 1 (74% dos votos novos para Lula), com a seção 9 (abstenção) e com o erro das pesquisas. Mas não é prova. O que dá para afirmar com segurança é o contrário do senso comum: quem venceu a eleição não foi quem teve mais views. Foi quem conseguiu levar mais gente a sair de casa.</p>
+    <div class="warnbox">Fatos de redes e ruas vêm de Mobile Time, Exame (USP), NSC Total e Poder360, com os limites que cada um declara (impulsionamento pago, número declarado pela campanha, ausência de medição). A leitura causal é deste estudo e está marcada como hipótese.</div>
+  </section>
+
   <section class="card" id="atualizacoes">
     <div class="eyebrow">Registro</div>
     <h2>Atualizações do estudo</h2>
     <ul>
+      <li><b>26/10/2026, manhã:</b> nova seção 10 sobre redes sociais e ruas: trajetória de 51 pesquisas, métricas por plataforma, atos medidos e balanço dos indícios.</li>
       <li><b>26/10/2026, manhã:</b> registro de que não houve boca de urna em 2026 (seção 5) e da avaliação jurídica sobre a anulação (seção 8).</li>
       <li><b>26/10/2026, madrugada:</b> nova seção 9 com o histórico da abstenção desde 1989 e a leitura do movimento atípico do 2º turno.</li>
       <li><b>26/10/2026, madrugada:</b> nova seção 8 sobre a prorrogação da votação até 19h, com linha do tempo, teste de limite e tabela de abstenção por UF lida do TSE.</li>
@@ -302,6 +344,10 @@ sup a{text-decoration:none;font-size:.7em}
       <li><a href="https://agenciabrasil.ebc.com.br/politica/noticia/2026-10/prorrogacao-da-votacao-teve-baixa-procura-e-frustracao-de-eleitores" target="_blank" rel="noopener">Agência Brasil: prorrogação teve baixa procura e frustração de eleitores</a></li>
       <li><a href="https://www.terra.com.br/noticias/eleicoes/nunes-marques-diz-que-prorrogacao-da-votacao-gerou-dificuldades-ao-processo-eleitoral,8680e1839a0cd975f7cc460efbfddc33931sdd2p.html" target="_blank" rel="noopener">Terra: Nunes Marques diz que prorrogação gerou dificuldades</a> (linha do tempo, pausa na totalização, abstenção de 19,21%)</li>
       <li><a href="https://tribunadejundiai.com.br/politica/eleicoes-2026/flavio-bolsonaro-pedira-anulacao-eleicoes-2026/" target="_blank" rel="noopener">Tribuna de Jundiaí: Flávio Bolsonaro não reconhece resultado e diz que pedirá anulação</a></li>
+      <li><a href="https://www.mobiletime.com.br/noticias/21/10/2026/eleicoes-2026-digital/" target="_blank" rel="noopener">Mobile Time: Lula vence no WhatsApp e Flávio no Instagram</a> (métricas por plataforma, 21/10)</li>
+      <li><a href="https://nsctotal.com.br/politica/exercito-de-lula-e-militancia-na-rua-como-lula-conquistou-virada-historica-sobre-flavio-bolsonaro-nas-eleicoes-2026" target="_blank" rel="noopener">NSC Total: "Exército de Lula" e militância na rua</a></li>
+      <li><a href="https://dadobruto.com/2turno" target="_blank" rel="noopener">Dado Bruto: agregador de pesquisas do 2º turno</a> (51 pesquisas de 5 a 24/10)</li>
+      <li><a href="https://exame.com/brasil/ato-de-flavio-bolsonaro-reuniu-719-mil-na-paulista-mostra-estimativa-da-usp/" target="_blank" rel="noopener">Exame: ato de Flávio reuniu 71,9 mil na Paulista, estimativa da USP</a></li>
       <li><a href="https://exame.com/brasil/vai-ter-pesquisa-de-boca-de-urna-no-segundo-turno-das-eleicoes-2026-entenda/" target="_blank" rel="noopener">Exame: não houve pesquisa de boca de urna no 2º turno de 2026</a></li>
       <li><a href="https://conjur.com.br/2026-out-26/judicializacao-para-anulacao-de-resultado-geral-do-segundo-turno-e-inviavel/" target="_blank" rel="noopener">Conjur: judicialização para anular o resultado geral do 2º turno é inviável</a></li>
       <li><a href="https://investnews.com.br/economia/segundo-turno-eleicoes-2026-apuracao/" target="_blank" rel="noopener">InvestNews: votação estendida até 19h e parcial no momento da pausa</a></li>
@@ -459,6 +505,26 @@ const EST = [
     g += `<line x1="${x(h[0])}" x2="${x(h[0])}" y1="${yy(h[1])}" y2="${yy(h[2])}" stroke="${up?"#E65100":"#2E7D32"}" stroke-width="6" opacity=".55"></line><circle cx="${x(h[0])}" cy="${yy(h[2])}" r="5" fill="#37474F"></circle>`;
     g += `<text x="${x(h[0])+(h[0]===2026?-10:10)}" y="${yy(h[2])+(up?16:-10)}" text-anchor="${h[0]===2026?"end":"start"}" style="font-size:11px;font-weight:700;fill:${up?"#E65100":"#2E7D32"}">${up?"+":""}${(h[2]-h[1]).toLocaleString("pt-BR",{maximumFractionDigits:1})}</text>`; });
   g += `<text x="${x(2026)}" y="${yy(19.21)+30}" text-anchor="end" style="font-weight:700">19,21%</text>`;
+  svg.innerHTML = g;
+})();
+
+// 10. Pesquisas do 2º turno (Lula, válidos) por data de fim do campo (dia de outubro)
+(function(){
+  const P = [[7,47],[7,50.9],[7,48],[8,47.2],[8,47.3],[9,46.9],[10,48.2],[12,45],[12,49],[12,48],[13,49.5],[13,48.9],[14,49],[15,49],[15,50],[15,48.8],[15,49.5],[15,49.2],
+    [16,48.9],[16,50.4],[16,48],[17,51],[17,48.5],[17,49.6],[18,49.7],[18,48],[18,48.9],[19,48.9],[19,48.5],[19,48],[19,49.3],[20,49.2],[20,48.9],[20,49],[20,49.4],[21,47],[21,49],[21,49.4],
+    [22,50],[22,50.6],[22,48],[23,49.2],[23,49.3],[23,48.6],[23,50.3],[24,49.5],[24,49.5],[24,49],[24,49.9],[24,49],[24,49]];
+  const svg = document.getElementById("c-polls"), W=860, ml=56, mr=24, mt=16, mb=44, iw=W-ml-mr, ih=340-mt-mb;
+  const x = d => ml + (d-5)/(25.5-5)*iw, y = v => mt + (1-(v-44)/(53-44))*ih;
+  let g = "";
+  for (let v=44; v<=53; v++) g += `<line class="grid" x1="${ml}" x2="${W-mr}" y1="${y(v)}" y2="${y(v)}" ${v===50?'stroke="#212121" stroke-dasharray="4 4"':''}></line><text class="mu" x="${ml-8}" y="${y(v)+4}" text-anchor="end">${v}%</text>`;
+  for (let d=5; d<=25; d+=2) g += `<text class="mu" x="${x(d)}" y="${340-18}" text-anchor="middle">${d}/10</text>`;
+  const marks = [[11,"Marcha pela Democracia (Lula, Paulista)"],[18,"Bloco do 22 (Flávio, Paulista, 71,9 mil)"],[21,"Exército do Lula: 7,4 mi"],[24,"atos finais RJ e SP"],[25,"eleição"]];
+  marks.forEach(([d,t],i)=>{ const right = d>=20; g += `<line x1="${x(d)}" x2="${x(d)}" y1="${mt}" y2="${mt+ih}" stroke="#9E9E9E" stroke-dasharray="3 3"></line><text class="mu" x="${x(d)+(right?-4:4)}" y="${mt+ih-8-i*14}" text-anchor="${right?"end":"start"}" style="font-size:10px">${t}</text>`; });
+  P.forEach(([d,v])=>{ g += `<circle cx="${x(d)+ (Math.random()-.5)*6}" cy="${y(v)}" r="4" fill="${L}" opacity=".45"></circle>`; });
+  const days = [...new Set(P.map(p=>p[0]))].sort((a,b)=>a-b);
+  const avg = days.map(d => { const w = P.filter(p=>Math.abs(p[0]-d)<=1); return [d, w.reduce((s,p)=>s+p[1],0)/w.length]; });
+  g += `<path d="${avg.map(([d,v],i)=>`${i?"L":"M"}${x(d)},${y(v)}`).join(" ")}" fill="none" stroke="#212121" stroke-width="3" stroke-linejoin="round"></path>`;
+  g += `<circle cx="${x(25)}" cy="${y(51.79)}" r="7" fill="${L}"></circle><text x="${x(25)-12}" y="${y(51.79)+4}" text-anchor="end" style="font-weight:700;fill:${L}">resultado 51,79%</text>`;
   svg.innerHTML = g;
 })();
 
