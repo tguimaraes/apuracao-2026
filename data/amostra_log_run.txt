@@ -3,27 +3,139 @@ amostra: 63
 lidas 20 de 63
 lidas 40 de 63
 lidas 60 de 63
-/home/runner/work/apuracao-2026/apuracao-2026/scripts/amostra_logs.py:102: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
-  summary = {"gerado_em": datetime.datetime.utcnow().isoformat() + "Z", "pleito": PLEITO, "universo_secoes": total, "amostra": len(sample), "lidas_ok": len(ok),
 {
- "gerado_em": "2026-10-26T16:35:47.857393Z",
+ "gerado_em": "2026-10-26T16:38:14.647512+00:00",
  "pleito": "3221",
  "universo_secoes": 517179,
  "amostra": 63,
- "lidas_ok": 0,
- "erros": 63,
- "votos_lidos": 0,
- "votos_presidente_lidos": 0,
- "apos17_lidos": 0,
- "apos17_presidente_lidos": 0,
- "secoes_com_voto_apos17": 0,
- "media_por_secao": 0,
- "estimativa_nacional": 0,
+ "lidas_ok": 57,
+ "erros": 6,
+ "votos_lidos": 126671,
+ "votos_presidente_lidos": 28014,
+ "apos17_lidos": 6,
+ "apos17_presidente_lidos": 3,
+ "secoes_com_voto_apos17": 2,
+ "media_por_secao": 0.05263157894736842,
+ "estimativa_nacional": 27220,
  "ic95": [
   0,
-  0
+  66353
  ],
- "ultimo_voto_mais_tarde": "",
- "tipos_de_mensagem_com_vot": [],
- "exemplos": []
+ "ultimo_voto_mais_tarde": "25/10/2026 17:03:28",
+ "tipos_de_mensagem_com_vot": [
+  [
+   "Digital coletada bate com uma digital gravada após o registro inicial de mesário",
+   265
+  ],
+  [
+   "Não encontrou digital coletada em nenhum dos arquivos, vai salvar a digital em n",
+   231
+  ],
+  [
+   "Verificação de assinatura de dado por etapa [10] - [Pacote: /dsk/fe/estatico/jez",
+   54
+  ],
+  [
+   "Verificação de assinatura de dado por etapa [11] - [Pacote: /dsk/fe/estatico/jez",
+   54
+  ],
+  [
+   "Digital capturada não corresponde a digital do eleitor: Polegar Direito [score 1",
+   34
+  ],
+  [
+   "Mídia de votação gerada pelo computador (nome - tpm - instalação): ZSP185STD04 -",
+   23
+  ],
+  [
+   "Mídia de votação gerada pelo computador (nome - tpm - instalação): CSC012W057425",
+   15
+  ],
+  [
+   "Urna ligada desconectada da rede CA em [0.00V] e na Bateria Interna com [13.16V/",
+   13
+  ],
+  [
+   "Mídia de votação gerada pelo computador (nome - tpm - instalação): ZBA014WKS05 -",
+   13
+  ],
+  [
+   "Mídia de votação gerada pelo computador (nome - tpm - instalação): RROWS27095 - ",
+   12
+  ],
+  [
+   "Mídia de votação gerada pelo computador (nome - tpm - instalação): ZPA013STD91 -",
+   12
+  ],
+  [
+   "Mídia de votação gerada pelo computador (nome - tpm - instalação): ZPR106STD01 -",
+   12
+  ],
+  [
+   "Mídia de votação gerada pelo computador (nome - tpm - instalação): ZRS032WKS80 -",
+   11
+  ],
+  [
+   "Mídia de votação gerada pelo computador (nome - tpm - instalação): ZRJ055STD94 -",
+   11
+  ],
+  [
+   "Mídia de votação gerada pelo computador (nome - tpm - instalação): ZSP181STD02 -",
+   11
+  ],
+  [
+   "Mídia de votação gerada pelo computador (nome - tpm - instalação): ZRS158WKS80 -",
+   11
+  ],
+  [
+   "Mídia de votação gerada pelo computador (nome - tpm - instalação): ZES013STD02 -",
+   11
+  ],
+  [
+   "Mídia de votação gerada pelo computador (nome - tpm - instalação): ZRJ158STD93 -",
+   11
+  ],
+  [
+   "Mídia de votação gerada pelo computador (nome - tpm - instalação): RRNWGM15 - 3F",
+   11
+  ],
+  [
+   "Mídia de votação gerada pelo computador (nome - tpm - instalação): ZRS055WKS80 -",
+   11
+  ],
+  [
+   "Mídia de votação gerada pelo computador (nome - tpm - instalação): ZSP269STD19 -",
+   11
+  ],
+  [
+   "Mídia de votação gerada pelo computador (nome - tpm - instalação): ZSP206STD13 -",
+   11
+  ],
+  [
+   "Mídia de votação gerada pelo computador (nome - tpm - instalação): ZMG042STD02 -",
+   10
+  ],
+  [
+   "Mídia de votação gerada pelo computador (nome - tpm - instalação): ZDF012WKS20 -",
+   10
+  ],
+  [
+   "Mídia de votação gerada pelo computador (nome - tpm - instalação): ZPE086WKS04 -",
+   10
+  ]
+ ],
+ "exemplos": [
+  "04/10/2026 08:05:00\tINFO\t02329138\tVOTA\tVoto confirmado para [Deputado Federal]\tB7925829498B0BE1",
+  "04/10/2026 08:05:25\tINFO\t02329138\tVOTA\tVoto confirmado para [Deputado Estadual]\t0EF4295AE3BAC95E",
+  "04/10/2026 08:05:32\tINFO\t02329138\tVOTA\tVoto confirmado para [Senador]\t497BDB50AEF30A90",
+  "04/10/2026 08:05:45\tINFO\t02329138\tVOTA\tVoto confirmado para [Senador]\t9A91D8837BB51BC6",
+  "04/10/2026 08:05:52\tINFO\t02329138\tVOTA\tVoto confirmado para [Governador]\t31F0C51179A692F9",
+  "04/10/2026 08:05:58\tINFO\t02329138\tVOTA\tVoto confirmado para [Presidente]\tCCB46C3BEC7FFEEC",
+  "04/10/2026 08:05:59\tINFO\t02329138\tVOTA\tO voto do eleitor foi computado\t222BFE00C93AFE7B",
+  "04/10/2026 08:07:49\tINFO\t02329138\tVOTA\tVoto confirmado para [Deputado Federal]\tAB58A7A267DC87D3",
+  "04/10/2026 08:07:55\tINFO\t02329138\tVOTA\tVoto confirmado para [Deputado Estadual]\tB36FA9A69A80B5B5",
+  "04/10/2026 08:08:03\tINFO\t02329138\tVOTA\tVoto confirmado para [Senador]\t6B5C8F36D0261554",
+  "04/10/2026 08:08:10\tINFO\t02329138\tVOTA\tVoto confirmado para [Senador]\tF2A49F1BBBBAB65A",
+  "04/10/2026 08:08:15\tINFO\t02329138\tVOTA\tVoto confirmado para [Governador]\t04636FDD4EEE3628"
+ ]
 }
