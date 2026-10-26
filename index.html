@@ -185,6 +185,7 @@ footer a{color:var(--c1)}
     <div class="modes" role="group" aria-label="Eixo horizontal">
       <button type="button" data-xaxis="pst" aria-pressed="true">Por % apurado</button>
       <button type="button" data-xaxis="t" aria-pressed="false">Por horário</button>
+      <button type="button" id="exporthist" title="Copia o histórico de leituras desta página em JSON">Copiar histórico</button>
     </div>
     <svg class="chart" id="chart" viewBox="0 0 720 280" role="img" aria-labelledby="h-evo evo-sub"></svg>
     <div class="legend" id="chart-legend"></div>
@@ -717,6 +718,12 @@ function tick(base){
   timer = setInterval(()=>{ left--; if(left<=0){ clearInterval(timer); load(); } else draw(); },1000);
 }
 document.getElementById("refresh").onclick = load;
+document.getElementById("exporthist").onclick = async function(){
+  const txt = JSON.stringify(hist); const b = this;
+  try { await navigator.clipboard.writeText(txt); b.textContent = `Copiado (${hist.length} leituras)`; }
+  catch(e){ const ta = document.createElement("textarea"); ta.value = txt; ta.style.cssText="position:fixed;left:8px;top:8px;width:90vw;height:40vh;z-index:99"; document.body.appendChild(ta); ta.select(); b.textContent = "Selecione e copie o texto"; }
+  setTimeout(()=>{ b.textContent = "Copiar histórico"; }, 4000);
+};
 (function(){ const scrim=document.getElementById("scrim"), close=document.getElementById("modal-close");
   const dismiss=()=>{ scrim.hidden=true; document.body.style.overflow=""; };
   close.addEventListener("click", dismiss); scrim.addEventListener("click", e=>{ if(e.target===scrim) dismiss(); });
