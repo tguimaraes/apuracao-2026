@@ -7,5 +7,5 @@ Acesse: https://tguimaraes.github.io/apuracao-2026/
 ## Capítulos compartilháveis
 Cada capítulo do estudo tem uma página própria em `capitulos/`, com prévia para redes sociais (`og/`). Para regerar depois de editar `estudo.html`:
 ```
-python3 scripts/build_capitulos.py && node scripts/og_render.js
+python3 scripts/build_capitulos.py && node scripts/og_render.js && node scripts/story_render.js
 ```

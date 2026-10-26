@@ -936,11 +936,11 @@ async function doInsta(b){ const url = b.dataset.url, txt = b.dataset.txt, img =
   CAPS.forEach(c => { const sec = document.getElementById(c.id); if (!sec) return;
     const url = BASE + c.slug + ".html", txt = `Capítulo ${c.num}: ${c.title}`;
     const d = document.createElement("div"); d.className = "sharebar";
-    d.innerHTML = `<div class="t">Este capítulo responde uma dúvida que alguém que você conhece tem. Manda pra essa pessoa.<small>O link abre uma página só deste capítulo, com prévia e tudo.</small></div><div class="bt">${shareLinks(url, txt, "sb", "https://tguimaraes.github.io/apuracao-2026/og/" + c.slug + ".png")}</div>`;
+    d.innerHTML = `<div class="t">Este capítulo responde uma dúvida que alguém que você conhece tem. Manda pra essa pessoa.<small>O link abre uma página só deste capítulo, com prévia e tudo.</small></div><div class="bt">${shareLinks(url, txt, "sb", "https://tguimaraes.github.io/apuracao-2026/og/story/" + c.slug + ".png")}</div>`;
     sec.appendChild(d); });
   // topo: compartilhar o estudo inteiro
   const top = document.querySelector("main section.card .pontos");
-  if (top){ const d = document.createElement("div"); d.className = "sharetop"; d.innerHTML = '<span class="lbl">Compartilhe o estudo completo:</span>' + shareLinks("https://tguimaraes.github.io/apuracao-2026/estudo.html", "Como Lula venceu o 2º turno de 2026, explicado com dados do TSE", "sb", "https://tguimaraes.github.io/apuracao-2026/og/estudo.png"); top.insertAdjacentElement("afterend", d); }
+  if (top){ const d = document.createElement("div"); d.className = "sharetop"; d.innerHTML = '<span class="lbl">Compartilhe o estudo completo:</span>' + shareLinks("https://tguimaraes.github.io/apuracao-2026/estudo.html", "Como Lula venceu o 2º turno de 2026, explicado com dados do TSE", "sb", "https://tguimaraes.github.io/apuracao-2026/og/story/estudo.png"); top.insertAdjacentElement("afterend", d); }
   // botão flutuante no celular: compartilha o capítulo visível
   const fab = document.createElement("button"); fab.className = "fab"; fab.type = "button"; fab.innerHTML = ICO.wa + " Compartilhar"; document.body.appendChild(fab);
   let current = null; const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) current = e.target.id; }), {rootMargin:"-30% 0px -60% 0px"});
