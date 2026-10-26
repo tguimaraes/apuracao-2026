@@ -74,7 +74,7 @@ for i, (uf, mun, zona, sec) in enumerate(sample):
                 low = msg.lower()
                 if ("votação" in low or "votacao" in low) and ("iniciad" in low or "abert" in low) and not row["abertura"]: row["abertura"] = f"{hh:02d}:{mm:02d}"
                 if ("votação" in low or "votacao" in low) and "encerr" in low: row["encerramento"] = f"{hh:02d}:{mm:02d}"
-                if len(tipos) < 400: tipos[re.sub(r"\[.*?\]|\d+", "#", msg)[:70]] += 1
+                if comp == "VOTA": tipos[re.sub(r"\d+", "#", msg.split("\t")[0])[:90]] += 1
         if times:
             times.sort(); row["primeiro"] = f"{times[0]//3600:02d}:{times[0]%3600//60:02d}"; row["ultimo"] = f"{times[-1]//3600:02d}:{times[-1]%3600//60:02d}"
             gaps = [b - a for a, b in zip(times, times[1:])]
