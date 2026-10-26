@@ -1,0 +1,356 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Como Lula venceu o 2º turno de 2026</title>
+<meta name="description" content="Estudo geográfico e demográfico da vitória de Lula sobre Flávio Bolsonaro no 2º turno de 2026, com dados do TSE, Datafolha e FGV/CEPESP.">
+<meta property="og:title" content="Como Lula venceu o 2º turno de 2026">
+<meta property="og:description" content="A aritmética da virada, a geografia do voto, o interior e o agro, e o perfil do eleitor. Dados do TSE, Datafolha e FGV/CEPESP.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&family=Roboto+Mono:wght@500&display=swap">
+<style>
+/* Material Design: fundo cinza claro, cards brancos, acentos da paleta; Lula vermelho, Flávio azul, como no painel */
+:root{
+  --bg:#F5F5F5; --card:#FFFFFF; --fg:#212121; --muted:#616161; --line:#E0E0E0;
+  --lula:#C62828; --flavio:#1565C0; --outros:#9E9E9E; --ok:#2E7D32; --warn:#E65100; --bar:#37474F; --info:#1565C0;
+  --font:"Roboto",system-ui,-apple-system,"Segoe UI",sans-serif; --mono:"Roboto Mono",ui-monospace,Menlo,monospace;
+  --e1:0 1px 3px rgba(0,0,0,.12),0 1px 2px rgba(0,0,0,.24); --e2:0 3px 6px rgba(0,0,0,.16),0 3px 6px rgba(0,0,0,.23);
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{background:var(--bg);color:var(--fg);font:16px/1.6 var(--font);padding-block:0 56px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.appbar{margin:0 calc(-1*max(16px,env(safe-area-inset-left,0px))) 24px calc(-1*max(16px,env(safe-area-inset-right,0px)));background:var(--bar);color:#fff;box-shadow:var(--e2);padding:14px max(16px,env(safe-area-inset-left,0px))}
+.appbar .in{max-width:900px;margin:0 auto;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:8px 16px}
+.appbar h1{font-size:1.25rem;font-weight:500;margin:0}
+.appbar a{color:#fff;font-size:.85rem;font-weight:500;text-transform:uppercase;letter-spacing:.04em;text-decoration:none;background:rgba(255,255,255,.16);padding:7px 14px;border-radius:20px}
+.eyebrow{font-size:.72rem;text-transform:uppercase;letter-spacing:.09em;color:var(--muted);font-weight:500}
+.appbar .eyebrow{color:rgba(255,255,255,.8)}
+.wrap{max-width:900px;margin:0 auto;display:grid;gap:18px}
+.card{background:var(--card);border-radius:8px;box-shadow:var(--e1);padding:24px;min-width:0}
+.card>p,.card>ul,.card>ol{max-width:68ch}
+h2{margin:0 0 6px;font-size:1.3rem;font-weight:500;text-wrap:balance}
+h3{margin:18px 0 6px;font-size:1.02rem;font-weight:500}
+p{margin:8px 0}
+a{color:var(--info)}
+.lead{font-size:1.1rem;max-width:68ch}
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:12px;margin-top:12px}
+.kpi{background:var(--bg);border-radius:8px;padding:12px 14px;min-width:0}
+.kpi .v{font-size:1.5rem;font-weight:700;font-variant-numeric:tabular-nums;line-height:1.2}
+.kpi .l{font-size:.76rem;color:var(--muted)}
+.kpi .s{font-size:.8rem;margin-top:2px}
+.lula{color:var(--lula)} .flavio{color:var(--flavio)}
+.toc{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+.toc a{font-size:.82rem;text-decoration:none;border:1px solid var(--line);border-radius:20px;padding:5px 12px;color:var(--fg)}
+.note{background:#E3F2FD;color:#0D47A1;border-left:4px solid var(--info);border-radius:8px;padding:10px 14px;font-size:.9rem;margin-top:12px}
+.warnbox{background:#FFF3E0;color:#6D3B00;border-left:4px solid var(--warn);border-radius:8px;padding:10px 14px;font-size:.9rem;margin-top:12px}
+.chart{width:100%;height:auto;display:block;margin-top:10px}
+.chart text{font-family:var(--font);fill:var(--fg);font-size:12px}
+.chart .mu{fill:var(--muted);font-size:11px}
+.chart .grid{stroke:var(--line)}
+.legend{display:flex;flex-wrap:wrap;gap:8px 16px;font-size:.8rem;color:var(--muted);margin-top:8px}
+.legend span{display:inline-flex;align-items:center;gap:6px}
+.sw{width:22px;height:10px;border-radius:3px;display:inline-block}
+.tbl{overflow-x:auto;margin-top:10px}
+table{width:100%;border-collapse:collapse;font-size:.84rem;font-variant-numeric:tabular-nums}
+caption{text-align:left;font-size:.8rem;color:var(--muted);padding:0 0 8px}
+th{font-size:.68rem;text-transform:uppercase;letter-spacing:.05em;color:var(--muted);font-weight:500;text-align:right;padding:8px 6px;border-bottom:1px solid var(--line);vertical-align:bottom}
+th:first-child,td:first-child{text-align:left}
+td{padding:7px 6px;border-bottom:1px solid var(--line);text-align:right;white-space:nowrap}
+tr:hover td{background:var(--bg)}
+.chip{display:inline-block;padding:1px 9px;border-radius:12px;color:#fff;font-size:.72rem;font-weight:500}
+.d{font-weight:500}
+.d.up{color:var(--ok)} .d.dn{color:var(--warn)}
+.demo{display:grid;gap:14px;margin-top:10px}
+.demo .g{display:grid;grid-template-columns:150px minmax(0,1fr) 110px;gap:4px 12px;align-items:center}
+.demo .g .lab{font-size:.85rem}
+.demo .g .sub{font-size:.74rem;color:var(--muted)}
+.demo .bar{height:16px;border-radius:8px;overflow:hidden;display:flex;background:var(--line);position:relative}
+.demo .bar i{display:block;height:100%}
+.demo .bar::after{content:"";position:absolute;left:50%;top:-2px;bottom:-2px;width:2px;background:var(--fg);opacity:.5}
+.demo .num{font-size:.82rem;font-variant-numeric:tabular-nums;text-align:right;white-space:nowrap}
+@media (max-width:560px){.demo .g{grid-template-columns:1fr;gap:2px}.demo .num{text-align:left}}
+.fatores{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px;margin-top:10px}
+.fator{border-left:4px solid var(--c);padding:4px 0 4px 12px}
+.fator b{display:block;margin-bottom:2px}
+.fator span{font-size:.9rem;color:var(--muted)}
+.src{font-size:.82rem;color:var(--muted)}
+.src li{margin:4px 0}
+footer{font-size:.78rem;color:var(--muted);text-align:center;line-height:1.6}
+sup a{text-decoration:none;font-size:.7em}
+</style>
+</head>
+<body>
+<div class="appbar"><div class="in">
+  <div><div class="eyebrow">Estudo · eleição presidencial 2026 · 2º turno</div><h1>Como Lula venceu</h1></div>
+  <a href="./">← Painel da apuração</a>
+</div></div>
+
+<main class="wrap">
+  <section class="card">
+    <div class="eyebrow">Resumo</div>
+    <h2>Uma virada de 2,2 milhões de votos, decidida pelo Nordeste, por Minas e pelas capitais</h2>
+    <p class="lead">No 1º turno, em 4 de outubro, Flávio Bolsonaro terminou à frente por 1,87 ponto. Três semanas depois, Lula venceu o 2º turno com 51,79% dos votos válidos contra 48,21%, uma diferença de 4,43 milhões de votos. Entre um turno e outro, Lula ganhou 10,4 milhões de votos; Flávio, 3,7 milhões. Este estudo organiza o que os dados do TSE e as pesquisas mostram sobre de onde esses votos vieram.</p>
+    <div class="kpis">
+      <div class="kpi"><div class="l">Lula · 2º turno</div><div class="v lula">51,79%</div><div class="s">64.256.232 votos</div></div>
+      <div class="kpi"><div class="l">Flávio Bolsonaro · 2º turno</div><div class="v flavio">48,21%</div><div class="s">59.826.041 votos</div></div>
+      <div class="kpi"><div class="l">1º turno (4/10)</div><div class="v">47,03 × 45,16</div><div class="s">Flávio à frente por 2,22 milhões</div></div>
+      <div class="kpi"><div class="l">Abstenção</div><div class="v">19,2%</div><div class="s">vs 21,08% no 1º turno e 20,6% em 2022</div></div>
+    </div>
+    <div class="toc" aria-label="Seções">
+      <a href="#aritmetica">1. A aritmética da virada</a><a href="#geografia">2. A geografia do voto</a><a href="#estados">3. Estado a estado</a>
+      <a href="#interior">4. Capitais, interior e agro</a><a href="#perfil">5. O perfil do eleitor</a><a href="#2022">6. Comparação com 2022</a><a href="#fatores">7. Os fatores</a><a href="#metodo">Método e fontes</a>
+    </div>
+    <div class="note">Fontes: resultados oficiais do TSE (eleições 6257 e 6258), consolidados pela imprensa; pesquisa Datafolha de 22/10/2026 para o perfil do eleitor; estudo de Marco Antonio Faganello (FGV/CEPESP) sobre interior e agro, publicado pela Agência Pública. Links completos na última seção. Onde as fontes divergem em centésimos, usei o número com 100% das seções totalizadas.</div>
+  </section>
+
+  <section class="card" id="aritmetica">
+    <div class="eyebrow">1</div>
+    <h2>A aritmética da virada: 9,3 milhões de votos em disputa, e mais 4,8 milhões de eleitores nas urnas</h2>
+    <p>Duas coisas mudaram entre os turnos. Primeiro, 9,3 milhões de votos válidos dados a Caiado, Zema, Cury, Renan Santos e os demais ficaram sem candidato e precisaram ser redistribuídos. Segundo, o comparecimento subiu: a abstenção caiu de 21,08% para 19,2%, e os votos válidos passaram de 119,3 milhões para 124,1 milhões. Lula precisava ganhar essa redistribuição por folga, e ganhou: dos 14,1 milhões de votos "novos" do 2º turno (outros candidatos mais votos válidos adicionais), cerca de 74% foram para ele.</p>
+    <svg class="chart" id="c-aritmetica" viewBox="0 0 860 230" role="img" aria-label="Votos de Lula e Flávio no 1º e 2º turno, com o ganho entre turnos"></svg>
+    <div class="legend"><span><i class="sw" style="background:var(--lula)"></i>Lula</span><span><i class="sw" style="background:var(--flavio)"></i>Flávio Bolsonaro</span><span><i class="sw" style="background:var(--outros)"></i>Outros candidatos (só no 1º turno)</span></div>
+    <div class="kpis">
+      <div class="kpi"><div class="l">Ganho de Lula entre turnos</div><div class="v lula">+10,4 mi</div><div class="s">de 53,9 para 64,3 milhões de votos</div></div>
+      <div class="kpi"><div class="l">Ganho de Flávio entre turnos</div><div class="v flavio">+3,7 mi</div><div class="s">de 56,1 para 59,8 milhões de votos</div></div>
+      <div class="kpi"><div class="l">Votos de outros candidatos no 1º turno</div><div class="v">9,3 mi</div><div class="s">7,81% dos válidos</div></div>
+      <div class="kpi"><div class="l">Votos válidos a mais no 2º turno</div><div class="v">+4,8 mi</div><div class="s">comparecimento maior</div></div>
+    </div>
+    <p>A leitura é direta: Flávio capturou menos de um terço do que estava em jogo. Isso é consistente com o perfil do eleitor de Caiado e Zema (centro-direita, Centro-Oeste e Sudeste), que em parte foi para Flávio, mas também com um eleitor de centro que preferiu Lula ou se absteve, e com a mobilização adicional no Nordeste e nas capitais, que entrou quase toda do lado de Lula.</p>
+  </section>
+
+  <section class="card" id="geografia">
+    <div class="eyebrow">2</div>
+    <h2>A geografia do voto: o Nordeste pagou a conta de todas as outras regiões</h2>
+    <p>Lula venceu em uma única região, mas com uma vantagem de 13,7 milhões de votos (24,5 milhões contra 10,8 milhões). Nas outras quatro regiões somadas, Flávio abriu 9,3 milhões. A diferença entre esses dois números é, com pequena folga, a margem nacional de 4,4 milhões. O Norte terminou praticamente empatado, com vantagem de poucos milhares de votos para Flávio, e o Sudeste, maior colégio do país, deu 54,2% a Flávio, mas com Minas virando para Lula.</p>
+    <svg class="chart" id="c-regioes" viewBox="0 0 860 300" role="img" aria-label="Vantagem em votos por região no 2º turno"></svg>
+    <div class="tbl"><table><caption>Resultado por região no 2º turno (votos válidos). Vantagem líquida em votos conforme consolidação da imprensa a partir do TSE.</caption>
+      <thead><tr><th>Região</th><th>Lula</th><th>Flávio</th><th>Quem venceu</th><th>Vantagem líquida</th></tr></thead>
+      <tbody>
+        <tr><td>Nordeste</td><td class="lula">69,4%</td><td class="flavio">30,6%</td><td><span class="chip" style="background:var(--lula)">Lula</span></td><td class="lula">+13,7 milhões</td></tr>
+        <tr><td>Norte</td><td class="lula">49,96%</td><td class="flavio">50,04%</td><td><span class="chip" style="background:var(--flavio)">Flávio</span></td><td class="flavio">≈ +8 mil</td></tr>
+        <tr><td>Sudeste</td><td class="lula">47,2%</td><td class="flavio">52,8%</td><td><span class="chip" style="background:var(--flavio)">Flávio</span></td><td class="flavio">+2,8 milhões</td></tr>
+        <tr><td>Centro-Oeste</td><td class="lula">40,0%</td><td class="flavio">60,0%</td><td><span class="chip" style="background:var(--flavio)">Flávio</span></td><td class="flavio">+1,9 milhão</td></tr>
+        <tr><td>Sul</td><td class="lula">37,4%</td><td class="flavio">62,6%</td><td><span class="chip" style="background:var(--flavio)">Flávio</span></td><td class="flavio">+4,6 milhões</td></tr>
+      </tbody></table></div>
+    <p>Dois detalhes importam para entender a dimensão do Nordeste. Primeiro, foi onde Lula mais cresceu entre turnos: entre 4,9 e 6,8 pontos em cada um dos nove estados, com Sergipe, Paraíba e Alagoas na ponta. Segundo, a abstenção na região caiu, e o Ceará teve a menor abstenção do país. Ou seja, o Nordeste não só votou mais em Lula, como foi votar mais.</p>
+  </section>
+
+  <section class="card" id="estados">
+    <div class="eyebrow">3</div>
+    <h2>Estado a estado: Lula cresceu em todas as 27 unidades, e Minas foi a única a trocar de lado</h2>
+    <p>Lula ganhou pontos sobre Flávio em todos os estados entre o 1º e o 2º turno, o que é esperado quando a base de outros candidatos é redistribuída. O que decidiu a eleição foi onde ele cresceu <em>mais</em> que Flávio. Minas Gerais, segundo maior colégio do país, saiu de Flávio 48,24% × Lula 43,33% no 1º turno para Lula 50,43% × 49,57%. Em São Paulo, Flávio manteve a vantagem no estado, mas Lula abriu mais de 11 pontos na capital.</p>
+    <svg class="chart" id="c-swing" viewBox="0 0 860 640" role="img" aria-label="Percentual de Lula por estado no 2º turno, com o valor do 1º turno"></svg>
+    <div class="legend"><span><i class="sw" style="background:var(--lula)"></i>Lula no 2º turno</span><span><i class="sw" style="background:var(--fg);width:3px"></i>Traço: Lula no 1º turno</span><span>Linha central = 50%</span></div>
+    <div class="tbl"><table><caption>Percentual de Lula nos votos válidos. 1º turno inclui outros candidatos na base, por isso todos crescem; a coluna "ganho" mostra quanto. Fontes: TSE via Exame, Bloomberg Línea e Gazeta do Povo. Células com traço: a fonte não trouxe o valor.</caption>
+      <thead><tr><th>UF</th><th>Região</th><th>Lula 1º T</th><th>Lula 2º T</th><th>Ganho</th><th>Vencedor 2º T</th></tr></thead>
+      <tbody id="t-estados"></tbody></table></div>
+  </section>
+
+  <section class="card" id="interior">
+    <div class="eyebrow">4</div>
+    <h2>Capitais, interior e agro: Lula segurou as cidades grandes e perdeu nas pequenas</h2>
+    <p>Olhando só o mapa por estado, a eleição parece uma disputa Nordeste contra o resto. Olhando por município, o corte mais forte é tamanho da cidade e peso do agronegócio. O estudo de Marco Antonio Faganello (FGV/CEPESP), comparando o 1º turno de 2026 com o de 2022, mostra o padrão:</p>
+    <svg class="chart" id="c-agro" viewBox="0 0 860 250" role="img" aria-label="Perda de votos de Lula vs 2022 por tamanho de município e peso do agro"></svg>
+    <div class="legend"><span>Variação dos votos de Lula (em % dos votos que ele tinha) no 1º turno de 2026 frente ao 1º turno de 2022, por grupo de município. Fonte: Faganello (FGV/CEPESP) via Agência Pública.</span></div>
+    <ul>
+      <li>Municípios com até 5 mil habitantes: Lula perdeu cerca de 7% dos votos. Com mais de 500 mil habitantes: cerca de 1%.</li>
+      <li>Onde o agro é menos de 5% do PIB municipal, a perda foi de 2%; onde passa de 50% do PIB, de 8%. Nas cidades pequenas e agrícolas, 9%.</li>
+      <li>Cidades de até 50 mil habitantes respondem por metade de toda a perda de Lula frente a 2022, embora cada uma pese pouco.</li>
+      <li>Os votos perdidos foram para Flávio, não para a abstenção. Os municípios onde Lula mais perdeu são mais brancos, mais jovens, de renda per capita mais alta e com mais agro.</li>
+      <li>No 1º turno, Flávio venceu em 714 cidades que Lula tinha vencido em 2022. Lula cresceu em só 102 municípios, quase todos grandes ou médios: Sobral, Belém, Recife, Fortaleza, Niterói.</li>
+    </ul>
+    <h3>E no 2º turno, as capitais</h3>
+    <p>As 27 capitais se dividiram quase ao meio: Lula venceu 13 (entre elas São Paulo, Rio, Salvador, Fortaleza e Recife) e Flávio 14 (Brasília, Curitiba, Goiânia, Manaus, Florianópolis). A maior votação de Lula em capital foi em Salvador, 73,3%; a de Flávio, em Boa Vista, 75,8%. O ponto decisivo é São Paulo: Flávio levou o estado com 53,85%, mas a capital, maior colégio municipal do país, deu mais de 11 pontos de vantagem a Lula. Sem esse resultado na cidade, a margem nacional ficaria perto de zero.</p>
+    <div class="warnbox">Por que isso importa para a leitura da noite: capitais totalizam antes do interior. Na apuração do 2º turno, isso fez Lula aparecer à frente cedo em estados do Sudeste e Sul que depois ficaram com Flávio, e Flávio parecer mais competitivo no Nordeste do que terminou. O painel desta mesma página registrou essa oscilação na curva de margem.</div>
+  </section>
+
+  <section class="card" id="perfil">
+    <div class="eyebrow">5</div>
+    <h2>O perfil do eleitor: renda, religião e gênero dividiram o país; raça e escolaridade, menos do que se imagina</h2>
+    <p>O TSE não publica voto por perfil, então essa camada vem de pesquisa. O recorte abaixo é o Datafolha de 22 de outubro, três dias antes da votação, quando os dois estavam empatados em 50% dos votos válidos. Como o resultado real foi Lula 51,8%, os percentuais de Lula aqui estão provavelmente subestimados em cerca de 2 pontos em cada grupo, mas a forma da divisão é o que interessa. A pesquisa de boca de urna, quando divulgada em detalhe, deve substituir esta tabela.</p>
+    <div class="demo" id="demo"></div>
+    <div class="legend"><span><i class="sw" style="background:var(--lula)"></i>Lula</span><span><i class="sw" style="background:var(--flavio)"></i>Flávio Bolsonaro</span><span>Datafolha, 22/10/2026, votos válidos. Margem de erro de 3 a 5 pontos por grupo.</span></div>
+    <h3>O que a tabela diz</h3>
+    <ul>
+      <li><b>Renda é o corte mais forte depois de religião.</b> Até 2 salários mínimos, Lula tem 58%; acima disso, Flávio tem 58% nas duas faixas. Como a faixa de até 2 salários é a maior do eleitorado, isso sozinho explica boa parte da vantagem.</li>
+      <li><b>Religião é o corte mais polarizado.</b> Evangélicos 73% Flávio; católicos 59% Lula. É o mesmo desenho de 2022, e o estudo da FGV mostra que a proporção de evangélicos nos municípios não mudou entre as eleições, ou seja, a religião explica a divisão, não a mudança.</li>
+      <li><b>Gênero.</b> Mulheres 53% Lula, homens 54% Flávio. Lavareda (Ipespe) aponta que as perdas de Lula frente a 2022 se concentraram em homens e em jovens de 16 a 24 anos; a faixa de 35 a 44 anos foi a única com vantagem clara de Flávio na pesquisa.</li>
+      <li><b>Escolaridade.</b> Fundamental 57% Lula; médio e superior, 53% a 54% Flávio. Lula caiu só 3 pontos entre universitários frente a 2022, o que, para Lavareda, enfraquece a tese de que a agenda de corrupção explicaria o desgaste.</li>
+      <li><b>Raça.</b> Pretos 61% Lula; brancos 55% Flávio; pardos, empate técnico. Por ser o grupo mais numeroso, o eleitor pardo é onde a eleição se decidiu, e é também o perfil dominante no Nordeste.</li>
+    </ul>
+  </section>
+
+  <section class="card" id="2022">
+    <div class="eyebrow">6</div>
+    <h2>Comparação com 2022: margem um pouco maior, mapa quase igual, e um eleitorado que encolheu no interior</h2>
+    <div class="kpis">
+      <div class="kpi"><div class="l">2022 · 2º turno</div><div class="v">50,90 × 49,10</div><div class="s">Lula × Jair Bolsonaro, 2,1 milhões de votos</div></div>
+      <div class="kpi"><div class="l">2026 · 2º turno</div><div class="v">51,79 × 48,21</div><div class="s">Lula × Flávio, 4,4 milhões de votos</div></div>
+      <div class="kpi"><div class="l">Estados que mudaram de lado vs 2022</div><div class="v">1</div><div class="s">Tocantins, de Lula para Flávio. Minas voltou para Lula no 2º turno.</div></div>
+      <div class="kpi"><div class="l">Cidades que Lula perdeu vs 2022</div><div class="v">714</div><div class="s">no 1º turno; manteve 2.665</div></div>
+    </div>
+    <p>O mapa estadual de 2026 é quase o de 2022: Lula com os nove estados do Nordeste, Amazonas, Amapá, Pará e Minas; Flávio com Sul, Centro-Oeste, SP, RJ, ES e os quatro estados do arco Acre, Rondônia, Roraima e Tocantins. A diferença é que, dentro desse mapa, Lula perdeu votos em 98% dos municípios frente a 2022 no 1º turno (3,3 milhões a menos), enquanto Flávio teve 5 milhões a mais que Jair Bolsonaro. Que a margem final tenha sido maior que em 2022 mostra o peso do 2º turno: a redistribuição dos votos de centro-direita foi menos favorável a Flávio do que a de 2022 foi a Jair Bolsonaro, e o comparecimento subiu de um turno para o outro, o que em 2022 não aconteceu na mesma escala.</p>
+    <p>No Nordeste, aliás, a direita cresceu: Flávio passou de 27% (Jair Bolsonaro em 2022) para 30,9% no 1º turno, 1,6 milhão de votos a mais, e superou Jair em 98% dos 1.794 municípios da região. O Nordeste segurou Lula não por ter ficado mais lulista, e sim por ter uma base de partida muito alta e por ter comparecido mais no 2º turno.</p>
+  </section>
+
+  <section class="card" id="fatores">
+    <div class="eyebrow">7</div>
+    <h2>Os fatores, em ordem de peso</h2>
+    <div class="fatores">
+      <div class="fator" style="--c:var(--lula)"><b>1. Redistribuição favorável dos votos de centro-direita</b><span>Dos 14,1 milhões de votos "novos" do 2º turno, 74% foram a Lula. Caiado e Zema não transferiram o eleitor de centro em bloco para Flávio.</span></div>
+      <div class="fator" style="--c:var(--lula)"><b>2. Mobilização no Nordeste</b><span>Crescimento de 5 a 7 pontos em cada estado, abstenção em queda e 13,7 milhões de vantagem líquida. É a base do resultado.</span></div>
+      <div class="fator" style="--c:var(--lula)"><b>3. Minas Gerais</b><span>Único estado a virar. Com 16 milhões de eleitores, trocar uma derrota por 5 pontos por uma vitória apertada vale perto de 1 milhão de votos na margem.</span></div>
+      <div class="fator" style="--c:var(--lula)"><b>4. As capitais, São Paulo em especial</b><span>Lula segurou as metrópoles, com mais de 11 pontos na cidade de São Paulo, enquanto perdia o interior.</span></div>
+      <div class="fator" style="--c:var(--flavio)"><b>5. Interior e agro (a favor de Flávio)</b><span>Cidades pequenas e agrícolas do Sul, Centro-Oeste e interior de SP migraram para Flávio. Limitou a margem, mas não bastou.</span></div>
+      <div class="fator" style="--c:var(--outros)"><b>6. Agenda econômica</b><span>Analistas citam o fim da escala 6x1 como tema com tração nas capitais. É hipótese, sem medida direta ainda.</span></div>
+    </div>
+    <h3>O que ainda não dá para afirmar</h3>
+    <p>Falta a pesquisa de boca de urna detalhada para fechar o perfil demográfico do voto efetivo, e faltam os dados por seção do TSE para medir com precisão quanto o comparecimento extra do 2º turno pesou em cada grupo. Também é cedo para separar o efeito de campanha (debates, propaganda, apoios de Caiado, Zema e governadores) do efeito estrutural de renda e região. As pesquisas finais, aliás, erraram o vencedor: Datafolha e Quaest de sábado davam Flávio 51% × Lula 49%, um desvio de quase 3 pontos, maior que a margem de erro.</p>
+  </section>
+
+  <section class="card" id="metodo">
+    <div class="eyebrow">Método e fontes</div>
+    <h2>Como este estudo foi feito</h2>
+    <p>Os números do TSE foram tomados das consolidações da imprensa com 100% das seções totalizadas, cruzando pelo menos duas fontes para cada valor estadual. Onde as fontes divergem em centésimos (Pernambuco, Minas), prevaleceu o valor que aparece em mais de uma fonte. Os percentuais de 2022 são os resultados oficiais do TSE arredondados. O perfil demográfico é de pesquisa pré-eleitoral, não de voto apurado, e deve ser lido como forma da divisão, não como medida exata. O painel de apuração desta mesma página continua lendo os arquivos do TSE ao vivo e pode ser usado para conferir qualquer número estadual.</p>
+    <ul class="src">
+      <li><a href="https://www.bloomberglinea.com.br/brasil/resultado-do-2-turno-por-estado-veja-onde-lula-e-flavio-bolsonaro-venceram/" target="_blank" rel="noopener">Bloomberg Línea: resultado do 2º turno por estado</a> (resultado nacional, 27 UFs, regiões)</li>
+      <li><a href="https://exame.com/brasil/lula-amplia-votacao-em-13-estados-e-vira-em-minas-gerais-no-2o-turno/" target="_blank" rel="noopener">Exame: Lula amplia votação em 13 estados e vira em Minas</a> (swing por estado, análise de Fábio Zambeli)</li>
+      <li><a href="https://www.gazetadopovo.com.br/eleicoes/2026/mapa-votacao-presidente-primeiro-segundo-turno-por-estado/" target="_blank" rel="noopener">Gazeta do Povo: votação no 1º e 2º turno por estado</a> (SP, RJ, MG, abstenção de 19,2%)</li>
+      <li><a href="https://jornalrazao.com/politica/lula-flavio-mapa-2-turno-cidade-estado-regiao" target="_blank" rel="noopener">Jornal Razão: mapa do 2º turno por cidade, estado e região</a> (capitais, cidades, regiões)</li>
+      <li><a href="https://www.opovo.com.br/noticias/politica/eleicoes/2026/10/25/eleicoes-2026-lula-vence-em-13-estados-do-brasil.html" target="_blank" rel="noopener">O Povo: Lula vence em 13 estados</a></li>
+      <li><a href="https://apublica.org/2026/10/como-o-agro-e-o-interior-podem-explicar-diminuicao-de-votos-para-lula/" target="_blank" rel="noopener">Agência Pública: como o agro e o interior explicam a queda de votos de Lula</a> (estudo de Marco Antonio Faganello, FGV/CEPESP)</li>
+      <li><a href="https://www.cnnbrasil.com.br/eleicoes/datafolha-veja-como-flavio-e-lula-pontuam-por-renda-genero-e-religiao/" target="_blank" rel="noopener">CNN Brasil: Datafolha por renda, gênero e religião</a> (pesquisa de 22/10/2026)</li>
+      <li><a href="https://www.cnnbrasil.com.br/eleicoes/lula-perdeu-em-mais-de-700-cidades-que-ganhou-em-2022-para-flavio-em-2026/" target="_blank" rel="noopener">CNN Brasil: Lula perdeu mais de 700 cidades que ganhou em 2022</a> (análise de Antonio Lavareda)</li>
+      <li><a href="https://sig.tse.jus.br/ords/dwapr/r/seai/sig-eleicao-resultados/resultado-da-elei%C3%A7%C3%A3o" target="_blank" rel="noopener">TSE: estatísticas eleitorais, votação nominal do 1º turno</a></li>
+      <li><a href="https://jornalgrandebahia.com.br/?p=1391247" target="_blank" rel="noopener">Abstenção de 21,08% no 1º turno</a></li>
+    </ul>
+  </section>
+
+  <footer>Estudo independente, feito a partir de dados públicos. Dados eleitorais: TSE. Perfil do eleitor: Datafolha. Interior e agro: FGV/CEPESP. Nenhum vínculo com candidatos, partidos ou com o TSE.</footer>
+</main>
+
+<script>
+const L = "#C62828", F = "#1565C0", O = "#9E9E9E", FG = "#212121", MU = "#616161", LINE = "#E0E0E0";
+const fmtM = n => (n/1e6).toLocaleString("pt-BR",{minimumFractionDigits:1,maximumFractionDigits:1}) + " mi";
+const fp = p => p.toLocaleString("pt-BR",{minimumFractionDigits:2,maximumFractionDigits:2}) + "%";
+
+// 1. Aritmética
+(function(){
+  const svg = document.getElementById("c-aritmetica"), W=860, ml=150, iw=W-ml-150, max=125e6;
+  const x = v => ml + v/max*iw;
+  const rows = [
+    {lab:"1º turno (4/10)", segs:[[53879538,L],[56104503,F],[9316747,O]], tot:119300788},
+    {lab:"2º turno (25/10)", segs:[[64256232,L],[59826041,F]], tot:124082273}];
+  let g = "";
+  rows.forEach((r,i)=>{ const y = 40 + i*80; let cx = ml;
+    g += `<text x="${ml-10}" y="${y+26}" text-anchor="end" style="font-weight:500">${r.lab}</text>`;
+    r.segs.forEach(([v,c])=>{ const w = v/max*iw; g += `<rect x="${cx}" y="${y}" width="${w}" height="40" fill="${c}" rx="3"></rect><text x="${cx+w/2}" y="${y+25}" text-anchor="middle" style="fill:#fff;font-weight:700;font-size:13px">${fmtM(v)}</text>`; cx += w; });
+    g += `<text class="mu" x="${cx+8}" y="${y+25}">${fmtM(r.tot)} válidos</text>`;
+  });
+  g += `<text x="${x(64256232)}" y="${40+80+58}" text-anchor="middle" class="mu">Lula +10,4 mi · Flávio +3,7 mi · outros 9,3 mi redistribuídos · +4,8 mi válidos</text>`;
+  svg.innerHTML = g;
+})();
+
+// 2. Regiões: vantagem líquida em votos
+(function(){
+  const svg = document.getElementById("c-regioes"), W=860, ml=130, iw=W-ml-90, H=300;
+  const data = [["Nordeste",13.7],["Norte",-0.008],["Sudeste",-2.8],["Centro-Oeste",-1.9],["Sul",-4.6]];
+  const max = 14, x0 = ml + 7/21*iw;
+  const xx = v => v>=0 ? x0 + v/max*(W-60-x0) : x0 - (-v)/6*(x0-ml);
+  let g = `<line x1="${x0}" x2="${x0}" y1="20" y2="${H-40}" stroke="${FG}" stroke-width="1.5"></line>`;
+  data.forEach(([n,v],i)=>{ const y = 30 + i*48, a = xx(v), w = Math.abs(a-x0);
+    g += `<text x="${ml-8}" y="${y+22}" text-anchor="end" style="font-weight:500">${n}</text>`;
+    g += `<rect x="${Math.min(a,x0)}" y="${y}" width="${Math.max(w,2)}" height="32" fill="${v>=0?L:F}" rx="3"></rect>`;
+    const lab = `${v>=0?"+":"−"}${Math.abs(v)<0.05?"8 mil":Math.abs(v).toLocaleString("pt-BR",{maximumFractionDigits:1})+" mi"}`;
+    if (w > 70) g += `<text x="${v>=0?a-8:a+8}" y="${y+21}" text-anchor="${v>=0?"end":"start"}" style="font-weight:700;fill:#fff">${lab}</text>`;
+    else g += `<text x="${v>=0?a+8:a-8}" y="${y+21}" text-anchor="${v>=0?"start":"end"}" style="font-weight:700;fill:${v>=0?L:F}">${lab}</text>`;
+  });
+  g += `<text x="${x0-10}" y="${H-14}" text-anchor="end" class="mu">← vantagem de Flávio (milhões de votos)</text><text x="${x0+10}" y="${H-14}" class="mu">vantagem de Lula →</text>`;
+  svg.innerHTML = g;
+})();
+
+// 3. Estados
+const EST = [
+  // uf, nome, região, lula1T, lula2T, lula2022
+  ["PI","Piauí","NE",70.99,75.88,76.9],["BA","Bahia","NE",66.17,71.31,72.2],["MA","Maranhão","NE",63.99,69.54,71.1],["SE","Sergipe","NE",62.75,69.53,66.3],
+  ["PE","Pernambuco","NE",63.45,69.20,66.9],["CE","Ceará","NE",63.29,68.93,69.9],["PB","Paraíba","NE",61.31,67.46,65.8],["RN","Rio Grande do Norte","NE",59.75,65.72,64.2],
+  ["AL","Alagoas","NE",54.73,60.77,58.7],["PA","Pará","N",49.91,55.02,54.9],["AM","Amazonas","N",48.23,54.02,51.1],["AP","Amapá","N",45.71,52.88,50.9],
+  ["MG","Minas Gerais","SE",43.33,50.43,50.2],["TO","Tocantins","N",null,48.63,51.2],["RJ","Rio de Janeiro","SE",39.41,46.90,43.7],["SP","São Paulo","SE",38.20,46.15,44.7],
+  ["DF","Distrito Federal","CO",null,45.72,41.4],["ES","Espírito Santo","SE",null,43.63,40.0],["RS","Rio Grande do Sul","S",null,42.16,43.7],["MS","Mato Grosso do Sul","CO",null,40.40,40.4],
+  ["GO","Goiás","CO",null,40.34,41.3],["PR","Paraná","S",null,37.42,37.6],["MT","Mato Grosso","CO",null,33.94,34.7],["AC","Acre","N",null,33.43,29.6],
+  ["SC","Santa Catarina","S",null,30.58,30.7],["RO","Rondônia","N",null,30.39,29.8],["RR","Roraima","N",null,27.54,23.9]];
+(function(){
+  const svg = document.getElementById("c-swing"), W=860, ml=170, iw=W-ml-70, rowH=22;
+  const x = v => ml + v/100*iw;
+  let g = `<line x1="${x(50)}" x2="${x(50)}" y1="8" y2="${EST.length*rowH+12}" stroke="${FG}" stroke-dasharray="4 4"></line>`;
+  [0,25,50,75,100].forEach(v=>{ g += `<text class="mu" x="${x(v)}" y="${EST.length*rowH+30}" text-anchor="middle">${v}%</text>`; });
+  EST.forEach((e,i)=>{ const y = 10 + i*rowH, [uf,nome,reg,p1,p2] = e;
+    g += `<text x="${ml-8}" y="${y+14}" text-anchor="end">${nome}</text>`;
+    g += `<rect x="${ml}" y="${y+3}" width="${iw}" height="12" fill="${LINE}" rx="2"></rect>`;
+    g += `<rect x="${ml}" y="${y+3}" width="${p2/100*iw}" height="12" fill="${p2>=50?L:F}" opacity="${p2>=50?1:.75}" rx="2"></rect>`;
+    if (p1!=null) g += `<line x1="${x(p1)}" x2="${x(p1)}" y1="${y+1}" y2="${y+17}" stroke="${FG}" stroke-width="2"></line>`;
+    g += `<text x="${x(p2)+6}" y="${y+14}" style="font-weight:700;font-size:11px;fill:${p2>=50?L:F}">${fp(p2)}</text>`;
+  });
+  svg.innerHTML = g;
+  const REG = {NE:"Nordeste",N:"Norte",SE:"Sudeste",S:"Sul",CO:"Centro-Oeste"};
+  document.getElementById("t-estados").innerHTML = EST.map(([uf,nome,reg,p1,p2])=>{
+    const g = p1!=null ? p2-p1 : null;
+    return `<tr><td><b>${uf}</b> <span class="mu" style="color:${MU}">${nome}</span></td><td>${REG[reg]}</td><td>${p1!=null?fp(p1):"–"}</td><td style="color:${p2>=50?L:F};font-weight:700">${fp(p2)}</td>
+      <td class="d up">${g!=null?"+"+g.toLocaleString("pt-BR",{minimumFractionDigits:1,maximumFractionDigits:1})+" p.p.":"–"}</td>
+      <td><span class="chip" style="background:${p2>=50?L:F}">${p2>=50?"Lula":"Flávio"}</span>${uf==="MG"?' <span class="chip" style="background:#2E7D32">virou</span>':""}</td></tr>`; }).join("");
+})();
+
+// 3b. Completa o 1º turno por UF direto do TSE, quando o navegador alcança os arquivos
+(async function(){
+  const falt = EST.filter(e => e[3]==null); if (!falt.length) return;
+  const num = v => +String(v||0).replace(/[^\d]/g,"");
+  const res = await Promise.allSettled(falt.map(async e => {
+    const uf = e[0].toLowerCase(); const r = await fetch(`https://resultados.tse.jus.br/oficial/ele2026/6257/dados/${uf}/${uf}-c0001-e006257-u.json`, {cache:"force-cache"});
+    if (!r.ok) throw 0; const j = await r.json();
+    let c = []; (function walk(o){ if (Array.isArray(o)) o.forEach(walk); else if (o && typeof o==="object"){ if ("n" in o && "vap" in o) c.push(o); else Object.values(o).forEach(walk); } })(j);
+    const tot = c.reduce((s,x)=>s+num(x.vap),0), l = c.find(x=>String(x.n)==="13"); if (!tot || !l) throw 0;
+    return [e[0], num(l.vap)/tot*100];
+  }));
+  let any = false;
+  res.forEach(r => { if (r.status==="fulfilled"){ const e = EST.find(x=>x[0]===r.value[0]); e[3] = r.value[1]; any = true; } });
+  if (!any) return;
+  const tb = document.getElementById("t-estados");
+  [...tb.rows].forEach(row => { const uf = row.cells[0].querySelector("b").textContent, e = EST.find(x=>x[0]===uf); if (e[3]==null) return;
+    row.cells[2].textContent = fp(e[3]); const g = e[4]-e[3]; row.cells[4].textContent = "+" + g.toLocaleString("pt-BR",{minimumFractionDigits:1,maximumFractionDigits:1}) + " p.p."; });
+  const svg = document.getElementById("c-swing"), ml=170, iw=860-ml-70, rowH=22, x = v => ml + v/100*iw;
+  EST.forEach((e,i)=>{ if (e[3]==null) return; const y = 10 + i*rowH; if (svg.querySelector(`[data-t1="${e[0]}"]`)) return;
+    const l = document.createElementNS("http://www.w3.org/2000/svg","line"); l.setAttribute("x1",x(e[3])); l.setAttribute("x2",x(e[3])); l.setAttribute("y1",y+1); l.setAttribute("y2",y+17); l.setAttribute("stroke",FG); l.setAttribute("stroke-width","2"); l.dataset.t1 = e[0]; svg.appendChild(l); });
+  const cap = document.querySelector("#estados caption"); cap.textContent = cap.textContent.replace("Células com traço: a fonte não trouxe o valor.", "Valores do 1º turno sem fonte de imprensa foram lidos direto dos arquivos do TSE.");
+})();
+
+// 4. Agro / tamanho
+(function(){
+  const svg = document.getElementById("c-agro"), W=860, ml=300, iw=W-ml-80;
+  const data = [["Até 5 mil habitantes",-7],["Mais de 500 mil habitantes",-1],["Agro < 5% do PIB municipal",-2],["Agro > 50% do PIB municipal",-8],["Pequenas e agrícolas (ambos)",-9],["Pequenas com pouco agro",-4]];
+  const x = v => ml + (-v)/10*iw;
+  let g = "";
+  data.forEach(([n,v],i)=>{ const y = 14 + i*38;
+    g += `<text x="${ml-10}" y="${y+18}" text-anchor="end">${n}</text><rect x="${ml}" y="${y}" width="${x(v)-ml}" height="26" fill="${v<=-7?"#B71C1C":v<=-4?"#E65100":"#9E9E9E"}" rx="3"></rect><text x="${x(v)+8}" y="${y+18}" style="font-weight:700">${v}%</text>`;
+  });
+  svg.innerHTML = g;
+})();
+
+// 5. Perfil (Datafolha 22/10)
+(function(){
+  const groups = [
+    ["Renda familiar",[["Até 2 salários mínimos",58],["2 a 5 salários",42],["Mais de 5 salários",42]]],
+    ["Religião",[["Católicos",59],["Evangélicos",27]]],
+    ["Gênero",[["Mulheres",53],["Homens",46]]],
+    ["Escolaridade",[["Até o fundamental",57],["Ensino médio",47],["Ensino superior",46]]],
+    ["Raça (autodeclarada)",[["Pretos",61],["Pardos",49],["Brancos",45]]],
+    ["Região",[["Nordeste",68],["Sudeste",44],["Sul",36],["Centro-Oeste e Norte",44]]],
+    ["Idade (único grupo fora do empate)",[["35 a 44 anos",44]]]];
+  document.getElementById("demo").innerHTML = groups.map(([t,rows])=>`<div><div class="eyebrow">${t}</div>${rows.map(([n,l])=>`<div class="g"><div class="lab">${n}</div>
+    <div class="bar" aria-label="${n}: Lula ${l}%, Flávio ${100-l}%"><i style="width:${l}%;background:${L}"></i><i style="width:${100-l}%;background:${F}"></i></div>
+    <div class="num"><span style="color:${L};font-weight:700">${l}%</span> · <span style="color:${F};font-weight:700">${100-l}%</span></div></div>`).join("")}</div>`).join("");
+})();
+</script>
+</body>
+</html>
