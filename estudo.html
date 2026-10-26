@@ -113,9 +113,21 @@ details.more>summary::-webkit-details-marker{display:none}
 abbr[title]{text-decoration:underline dotted;cursor:help;text-underline-offset:3px}
 .gloss dt{font-weight:700;margin-top:12px}
 .gloss dd{margin:2px 0 0;color:var(--muted);max-width:70ch}
-.sharebar{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:14px;padding-top:12px;border-top:1px solid var(--line);font-size:.8rem;color:var(--muted)}
-.sharebar a,.sharebar button{font:inherit;font-size:.8rem;font-weight:500;border:1px solid var(--line);background:var(--card);color:var(--fg);border-radius:16px;padding:6px 12px;text-decoration:none;cursor:pointer}
-.sharebar a:hover,.sharebar button:hover{background:var(--bg)}
+.sharebar{margin-top:20px;background:linear-gradient(135deg,#FFF8E1,#FFF3E0);border:1px solid #FFE0B2;border-radius:12px;padding:16px 18px;display:grid;gap:10px}
+.sharebar .t{font-weight:700;font-size:1.02rem;color:var(--fg)}
+.sharebar .t small{display:block;font-weight:400;color:var(--muted);font-size:.85rem;margin-top:2px}
+.sharebar .bt{display:flex;flex-wrap:wrap;gap:10px}
+.sharebar a,.sharebar button{font:inherit;font-size:.9rem;font-weight:500;display:inline-flex;align-items:center;gap:8px;border:0;border-radius:24px;padding:10px 16px;text-decoration:none;cursor:pointer;color:#fff;box-shadow:var(--e1)}
+.sharebar a:hover,.sharebar button:hover{filter:brightness(1.08)}
+.sharebar svg{width:18px;height:18px;fill:currentColor}
+.sb-wa{background:#25D366}.sb-x{background:#111}.sb-th{background:#000}.sb-li{background:#0A66C2}.sb-cp{background:#fff;color:var(--fg)!important;border:1px solid var(--line)!important}
+.sharetop{display:flex;flex-wrap:wrap;gap:10px;margin-top:14px}
+.sharetop a,.sharetop button{font:inherit;font-size:.86rem;font-weight:500;display:inline-flex;align-items:center;gap:8px;border:0;border-radius:24px;padding:9px 14px;text-decoration:none;cursor:pointer;color:#fff;box-shadow:var(--e1)}
+.sharetop .lbl{width:100%;font-weight:600;font-size:.9rem;color:var(--fg)}
+.sharetop svg{width:16px;height:16px;fill:currentColor}
+.fab{position:fixed;right:16px;bottom:72px;background:#25D366;color:#fff;border:0;border-radius:999px;padding:12px 16px;font:500 .9rem Roboto,sans-serif;box-shadow:var(--e2);cursor:pointer;display:none;align-items:center;gap:8px;z-index:20}
+.fab svg{width:18px;height:18px;fill:currentColor}
+@media (max-width:1000px){.fab{display:inline-flex}}
 .topo{position:fixed;right:16px;bottom:16px;background:var(--card);box-shadow:var(--e2);border-radius:999px;padding:10px 14px;font-size:.8rem;text-decoration:none;color:var(--fg);z-index:20}
 </style>
 </head>
@@ -844,20 +856,41 @@ const EST = [
 
 
 // Botões de compartilhar por capítulo (cada capítulo tem página própria com prévia)
+const ICO = {
+  wa: '<svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8s-.4-.1-.6.1-.6.8-.8 1-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.2-.4.3-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.3 5.3 0 0 0 1.1 2.8 12 12 0 0 0 4.6 4.1c1.7.7 2.4.8 3.2.7a2.7 2.7 0 0 0 1.8-1.3 2.2 2.2 0 0 0 .2-1.3c-.1-.1-.3-.2-.5-.3z"/></svg>',
+  x: '<svg viewBox="0 0 24 24"><path d="M18.2 2h3.4l-7.4 8.5L23 22h-6.8l-5.3-7-6.1 7H1.4l7.9-9.1L1 2h7l4.8 6.4L18.2 2zm-1.2 18h1.9L7.1 3.9H5.1L17 20z"/></svg>',
+  th: '<svg viewBox="0 0 24 24"><path d="M12.2 22c-3 0-5.3-1-6.9-3-1.4-1.8-2.1-4.2-2.2-7.2 0-3 .8-5.5 2.2-7.3C7 2.7 9.3 1.7 12.2 1.7c2.3 0 4.2.6 5.7 1.8 1.4 1.1 2.4 2.7 2.9 4.7l-2.2.6c-.8-2.9-2.9-4.5-6.4-4.5-2.3 0-4 .7-5.1 2.1C6 7.9 5.4 10 5.4 11.8c0 2.6.5 4.6 1.6 5.9 1.1 1.4 2.9 2.1 5.2 2.1 2.1 0 3.6-.5 4.6-1.6.8-.9 1.1-2 1-3.3-.2-1.4-.9-2.4-2.1-3-.2 1.2-.6 2.1-1.3 2.8-.9.9-2.1 1.3-3.6 1.2-1.1 0-2.1-.4-2.9-1-.8-.7-1.2-1.6-1.2-2.7.1-2.2 1.9-3.7 4.6-3.8 1 0 1.9.1 2.7.3-.1-.7-.4-1.3-.8-1.7-.5-.5-1.2-.8-2.1-.8h-.1c-.7 0-1.6.2-2.2 1.1l-1.8-1.2c.9-1.4 2.4-2.1 4.1-2.1h.1c3 0 4.8 1.9 5 5.1l.1.1c1.3.6 2.3 1.4 2.9 2.5 1 1.6 1 4.2-.9 6.1C16.9 21.2 14.8 22 12.2 22zm.3-9.4c-1.5.1-2.4.7-2.4 1.6 0 .6.5 1.3 1.9 1.4 1 .1 1.8-.2 2.3-.7.4-.4.7-1.1.8-2-.8-.2-1.7-.3-2.6-.3z"/></svg>',
+  li: '<svg viewBox="0 0 24 24"><path d="M20.4 20.4h-3.5v-5.6c0-1.3 0-3-1.9-3s-2.1 1.4-2.1 2.9v5.7H9.4V9h3.4v1.6c.5-.9 1.6-1.9 3.4-1.9 3.6 0 4.3 2.4 4.3 5.5v6.2zM5.3 7.4a2 2 0 1 1 0-4.1 2 2 0 0 1 0 4.1zM7.1 20.4H3.6V9h3.5v11.4zM22.2 0H1.8C.8 0 0 .8 0 1.7v20.5c0 1 .8 1.8 1.8 1.8h20.4c1 0 1.8-.8 1.8-1.8V1.7C24 .8 23.2 0 22.2 0z"/></svg>',
+  cp: '<svg viewBox="0 0 24 24"><path d="M16 1H4a2 2 0 0 0-2 2v14h2V3h12V1zm3 4H8a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h11a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2zm0 16H8V7h11v14z"/></svg>'
+};
+function shareLinks(url, txt, cls){
+  const e = encodeURIComponent;
+  return `<a class="${cls}-wa sb-wa" href="https://wa.me/?text=${e(txt + " " + url)}" target="_blank" rel="noopener">${ICO.wa} WhatsApp</a>
+    <a class="sb-x" href="https://twitter.com/intent/tweet?text=${e(txt)}&url=${e(url)}" target="_blank" rel="noopener">${ICO.x} X</a>
+    <a class="sb-th" href="https://www.threads.net/intent/post?text=${e(txt + " " + url)}" target="_blank" rel="noopener">${ICO.th} Threads</a>
+    <a class="sb-li" href="https://www.linkedin.com/sharing/share-offsite/?url=${e(url)}" target="_blank" rel="noopener">${ICO.li} LinkedIn</a>
+    <button type="button" class="sb-cp" data-url="${url}" data-txt="${txt.replace(/"/g,"&quot;")}">${ICO.cp} Copiar link</button>`;
+}
+async function doShare(b){ const url = b.dataset.url, txt = b.dataset.txt;
+  try { if (navigator.share && window.innerWidth <= 1000) { await navigator.share({title: txt, text: txt, url}); return; } await navigator.clipboard.writeText(url); b.innerHTML = ICO.cp + " Link copiado"; }
+  catch(e){ b.textContent = url; } setTimeout(()=>{ b.innerHTML = ICO.cp + " Copiar link"; }, 3000); }
 (function(){
   const CAPS = [{"id": "aritmetica", "num": "1", "slug": "de-onde-vieram-os-votos", "title": "De onde vieram os votos que fizeram Lula virar?"}, {"id": "geografia", "num": "2", "slug": "por-que-o-nordeste-decidiu", "title": "Por que o Nordeste decidiu a eleição?"}, {"id": "estados", "num": "3", "slug": "estado-por-estado", "title": "O que mudou de um turno para o outro, estado por estado?"}, {"id": "interior", "num": "4", "slug": "cidade-grande-e-pequena", "title": "Cidade grande e cidade pequena votaram diferente?"}, {"id": "perfil", "num": "5", "slug": "quem-votou-em-quem", "title": "Quem votou em quem?"}, {"id": "2022", "num": "6", "slug": "foi-igual-a-2022", "title": "Foi igual a 2022?"}, {"id": "fatores", "num": "7", "slug": "o-que-explica-a-vitoria", "title": "Então, o que explica a vitória?"}, {"id": "prorrogacao", "num": "8", "slug": "a-prorrogacao-mudou-o-resultado", "title": "A votação foi estendida até as 19h. Isso mudou o resultado?"}, {"id": "abstencao", "num": "9", "slug": "mais-gente-foi-votar", "title": "Mais gente foi votar. Isso é normal?"}, {"id": "redes", "num": "10", "slug": "redes-e-ruas", "title": "As redes sociais e os atos de rua decidiram a eleição?"}, {"id": "urnas", "num": "11", "slug": "o-que-as-urnas-contam", "title": "O que as próprias urnas contam sobre o dia da votação?"}]; const BASE = "https://tguimaraes.github.io/apuracao-2026/capitulos/";
   CAPS.forEach(c => { const sec = document.getElementById(c.id); if (!sec) return;
     const url = BASE + c.slug + ".html", txt = `Capítulo ${c.num}: ${c.title}`;
     const d = document.createElement("div"); d.className = "sharebar";
-    d.innerHTML = `<span>Compartilhar este capítulo:</span>
-      <a href="https://wa.me/?text=${encodeURIComponent(txt + " " + url)}" target="_blank" rel="noopener">WhatsApp</a>
-      <a href="https://twitter.com/intent/tweet?text=${encodeURIComponent(txt)}&url=${encodeURIComponent(url)}" target="_blank" rel="noopener">X</a>
-      <a href="https://www.threads.net/intent/post?text=${encodeURIComponent(txt + " " + url)}" target="_blank" rel="noopener">Threads</a>
-      <a href="https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(url)}" target="_blank" rel="noopener">LinkedIn</a>
-      <button type="button">Copiar link</button>`;
-    const b = d.querySelector("button");
-    b.onclick = async () => { try { if (navigator.share) { await navigator.share({title: txt, url}); return; } await navigator.clipboard.writeText(url); b.textContent = "Link copiado"; } catch(e){ b.textContent = url; } setTimeout(()=>b.textContent="Copiar link", 3000); };
+    d.innerHTML = `<div class="t">Este capítulo responde uma dúvida que alguém que você conhece tem. Manda pra essa pessoa.<small>O link abre uma página só deste capítulo, com prévia e tudo.</small></div><div class="bt">${shareLinks(url, txt, "sb")}</div>`;
     sec.appendChild(d); });
+  // topo: compartilhar o estudo inteiro
+  const top = document.querySelector("main section.card .pontos");
+  if (top){ const d = document.createElement("div"); d.className = "sharetop"; d.innerHTML = '<span class="lbl">Compartilhe o estudo completo:</span>' + shareLinks("https://tguimaraes.github.io/apuracao-2026/estudo.html", "Como Lula venceu o 2º turno de 2026, explicado com dados do TSE", "sb"); top.insertAdjacentElement("afterend", d); }
+  // botão flutuante no celular: compartilha o capítulo visível
+  const fab = document.createElement("button"); fab.className = "fab"; fab.type = "button"; fab.innerHTML = ICO.wa + " Compartilhar"; document.body.appendChild(fab);
+  let current = null; const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) current = e.target.id; }), {rootMargin:"-30% 0px -60% 0px"});
+  document.querySelectorAll("main section.card").forEach(sec => io.observe(sec));
+  fab.onclick = async () => { const c = CAPS.find(x => x.id === current); const url = c ? BASE + c.slug + ".html" : "https://tguimaraes.github.io/apuracao-2026/estudo.html"; const txt = c ? `Capítulo ${c.num}: ${c.title}` : "Como Lula venceu o 2º turno de 2026";
+    if (navigator.share) { try { await navigator.share({title: txt, text: txt, url}); return; } catch(e){} } window.open("https://wa.me/?text=" + encodeURIComponent(txt + " " + url), "_blank"); };
+  document.addEventListener("click", e => { const b = e.target.closest("button.sb-cp"); if (b) doShare(b); });
 })();
 
 // 4. Agro / tamanho
