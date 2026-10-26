@@ -1,0 +1,29 @@
+seções no universo: 517179 {'ac': 2411, 'al': 7246, 'ap': 1971, 'am': 8577, 'ba': 37950, 'ce': 25650, 'df': 7050, 'es': 10123, 'go': 16226, 'ma': 19794, 'mt': 8975, 'ms': 7284, 'mg': 54193, 'pa': 22082, 'pb': 10845, 'pr': 27336, 'pe': 22091, 'pi': 11261, 'rj': 38738, 'rn': 8336, 'rs': 27738, 'ro': 4941, 'rr': 1627, 'sc': 17558, 'sp': 103904, 'se': 6067, 'to': 4490, 'zz': 2715}
+amostra: 63
+lidas 20 de 63
+lidas 40 de 63
+lidas 60 de 63
+/home/runner/work/apuracao-2026/apuracao-2026/scripts/amostra_logs.py:102: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  summary = {"gerado_em": datetime.datetime.utcnow().isoformat() + "Z", "pleito": PLEITO, "universo_secoes": total, "amostra": len(sample), "lidas_ok": len(ok),
+{
+ "gerado_em": "2026-10-26T16:35:47.857393Z",
+ "pleito": "3221",
+ "universo_secoes": 517179,
+ "amostra": 63,
+ "lidas_ok": 0,
+ "erros": 63,
+ "votos_lidos": 0,
+ "votos_presidente_lidos": 0,
+ "apos17_lidos": 0,
+ "apos17_presidente_lidos": 0,
+ "secoes_com_voto_apos17": 0,
+ "media_por_secao": 0,
+ "estimativa_nacional": 0,
+ "ic95": [
+  0,
+  0
+ ],
+ "ultimo_voto_mais_tarde": "",
+ "tipos_de_mensagem_com_vot": [],
+ "exemplos": []
+}

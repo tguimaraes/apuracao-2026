@@ -1,0 +1,23 @@
+{
+ "gerado_em": "2026-10-26T16:35:47.857393Z",
+ "pleito": "3221",
+ "universo_secoes": 517179,
+ "amostra": 63,
+ "lidas_ok": 0,
+ "erros": 63,
+ "votos_lidos": 0,
+ "votos_presidente_lidos": 0,
+ "apos17_lidos": 0,
+ "apos17_presidente_lidos": 0,
+ "secoes_com_voto_apos17": 0,
+ "media_por_secao": 0,
+ "estimativa_nacional": 0,
+ "ic95": [
+  0,
+  0
+ ],
+ "ultimo_voto_mais_tarde": "",
+ "por_uf": {},
+ "tipos_de_mensagem_com_vot": [],
+ "exemplos": []
+}
