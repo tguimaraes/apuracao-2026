@@ -79,19 +79,56 @@ tr:hover td{background:var(--bg)}
 .src li{margin:4px 0}
 footer{font-size:.78rem;color:var(--muted);text-align:center;line-height:1.6}
 sup a{text-decoration:none;font-size:.7em}
+
+/* Leitura: medida, navegação lateral, resumos, tabelas recolhidas */
+body{font-size:17px;line-height:1.65}
+.card>p,.card>ul,.card>ol{max-width:66ch}
+.card p{margin:10px 0}
+h2{font-size:1.25rem;line-height:1.3}
+.progress{position:fixed;left:0;top:0;height:4px;background:var(--info);width:0;z-index:30}
+.layout{max-width:1180px;margin:0 auto;display:grid;grid-template-columns:230px minmax(0,900px);gap:28px;align-items:start}
+.sidenav{position:sticky;top:16px;background:var(--card);border-radius:8px;box-shadow:var(--e1);padding:12px 8px;font-size:.82rem;max-height:calc(100vh - 32px);overflow:auto}
+.sidenav a{display:block;padding:6px 10px;border-radius:6px;color:var(--fg);text-decoration:none;line-height:1.3}
+.sidenav a.on{background:#E3F2FD;color:var(--info);font-weight:500}
+.sidenav .h{font-size:.68rem;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);padding:6px 10px 2px}
+@media (max-width:1000px){.layout{grid-template-columns:1fr}.sidenav{position:static;display:none}}
+.resumo{background:#E8F5E9;border-left:4px solid var(--ok);border-radius:8px;padding:12px 16px;margin:10px 0 14px;font-size:1rem;max-width:72ch}
+.resumo b{color:#1B5E20}
+.pontos{counter-reset:p;display:grid;gap:10px;margin:14px 0}
+.pontos div{display:grid;grid-template-columns:38px 1fr;gap:12px;align-items:start;font-size:1.02rem}
+.pontos div::before{counter-increment:p;content:counter(p);width:32px;height:32px;border-radius:50%;background:var(--fg);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.9rem}
+details.more{margin-top:10px;border:1px solid var(--line);border-radius:8px;padding:0 14px}
+details.more>summary{cursor:pointer;padding:12px 0;font-weight:500;color:var(--info);list-style:none;display:flex;align-items:center;gap:8px}
+details.more>summary::before{content:"▸";display:inline-block;transition:transform .2s}
+details.more[open]>summary::before{transform:rotate(90deg)}
+details.more>summary::-webkit-details-marker{display:none}
+abbr[title]{text-decoration:underline dotted;cursor:help;text-underline-offset:3px}
+.gloss dt{font-weight:700;margin-top:12px}
+.gloss dd{margin:2px 0 0;color:var(--muted);max-width:70ch}
+.topo{position:fixed;right:16px;bottom:16px;background:var(--card);box-shadow:var(--e2);border-radius:999px;padding:10px 14px;font-size:.8rem;text-decoration:none;color:var(--fg);z-index:20}
 </style>
 </head>
 <body>
-<div class="appbar"><div class="in">
+<div class="appbar" id="top"><div class="in">
   <div><div class="eyebrow">Estudo · eleição presidencial 2026 · 2º turno</div><h1>Como Lula venceu</h1></div>
   <a href="./">← Painel da apuração</a>
 </div></div>
 
+<div class="progress" id="progress"></div>
+<div class="layout">
+<nav class="sidenav" id="sidenav" aria-label="Seções do estudo"></nav>
 <main class="wrap">
   <section class="card">
     <div class="eyebrow">Resumo</div>
     <h2>Uma virada de 2,2 milhões de votos, decidida pelo Nordeste, por Minas e pelas capitais</h2>
-    <p class="lead">No 1º turno, em 4 de outubro, Flávio Bolsonaro terminou à frente por 1,87 ponto. Três semanas depois, Lula venceu o 2º turno com 51,79% dos votos válidos contra 48,21%, uma diferença de 4,43 milhões de votos. Entre um turno e outro, Lula ganhou 10,4 milhões de votos; Flávio, 3,7 milhões. Este estudo organiza o que os dados do TSE e as pesquisas mostram sobre de onde esses votos vieram.</p>
+    <p class="lead">Flávio Bolsonaro saiu na frente no 1º turno. Três semanas depois, Lula venceu por 4,4 milhões de votos. Este estudo explica, com os dados oficiais do TSE e com pesquisas, de onde vieram esses votos. Se você só tem um minuto, os cinco pontos abaixo contam a história.</p>
+    <div class="pontos">
+      <div><span><b>14 milhões de votos trocaram de mão entre os turnos</b>: os votos de Caiado, Zema e dos outros candidatos, mais 4,8 milhões de pessoas que não votaram no 1º turno e votaram no 2º. Lula ficou com 74% desse total.</span></div>
+      <div><span><b>O Nordeste deu a Lula 13,7 milhões de votos de vantagem.</b> As outras quatro regiões juntas deram 9,3 milhões a Flávio. A diferença é a margem final.</span></div>
+      <div><span><b>Minas Gerais foi o único estado que trocou de lado</b>, e as grandes cidades, São Paulo em especial, seguraram Lula enquanto o interior ia para Flávio.</span></div>
+      <div><span><b>Mais gente foi votar no 2º turno</b>, o que nunca tinha acontecido nessa escala desde 1989. A prorrogação da votação até as 19h não explica isso: só 35 mil votos entraram depois das 17h, contra 4,4 milhões de margem.</span></div>
+      <div><span><b>Renda e religião dividem o país mais que raça e escolaridade.</b> E quem teve mais alcance nas redes perdeu: o que contou foi levar gente à urna, não ter mais views.</span></div>
+    </div>
     <div class="kpis">
       <div class="kpi"><div class="l">Lula · 2º turno</div><div class="v lula">51,79%</div><div class="s">64.256.232 votos</div></div>
       <div class="kpi"><div class="l">Flávio Bolsonaro · 2º turno</div><div class="v flavio">48,21%</div><div class="s">59.826.041 votos</div></div>
@@ -100,7 +137,7 @@ sup a{text-decoration:none;font-size:.7em}
     </div>
     <div class="toc" aria-label="Seções">
       <a href="#aritmetica">1. A aritmética da virada</a><a href="#geografia">2. A geografia do voto</a><a href="#estados">3. Estado a estado</a>
-      <a href="#interior">4. Capitais, interior e agro</a><a href="#perfil">5. O perfil do eleitor</a><a href="#2022">6. Comparação com 2022</a><a href="#fatores">7. Os fatores</a><a href="#prorrogacao">8. A prorrogação de 2 horas</a><a href="#abstencao">9. Histórico da abstenção</a><a href="#redes">10. Redes e ruas</a><a href="#urnas">11. O dia, urna por urna</a><a href="#atualizacoes">Atualizações</a><a href="#metodo">Método e fontes</a>
+      <a href="#interior">4. Capitais, interior e agro</a><a href="#perfil">5. O perfil do eleitor</a><a href="#2022">6. Comparação com 2022</a><a href="#fatores">7. Os fatores</a><a href="#prorrogacao">8. A prorrogação de 2 horas</a><a href="#abstencao">9. Histórico da abstenção</a><a href="#redes">10. Redes e ruas</a><a href="#urnas">11. O dia, urna por urna</a><a href="#glossario">Glossário</a><a href="#atualizacoes">Atualizações</a><a href="#metodo">Método e fontes</a>
     </div>
     <div class="note">Fontes: resultados oficiais do TSE (eleições 6257 e 6258), consolidados pela imprensa; pesquisa Datafolha de 22/10/2026 para o perfil do eleitor; estudo de Marco Antonio Faganello (FGV/CEPESP) sobre interior e agro, publicado pela Agência Pública. Links completos na última seção. Onde as fontes divergem em centésimos, usei o número com 100% das seções totalizadas.</div>
   </section>
@@ -108,6 +145,7 @@ sup a{text-decoration:none;font-size:.7em}
   <section class="card" id="aritmetica">
     <div class="eyebrow">1</div>
     <h2>A aritmética da virada: 9,3 milhões de votos em disputa, e mais 4,8 milhões de eleitores nas urnas</h2>
+    <div class="resumo"><b>Em resumo:</b> Entre o 1º e o 2º turno, 9,3 milhões de votos ficaram "sem dono" (eram de candidatos eliminados) e mais 4,8 milhões de pessoas foram votar. Desses 14 milhões, Lula ficou com 74% e Flávio com 26%. Foi isso que virou o jogo.</div>
     <p>Duas coisas mudaram entre os turnos. Primeiro, 9,3 milhões de votos válidos dados a Caiado, Zema, Cury, Renan Santos e os demais ficaram sem candidato e precisaram ser redistribuídos. Segundo, o comparecimento subiu: a abstenção caiu de 21,08% para 19,2%, e os votos válidos passaram de 119,3 milhões para 124,1 milhões. Lula precisava ganhar essa redistribuição por folga, e ganhou: dos 14,1 milhões de votos "novos" do 2º turno (outros candidatos mais votos válidos adicionais), cerca de 74% foram para ele.</p>
     <svg class="chart" id="c-aritmetica" viewBox="0 0 860 230" role="img" aria-label="Votos de Lula e Flávio no 1º e 2º turno, com o ganho entre turnos"></svg>
     <div class="legend"><span><i class="sw" style="background:var(--lula)"></i>Lula</span><span><i class="sw" style="background:var(--flavio)"></i>Flávio Bolsonaro</span><span><i class="sw" style="background:var(--outros)"></i>Outros candidatos (só no 1º turno)</span></div>
@@ -123,6 +161,7 @@ sup a{text-decoration:none;font-size:.7em}
   <section class="card" id="geografia">
     <div class="eyebrow">2</div>
     <h2>A geografia do voto: o Nordeste pagou a conta de todas as outras regiões</h2>
+    <div class="resumo"><b>Em resumo:</b> Lula ganhou só numa região, o Nordeste, mas por 13,7 milhões de votos. Flávio ganhou nas outras quatro, somando 9,3 milhões de vantagem. A conta fecha na margem nacional de 4,4 milhões.</div>
     <p>Lula venceu em uma única região, mas com uma vantagem de 13,7 milhões de votos (24,5 milhões contra 10,8 milhões). Nas outras quatro regiões somadas, Flávio abriu 9,3 milhões. A diferença entre esses dois números é, com pequena folga, a margem nacional de 4,4 milhões. O Norte terminou praticamente empatado, com vantagem de poucos milhares de votos para Flávio, e o Sudeste, maior colégio do país, deu 54,2% a Flávio, mas com Minas virando para Lula.</p>
     <svg class="chart" id="c-regioes" viewBox="0 0 860 300" role="img" aria-label="Vantagem em votos por região no 2º turno"></svg>
     <div class="tbl"><table><caption>Resultado por região no 2º turno (votos válidos). Vantagem líquida em votos conforme consolidação da imprensa a partir do TSE.</caption>
@@ -142,17 +181,19 @@ sup a{text-decoration:none;font-size:.7em}
   <section class="card" id="estados">
     <div class="eyebrow">3</div>
     <h2>Estado a estado: Lula cresceu em todas as 27 unidades, e Minas foi a única a trocar de lado</h2>
+    <div class="resumo"><b>Em resumo:</b> Lula subiu em todos os 27 estados, o que é normal quando os votos dos eliminados são redistribuídos. O que importou foi onde subiu mais: Minas Gerais virou, e as capitais do Sudeste cresceram muito.</div>
     <p>Lula ganhou pontos sobre Flávio em todos os estados entre o 1º e o 2º turno, o que é esperado quando a base de outros candidatos é redistribuída. O que decidiu a eleição foi onde ele cresceu <em>mais</em> que Flávio. Minas Gerais, segundo maior colégio do país, saiu de Flávio 48,24% × Lula 43,33% no 1º turno para Lula 50,43% × 49,57%. Em São Paulo, Flávio manteve a vantagem no estado, mas Lula abriu mais de 11 pontos na capital.</p>
     <svg class="chart" id="c-swing" viewBox="0 0 860 640" role="img" aria-label="Percentual de Lula por estado no 2º turno, com o valor do 1º turno"></svg>
     <div class="legend"><span><i class="sw" style="background:var(--lula)"></i>Lula no 2º turno</span><span><i class="sw" style="background:var(--fg);width:3px"></i>Traço: Lula no 1º turno</span><span>Linha central = 50%</span></div>
-    <div class="tbl"><table><caption>Percentual de Lula nos votos válidos. 1º turno inclui outros candidatos na base, por isso todos crescem; a coluna "ganho" mostra quanto. Fontes: TSE via Exame, Bloomberg Línea e Gazeta do Povo. Células com traço: a fonte não trouxe o valor.</caption>
+    <details class="more"><summary>Ver a tabela completa dos 27 estados</summary><div class="tbl"><table><caption>Percentual de Lula nos votos válidos. 1º turno inclui outros candidatos na base, por isso todos crescem; a coluna "ganho" mostra quanto. Fontes: TSE via Exame, Bloomberg Línea e Gazeta do Povo. Células com traço: a fonte não trouxe o valor.</caption>
       <thead><tr><th>UF</th><th>Região</th><th>Lula 1º T</th><th>Lula 2º T</th><th>Ganho</th><th>Vencedor 2º T</th></tr></thead>
-      <tbody id="t-estados"></tbody></table></div>
+      <tbody id="t-estados"></tbody></table></div></details>
   </section>
 
   <section class="card" id="interior">
     <div class="eyebrow">4</div>
     <h2>Capitais, interior e agro: Lula segurou as cidades grandes e perdeu nas pequenas</h2>
+    <div class="resumo"><b>Em resumo:</b> Lula quase não perdeu votos nas cidades grandes e perdeu muito nas pequenas e agrícolas. A cidade de São Paulo deu 11 pontos de vantagem a ele enquanto o estado ia para Flávio.</div>
     <p>Olhando só o mapa por estado, a eleição parece uma disputa Nordeste contra o resto. Olhando por município, o corte mais forte é tamanho da cidade e peso do agronegócio. O estudo de Marco Antonio Faganello (FGV/CEPESP), comparando o 1º turno de 2026 com o de 2022, mostra o padrão:</p>
     <svg class="chart" id="c-agro" viewBox="0 0 860 250" role="img" aria-label="Perda de votos de Lula vs 2022 por tamanho de município e peso do agro"></svg>
     <div class="legend"><span>Variação dos votos de Lula (em % dos votos que ele tinha) no 1º turno de 2026 frente ao 1º turno de 2022, por grupo de município. Fonte: Faganello (FGV/CEPESP) via Agência Pública.</span></div>
@@ -165,9 +206,9 @@ sup a{text-decoration:none;font-size:.7em}
     </ul>
     <h3>E no 2º turno, as capitais</h3>
     <p>As 27 capitais se dividiram quase ao meio: Lula venceu 13 (entre elas São Paulo, Rio, Salvador, Fortaleza e Recife) e Flávio 14 (Brasília, Curitiba, Goiânia, Manaus, Florianópolis). A maior votação de Lula em capital foi em Salvador, 73,24%; a de Flávio, em Boa Vista, 75,75%. O ponto decisivo é São Paulo: Flávio levou o estado com 53,85%, mas a capital, maior colégio municipal do país, deu 55,50% a Lula contra 44,50%, 11 pontos de vantagem. Sem esse resultado na cidade, a margem nacional ficaria perto de zero. Duas capitais trocaram de lado entre os turnos, as duas para Lula: o Rio de Janeiro (51,54% × 48,46%) e Macapá (50,99% × 49,01%). Belo Horizonte ficou com Flávio por pouco, 50,80% × 49,20%, mesmo com Minas virando para Lula no estado.</p>
-    <div class="tbl"><table><caption>Resultado nas 27 capitais no 2º turno, em % dos votos válidos. Dados do TSE consolidados por O Tempo (26/10). "Virou": capital em que Flávio liderava no 1º turno e Lula venceu no 2º.</caption>
+    <details class="more"><summary>Ver a tabela das 27 capitais</summary><div class="tbl"><table><caption>Resultado nas 27 capitais no 2º turno, em % dos votos válidos. Dados do TSE consolidados por O Tempo (26/10). "Virou": capital em que Flávio liderava no 1º turno e Lula venceu no 2º.</caption>
       <thead><tr><th>Capital</th><th>UF</th><th>Lula</th><th>Flávio</th><th>Vencedor</th></tr></thead>
-      <tbody id="t-capitais"></tbody></table></div>
+      <tbody id="t-capitais"></tbody></table></div></details>
     <p>O mesmo movimento aparece abaixo das capitais. Levantamento da CNN Brasil a partir do TSE contou 213 municípios, em 18 estados, em que Flávio venceu no 1º turno e Lula no 2º: Minas Gerais lidera com 76, seguida de São Paulo (33), Paraná (20), Rio Grande do Sul (19), Goiás (14) e Tocantins (12). Em votos absolutos, segundo Bruno Soller (Real Time Big Data) à CNN, os maiores ganhos de Lula entre turnos foram em São Paulo (mais de 2,1 milhões), Minas (mais de 1 milhão) e Rio (cerca de 800 mil), e nas três capitais correspondentes o crescimento passou de 7 pontos. No estado de São Paulo, o TRE-SP registra abstenção de 19,8% no 2º turno contra 22,5% no 1º; na capital, 20,36% contra 23,4%. É a combinação que explica o peso paulista na virada: mais gente votou, e a cidade votou em Lula.</p>
     <div class="warnbox">Por que isso importa para a leitura da noite: capitais totalizam antes do interior. Na apuração do 2º turno, isso fez Lula aparecer à frente cedo em estados do Sudeste e Sul que depois ficaram com Flávio, e Flávio parecer mais competitivo no Nordeste do que terminou. O painel desta mesma página registrou essa oscilação na curva de margem.</div>
   </section>
@@ -175,6 +216,7 @@ sup a{text-decoration:none;font-size:.7em}
   <section class="card" id="perfil">
     <div class="eyebrow">5</div>
     <h2>O perfil do eleitor: renda, religião e gênero dividiram o país; raça e escolaridade, menos do que se imagina</h2>
+    <div class="resumo"><b>Em resumo:</b> Pela última pesquisa antes da eleição, Lula venceu entre quem ganha até 2 salários mínimos, católicos, mulheres e pretos. Flávio venceu entre evangélicos, quem ganha mais, homens e brancos. Não houve boca de urna, então esses números são uma aproximação.</div>
     <p>O TSE não publica voto por perfil, então essa camada vem de pesquisa. O recorte abaixo é o Datafolha de 22 de outubro, três dias antes da votação, quando os dois estavam empatados em 50% dos votos válidos. Como o resultado real foi Lula 51,8%, os percentuais de Lula aqui estão provavelmente subestimados em cerca de 2 pontos em cada grupo, mas a forma da divisão é o que interessa. Não houve pesquisa de boca de urna na eleição presidencial de 2026 (o Datafolha não faz desde 1998), então o refinamento desta tabela virá das pesquisas pós-eleitorais de "em quem você votou" e do cruzamento dos resultados por seção com o perfil do eleitorado do TSE, quando saírem.</p>
     <div class="demo" id="demo"></div>
     <div class="legend"><span><i class="sw" style="background:var(--lula)"></i>Lula</span><span><i class="sw" style="background:var(--flavio)"></i>Flávio Bolsonaro</span><span>Datafolha, 22/10/2026, votos válidos. Margem de erro de 3 a 5 pontos por grupo.</span></div>
@@ -191,6 +233,7 @@ sup a{text-decoration:none;font-size:.7em}
   <section class="card" id="2022">
     <div class="eyebrow">6</div>
     <h2>Comparação com 2022: margem um pouco maior, mapa quase igual, e um eleitorado que encolheu no interior</h2>
+    <div class="resumo"><b>Em resumo:</b> O mapa de 2022 e o de 2026 são quase iguais. Lula perdeu votos no interior em relação a 2022, mas ganhou de novo porque a redistribuição do 2º turno foi mais favorável a ele e porque mais gente foi votar.</div>
     <div class="kpis">
       <div class="kpi"><div class="l">2022 · 2º turno</div><div class="v">50,90 × 49,10</div><div class="s">Lula × Jair Bolsonaro, 2,1 milhões de votos</div></div>
       <div class="kpi"><div class="l">2026 · 2º turno</div><div class="v">51,79 × 48,21</div><div class="s">Lula × Flávio, 4,4 milhões de votos</div></div>
@@ -204,6 +247,7 @@ sup a{text-decoration:none;font-size:.7em}
   <section class="card" id="fatores">
     <div class="eyebrow">7</div>
     <h2>Os fatores, em ordem de peso</h2>
+    <div class="resumo"><b>Em resumo:</b> Em ordem de peso: a redistribuição dos votos de centro-direita, a mobilização do Nordeste, a virada em Minas e as capitais. O interior e o agro jogaram a favor de Flávio, mas não bastou.</div>
     <div class="fatores">
       <div class="fator" style="--c:var(--lula)"><b>1. Redistribuição favorável dos votos de centro-direita</b><span>Dos 14,1 milhões de votos "novos" do 2º turno, 74% foram a Lula (a Real Time Big Data, com arredondamento, fala em 71% de 14 milhões). Caiado e Zema não transferiram o eleitor de centro em bloco para Flávio. A Arko Advice, em leitura citada pela Genial Investimentos (26/10), interpreta de outro modo: a maioria dos eleitores de Caiado, Cury, Zema e Renan Santos tinha mais afinidade com Flávio, e o que a campanha de Lula fez foi levar às urnas quem não tinha votado, não converter esse eleitor. Os dados agregados não separam as duas coisas.</span></div>
       <div class="fator" style="--c:var(--lula)"><b>2. Mobilização no Nordeste</b><span>Crescimento de 5 a 7 pontos em cada estado, abstenção em queda e 13,7 milhões de vantagem líquida. É a base do resultado.</span></div>
@@ -219,6 +263,7 @@ sup a{text-decoration:none;font-size:.7em}
   <section class="card" id="prorrogacao">
     <div class="eyebrow">8</div>
     <h2>A prorrogação de duas horas: o que aconteceu e se ela pode ter mudado o resultado</h2>
+    <div class="resumo"><b>Em resumo:</b> O STF estendeu a votação até as 19h, mas só para seções ainda abertas. Os registros das urnas mostram 35.521 votos depois das 17h no país inteiro, menos de 1% da margem. Nossa amostra própria de 3 mil urnas confirmou: entre 26 e 37 mil. A prorrogação não mudou o resultado.</div>
     <p class="lead">Resposta curta: não. Os logs das urnas, lidos pelo g1 na manhã de 26/10, registram 35.521 votos para presidente confirmados depois das 17h em todo o país, 0,8% da margem de 4,43 milhões; mesmo que todos fossem de Lula, não mudariam nada. Antes desse número, um teste de limite já mostrava que, na hipótese mais extrema a favor dessa tese, as duas horas extras não alcançariam a margem. Mas a medida foi inédita, mal executada e é o principal argumento da campanha de Flávio Bolsonaro para contestar a eleição, então vale entender em detalhe.</p>
 
     <h3>O que aconteceu, em ordem</h3>
@@ -250,9 +295,9 @@ sup a{text-decoration:none;font-size:.7em}
 
     <h3>Onde a abstenção caiu, e se isso coincide com o ganho de Lula</h3>
     <p>Se a prorrogação tivesse puxado o resultado, a queda da abstenção deveria se concentrar nos estados onde Lula mais cresceu entre turnos. A tabela abaixo é montada no seu navegador a partir dos arquivos do TSE dos dois turnos, por UF, sem intermediário. Ela mostra a abstenção em cada turno, a variação, e o ganho de Lula no mesmo estado. Repare que a abstenção também caiu em estados onde Flávio venceu com folga.</p>
-    <div class="tbl"><table><caption id="abs-cap">Carregando os arquivos do TSE para as 27 UFs e o exterior…</caption>
+    <details class="more"><summary>Ver a tabela de abstenção por estado, lida do TSE ao vivo</summary><div class="tbl"><table><caption id="abs-cap">Carregando os arquivos do TSE para as 27 UFs e o exterior…</caption>
       <thead><tr><th>UF</th><th>Abstenção 1º T</th><th>Abstenção 2º T</th><th>Variação</th><th>Lula 1º T</th><th>Lula 2º T</th><th>Ganho de Lula</th></tr></thead>
-      <tbody id="abs-body"></tbody></table></div>
+      <tbody id="abs-body"></tbody></table></div></details>
     <div class="note" id="abs-note" hidden></div>
 
     <h3>O que ainda pode ser medido</h3>
@@ -263,6 +308,7 @@ sup a{text-decoration:none;font-size:.7em}
   <section class="card" id="abstencao">
     <div class="eyebrow">9</div>
     <h2>Histórico da abstenção: 2026 teve o movimento mais atípico desde que a série existe</h2>
+    <div class="resumo"><b>Em resumo:</b> Desde 1989, a abstenção sempre tinha subido do 1º para o 2º turno. Em 2026 ela caiu 1,9 ponto, a maior queda da história: cerca de 3 milhões de pessoas a mais foram votar. Isso é o que torna este 2º turno diferente.</div>
     <p class="lead">A série comparável começa em 1989, primeira eleição presidencial direta após a redemocratização (antes disso, a última foi em 1960, com eleitorado, regras e registro muito diferentes). Em todas as eleições de 1989 a 2018, a abstenção <b>subiu</b> do 1º para o 2º turno. Em 2022 ela caiu pela primeira vez, por 0,36 ponto. Em 2026, caiu 1,87 ponto, de longe a maior queda entre turnos da série, e o 2º turno teve a menor abstenção desde 2006.</p>
     <svg class="chart" id="c-abst" viewBox="0 0 860 340" role="img" aria-label="Abstenção nas eleições presidenciais de 1989 a 2026, 1º e 2º turno"></svg>
     <div class="legend"><span><i class="sw" style="background:#9E9E9E"></i>1º turno</span><span><i class="sw" style="background:#37474F"></i>2º turno</span><span>1994 e 1998 foram decididas em turno único. Fonte: TSE, via CNN Brasil (2022) e Poder360 (2026).</span></div>
@@ -283,24 +329,25 @@ sup a{text-decoration:none;font-size:.7em}
     <p>O ponto analítico que importa para a vitória de Lula é a <b>composição</b> dessa queda, não só o tamanho. Como mostra a seção 2, o Nordeste foi votar mais, e o Ceará teve a menor abstenção do país. Se os 3 milhões de eleitores adicionais se dividissem como o país (52 a 48), somariam cerca de 120 mil votos à margem. Se se concentraram em estados e grupos onde Lula tem 60% a 70%, somam bem mais. A tabela por UF da seção 8, lida direto do TSE, permite ver onde a queda foi maior; ela é o melhor indício disponível até que o TSE publique o perfil do comparecimento.</p>
     <h3>Abstenção por estado no 2º turno</h3>
     <p>A tabela abaixo é estática, com os números do TSE a 100% das urnas consolidados pelo Diário do Nordeste e pelo Poder360, e serve de referência fixa para a tabela ao vivo da seção 8. O padrão é nítido: as seis menores abstenções do país são de estados do Nordeste (Santa Catarina é a sétima) e as cinco maiores são do Norte. Onde Lula tem 60% a 75%, votou mais gente; onde Flávio tem 60% a 70%, faltou mais gente. Isso não prova causalidade (o Nordeste sempre compareceu mais), mas quantifica a composição favorável a Lula dos 3 milhões de eleitores a mais.</p>
-    <div class="tbl"><table><caption>Abstenção no 2º turno de 2026 por UF, em % do eleitorado apto, ordenada da menor para a maior, com o percentual de Lula no mesmo estado. Fontes: TSE via Diário do Nordeste (26 estados) e Poder360 (DF, e comparação com 2022 onde citada).</caption>
+    <details class="more"><summary>Ver a tabela de abstenção por estado (dados a 100%)</summary><div class="tbl"><table><caption>Abstenção no 2º turno de 2026 por UF, em % do eleitorado apto, ordenada da menor para a maior, com o percentual de Lula no mesmo estado. Fontes: TSE via Diário do Nordeste (26 estados) e Poder360 (DF, e comparação com 2022 onde citada).</caption>
       <thead><tr><th>UF</th><th>Região</th><th>Abstenção 2º T</th><th>Lula 2º T</th><th>Vencedor</th></tr></thead>
-      <tbody id="t-abs-uf"></tbody></table></div>
+      <tbody id="t-abs-uf"></tbody></table></div></details>
     <div class="note">Para comparação com outro tipo de eleição: a abstenção não é um fenômeno só presidencial. Nas eleições municipais ela também vem subindo, o que reforça a leitura de uma tendência estrutural de afastamento sobre a qual 2026 operou como exceção pontual no 2º turno.</div>
   </section>
 
   <section class="card" id="redes">
     <div class="eyebrow">10</div>
     <h2>Redes sociais e ruas: o engajamento mudou o resultado?</h2>
+    <div class="resumo"><b>Em resumo:</b> Flávio tinha mais alcance no Instagram e no TikTok; Lula, no WhatsApp e no X. Quem venceu foi quem levou mais gente a sair de casa, não quem teve mais views. O efeito provável é de 1 a 3 pontos, pelo comparecimento, mas não dá para provar com os dados públicos.</div>
     <p class="lead">Resposta curta: há três indícios convergentes de que a mobilização das três semanas finais moveu a eleição, e o canal mais provável foi o comparecimento, não a conversão de eleitor de um lado para o outro. Mas é impossível isolar o efeito com os dados públicos, e o engajamento digital bruto, sozinho, aponta na direção errada: Flávio tinha mais alcance no Instagram e no TikTok e perdeu. O que parece ter contado foi distribuição e chamada à ação (WhatsApp, porta a porta, vira-voto), e não audiência.</p>
 
     <h3>O que as pesquisas mostram sobre as três semanas</h3>
     <p>O gráfico abaixo reúne 51 pesquisas registradas entre 5 e 24 de outubro, com o percentual de Lula nos votos válidos pela data de fim do campo. A linha é a média móvel de três dias. Lula partiu de 47 a 48% na semana seguinte ao 1º turno e chegou a 49 a 50% na última semana. O resultado real, 51,8%, ficou acima de todas as pesquisas finais, que davam Flávio 51 × 49.</p>
     <svg class="chart" id="c-polls" viewBox="0 0 860 340" role="img" aria-label="Percentual de Lula nas pesquisas do 2º turno entre 5 e 24 de outubro de 2026"></svg>
     <div class="legend"><span><i class="sw" style="background:var(--lula)"></i>Pesquisas (Lula, votos válidos)</span><span><i class="sw" style="background:var(--fg)"></i>Média móvel de 3 dias</span><span>Marcadores: atos de rua e marcos da campanha digital. Fonte: Dado Bruto (agregador), TSE.</span></div>
-    <div class="tbl"><table><caption>As 12 pesquisas divulgadas em 23 e 24/10, véspera do 2º turno, em % dos votos válidos, conforme compilação do Mais Goiás. Resultado nas urnas: Lula 51,79% × Flávio 48,21%.</caption>
+    <details class="more"><summary>Ver as 12 pesquisas da véspera</summary><div class="tbl"><table><caption>As 12 pesquisas divulgadas em 23 e 24/10, véspera do 2º turno, em % dos votos válidos, conforme compilação do Mais Goiás. Resultado nas urnas: Lula 51,79% × Flávio 48,21%.</caption>
       <thead><tr><th>Instituto</th><th>Lula</th><th>Flávio</th><th>Quem apontava na frente</th><th>Desvio em Lula</th></tr></thead>
-      <tbody id="t-vespera"></tbody></table></div>
+      <tbody id="t-vespera"></tbody></table></div></details>
     <p>Duas coisas saltam. Primeiro, o movimento é lento e constante, cerca de meio ponto por semana, e começa logo após o 1º turno, antes dos grandes atos. Isso é mais compatível com um processo contínuo (propaganda, debates, apoios, redistribuição dos votos de centro) do que com um evento único. Segundo, as pesquisas erraram para o mesmo lado: todas subestimaram Lula em 2 a 3 pontos. Quando o erro é sistemático e na direção do candidato que mobilizou abstencionistas, a leitura usual é que a amostra de "eleitor provável" não capturou gente que decidiu ir votar nos últimos dias. É exatamente o público do vira-voto.</p>
 
     <h3>Redes: audiência de um lado, distribuição do outro</h3>
@@ -336,6 +383,7 @@ sup a{text-decoration:none;font-size:.7em}
   <section class="card" id="urnas">
     <div class="eyebrow">11</div>
     <h2>O dia da votação, urna por urna: o que os logs de 3 mil seções mostram</h2>
+    <div class="resumo"><b>Em resumo:</b> Lemos os registros de 3 mil urnas sorteadas. O Brasil vota cedo (60% dos votos até o meio-dia), o voto leva 10 segundos, 7% dos eleitores precisaram de habilitação manual e só 1 em cada 100 seções ficou aberta até as 19h. Nada aqui é individual: o registro não diz em quem a pessoa votou.</div>
     <p class="lead">Cada urna eletrônica grava um registro de eventos, o log, que o TSE publica por seção. Este estudo sorteou 3.000 das 517.179 seções do 2º turno, proporcionalmente por estado, e leu os logs com um robô próprio (código e dados brutos no repositório do site). O log registra o horário de cada voto confirmado e de cada etapa de habilitação do eleitor, nunca em quem a pessoa votou. Os resultados abaixo são agregados por seção, de 200 a 400 eleitores cada, e nada neles é individual.</p>
     <div class="kpis">
       <div class="kpi"><div class="l">Seções lidas</div><div class="v" id="u-lidas">–</div><div class="s">de 3.000 sorteadas; as demais sem arquivo publicado (erro 404)</div></div>
@@ -363,9 +411,28 @@ sup a{text-decoration:none;font-size:.7em}
       <div class="kpi"><div class="l">Tempo mediano na cabine</div><div class="v" id="u-cab">–</div><div class="s">entre a habilitação e o voto computado; intervalo mediano entre eleitores: <span id="u-gap">–</span></div></div>
     </div>
     <p>Com um único cargo na tela, o voto do 2º turno é rápido: a mediana é de 10 segundos entre o mesário habilitar o eleitor e a urna computar o voto. O intervalo mediano entre um eleitor e o seguinte, 71 segundos, mostra que a maior parte do dia a seção opera com folga, e não com fila. A habilitação manual, em torno de 7% dos eleitores, é maior no Sul e no Nordeste (Piauí, Rio Grande do Norte, Rio Grande do Sul e Bahia acima de 8%) e menor no Norte e no DF; a variação acompanha a cobertura do cadastro biométrico e a idade do eleitorado, e é um indicador de atrito, não de irregularidade. Um em cada quatro eleitores se identificou pelo CPF, hábito que cresce a cada eleição.</p>
-    <div class="tbl"><table><caption>Habilitação manual por UF, em % dos eleitores da amostra. Ordenado do maior para o menor.</caption>
-      <thead><tr><th>UF</th><th>Seções</th><th>Habilitação manual</th><th>Votos após 17h na amostra</th></tr></thead><tbody id="t-uf-urnas"></tbody></table></div>
+    <details class="more"><summary>Ver a habilitação manual por estado</summary><div class="tbl"><table><caption>Habilitação manual por UF, em % dos eleitores da amostra. Ordenado do maior para o menor.</caption>
+      <thead><tr><th>UF</th><th>Seções</th><th>Habilitação manual</th><th>Votos após 17h na amostra</th></tr></thead><tbody id="t-uf-urnas"></tbody></table></div></details>
     <div class="note">Método: sorteio com semente fixa (2026), estratificado por UF; leitura do arquivo de log de cada seção no servidor do TSE; contagem das linhas "Voto confirmado para [Presidente]" do dia 25/10/2026 em hora local da urna; eventos de habilitação pelos textos exatos do componente de votação. Código em <code>scripts/analise_logs.py</code> e dados em <code>data/analise_logs.json</code> e <code>data/resumo_logs.json</code> no repositório <a href="https://github.com/tguimaraes/apuracao-2026" target="_blank" rel="noopener">tguimaraes/apuracao-2026</a>. As 112 seções sem arquivo (3,7%) não foram substituídas; se tiverem perfil diferente, a estimativa carrega um pequeno viés que o intervalo não captura.</div>
+  </section>
+
+  <section class="card" id="glossario">
+    <div class="eyebrow">Glossário</div>
+    <h2>Os termos que aparecem no estudo, em bom português</h2>
+    <dl class="gloss">
+      <dt>Votos válidos</dt><dd>Todos os votos menos brancos e nulos. É sobre eles que se calcula o percentual de cada candidato e se decide quem vence (mais de 50%).</dd>
+      <dt>Abstenção</dt><dd>Parte dos eleitores aptos que não compareceu. 19,2% de abstenção significa que 19 em cada 100 pessoas com título não votaram.</dd>
+      <dt>Ponto percentual (p.p.)</dt><dd>Diferença entre dois percentuais. Subir de 45% para 50% é um ganho de 5 pontos percentuais.</dd>
+      <dt>Margem</dt><dd>Diferença de votos entre o primeiro e o segundo colocado. Em 2026 foi de 4,43 milhões de votos, ou 3,58 pontos percentuais.</dd>
+      <dt>Votos "novos" do 2º turno</dt><dd>Soma dos votos que foram para candidatos eliminados no 1º turno com os votos válidos a mais do 2º turno (gente que não tinha votado). Em 2026, 14,1 milhões.</dd>
+      <dt>Seção eleitoral</dt><dd>A menor unidade da eleição: uma urna, numa sala, com 200 a 400 eleitores. O Brasil teve 517 mil seções no 2º turno.</dd>
+      <dt>Boletim de urna (BU)</dt><dd>O resultado impresso e assinado de cada urna ao fim da votação: quantos votos cada candidato teve naquela seção. É público.</dd>
+      <dt>Log de urna</dt><dd>O registro de eventos que a urna grava durante o dia, com horário: urna ligada, eleitor habilitado, voto confirmado, encerramento. Não registra em quem a pessoa votou. Também é público.</dd>
+      <dt>Habilitação manual</dt><dd>Quando a biometria não reconhece a digital, ou o eleitor não tem digital cadastrada, o mesário libera o voto pelo título ou CPF, conferindo a foto na tela. É o procedimento previsto, não uma irregularidade.</dd>
+      <dt>Totalização</dt><dd>A soma dos boletins de urna feita pelo TSE ao longo da noite. "Seções totalizadas" é a parte das urnas já somada; o resultado só é final a 100%.</dd>
+      <dt>Margem de erro (em pesquisa)</dt><dd>Quanto o resultado de uma pesquisa pode variar por ser feita com uma amostra. Dois candidatos "em empate técnico" estão dentro dessa variação.</dd>
+      <dt>Amostra estratificada</dt><dd>Sorteio em que cada estado entra na proporção do seu tamanho, para que a amostra represente o país. Foi o que usamos nos logs de urna.</dd>
+    </dl>
   </section>
 
   <section class="card" id="atualizacoes">
@@ -440,6 +507,8 @@ sup a{text-decoration:none;font-size:.7em}
 
   <footer>Estudo independente, feito a partir de dados públicos. Dados eleitorais: TSE. Perfil do eleitor: Datafolha. Interior e agro: FGV/CEPESP. Nenhum vínculo com candidatos, partidos ou com o TSE.</footer>
 </main>
+</div>
+<a class="topo" href="#top">↑ Topo</a>
 
 <script id="resumo-logs" type="application/json">{"gerado_em": "2026-10-26T17:23:24.320663+00:00", "universo": 517179, "amostra": 3000, "lidas": 2888, "erros_404": 112, "votos_pres": 741751, "apos17": {"lidos": 178, "secoes_com": 154, "estimativa": 31876, "ic95": [26541, 37211], "g1": 35521}, "curva_nacional_7h_18h": [0.46, 0.43, 8.76, 8.09, 7.83, 7.79, 7.62, 7.24, 6.63, 5.89, 5.19, 4.65, 4.42, 4.26, 4.23, 4.08, 3.89, 3.61, 3.17, 1.69, 0.02, 0.0], "regioes": {"Norte": {"secoes": 258, "curva": [3.02, 2.9, 9.34, 9.34, 8.71, 8.29, 7.64, 6.74, 5.71, 4.7, 4.1, 3.57, 3.76, 3.74, 3.86, 3.78, 3.48, 3.08, 2.3, 1.23, 0.02, 0.0], "ate12": 60.5, "manual": 5.8, "cpf": 15.5}, "Nordeste": {"secoes": 816, "curva": [0.0, 0.0, 9.75, 9.61, 8.98, 8.58, 7.96, 7.13, 6.15, 5.14, 4.31, 3.81, 3.73, 3.65, 3.86, 3.86, 3.97, 4.03, 3.69, 1.77, 0.02, 0.0], "ate12": 63.3, "manual": 7.6, "cpf": 23.1}, "Centro-Oeste": {"secoes": 215, "curva": [2.99, 2.66, 8.77, 8.42, 7.98, 7.84, 7.63, 7.07, 6.54, 5.52, 4.67, 4.0, 3.87, 4.0, 4.06, 3.97, 3.68, 3.08, 2.1, 1.13, 0.02, 0.0], "ate12": 59.8, "manual": 6.4, "cpf": 31.4}, "Sudeste": {"secoes": 1178, "curva": [0.0, 0.0, 8.1, 7.05, 6.98, 7.1, 7.24, 7.29, 7.06, 6.69, 6.17, 5.62, 5.11, 4.68, 4.37, 4.14, 3.87, 3.53, 3.18, 1.78, 0.02, 0.0], "ate12": 57.5, "manual": 6.7, "cpf": 25.9}, "Sul": {"secoes": 418, "curva": [0.0, 0.0, 8.37, 7.22, 7.43, 7.9, 8.04, 7.69, 6.96, 5.89, 5.01, 4.41, 4.49, 4.7, 4.8, 4.51, 4.1, 3.59, 3.1, 1.77, 0.01, 0.0], "ate12": 59.5, "manual": 7.8, "cpf": 33.5}}, "uf": {"ac": {"secoes": 10, "manual": 5.2, "apos17": 0, "votos": 1829}, "al": {"secoes": 40, "manual": 6.2, "apos17": 3, "votos": 11354}, "am": {"secoes": 48, "manual": 5.1, "apos17": 0, "votos": 12522}, "ap": {"secoes": 11, "manual": 4.7, "apos17": 1, "votos": 2661}, "ba": {"secoes": 205, "manual": 8.4, "apos17": 21, "votos": 54967}, "ce": {"secoes": 142, "manual": 7.4, "apos17": 7, "votos": 36469}, "df": {"secoes": 41, "manual": 4.6, "apos17": 7, "votos": 10979}, "es": {"secoes": 56, "manual": 7.0, "apos17": 3, "votos": 13580}, "go": {"secoes": 92, "manual": 7.5, "apos17": 6, "votos": 23060}, "ma": {"secoes": 106, "manual": 6.9, "apos17": 3, "votos": 24169}, "mg": {"secoes": 302, "manual": 6.9, "apos17": 16, "votos": 76310}, "ms": {"secoes": 37, "manual": 6.5, "apos17": 0, "votos": 8163}, "mt": {"secoes": 45, "manual": 6.1, "apos17": 0, "votos": 11831}, "pa": {"secoes": 125, "manual": 6.2, "apos17": 8, "votos": 28573}, "pb": {"secoes": 62, "manual": 7.2, "apos17": 5, "votos": 16080}, "pe": {"secoes": 125, "manual": 7.0, "apos17": 10, "votos": 36311}, "pi": {"secoes": 56, "manual": 9.2, "apos17": 1, "votos": 12505}, "pr": {"secoes": 157, "manual": 7.2, "apos17": 9, "votos": 41544}, "rj": {"secoes": 218, "manual": 7.9, "apos17": 24, "votos": 57566}, "rn": {"secoes": 46, "manual": 8.7, "apos17": 3, "votos": 12291}, "ro": {"secoes": 29, "manual": 6.4, "apos17": 0, "votos": 6204}, "rr": {"secoes": 9, "manual": 3.8, "apos17": 0, "votos": 1732}, "rs": {"secoes": 160, "manual": 8.5, "apos17": 5, "votos": 39784}, "sc": {"secoes": 101, "manual": 7.8, "apos17": 2, "votos": 27606}, "se": {"secoes": 34, "manual": 6.7, "apos17": 1, "votos": 8296}, "sp": {"secoes": 602, "manual": 6.1, "apos17": 41, "votos": 158722}, "to": {"secoes": 26, "manual": 6.1, "apos17": 1, "votos": 5639}, "zz": {"secoes": 3, "manual": 0.0, "apos17": 1, "votos": 1004}}, "encerramento": {"15": 13, "16": 165, "17": 2670, "18": 3, "19": 37}, "encerradas_19h": 37, "eventos": {"hab_bio": 650518, "solic_manual": 52124, "tent_dedo": 434410, "timeout_dedo": 19867, "id_cpf": 198686, "id_titulo": 572449, "justificativa": 13630, "corrigiu": 8624, "nao_encontrado": 7797, "eleitores": 741754}, "manual_pct": 7.0, "cpf_pct": 25.8, "corrigiu_pct": 1.16, "justificativas_por_secao": 4.7, "cabine_mediana_s": 10.0, "intervalo_mediano_s": 71.0}</script>
 <script>
@@ -667,6 +736,23 @@ const EST = [
   $("l-horas").innerHTML = Object.keys(series).map(k=>`<span><i class="sw" style="background:${cols[k]}"></i>${k}</span>`).join("") + `<span>% dos votos para presidente em cada meia hora, hora registrada pela urna. Os votos entre 7h e 8h no Norte e no Centro-Oeste refletem urnas com relógio em horário de Brasília em estados com fuso diferente.</span>`;
   $("t-reg-urnas").innerHTML = Object.entries(S.regioes).map(([k,v])=>`<tr><td>${k}</td><td>${n(v.secoes)}</td><td>${v.ate12.toLocaleString("pt-BR")}%</td><td>${v.manual.toLocaleString("pt-BR")}%</td><td>${v.cpf.toLocaleString("pt-BR")}%</td></tr>`).join("");
   $("t-uf-urnas").innerHTML = Object.entries(S.uf).filter(([u])=>u!=="zz").sort((a,b)=>b[1].manual-a[1].manual).map(([u,v])=>`<tr><td><b>${u.toUpperCase()}</b></td><td>${v.secoes}</td><td>${v.manual.toLocaleString("pt-BR")}%</td><td>${v.apos17} em ${n(v.votos)} votos</td></tr>`).join("");
+})();
+
+
+// Navegação lateral e barra de progresso
+(function(){
+  const secs = [...document.querySelectorAll("main section.card")];
+  const nav = document.getElementById("sidenav"); let html = '<div class="h">Neste estudo</div>';
+  secs.forEach((sec,i)=>{ if(!sec.id) sec.id = "topo-resumo"; const h = sec.querySelector("h2"); const eb = sec.querySelector(".eyebrow");
+    const ebt = eb ? eb.textContent.trim() : "";
+    const t = /^\d+$/.test(ebt) ? ebt + ". " + h.textContent.split(":")[0] : (ebt || (h ? h.textContent : sec.id)); html += `<a href="#${sec.id}" data-for="${sec.id}">${t}</a>`; });
+  nav.innerHTML = html;
+  const links = [...nav.querySelectorAll("a")];
+  const io = new IntersectionObserver(es => { es.forEach(e => { if (e.isIntersecting){ links.forEach(l => l.classList.toggle("on", l.dataset.for === e.target.id)); } }); }, {rootMargin:"-20% 0px -70% 0px"});
+  secs.forEach(sec => io.observe(sec));
+  const bar = document.getElementById("progress");
+  const upd = () => { const h = document.documentElement; bar.style.width = (h.scrollTop/(h.scrollHeight-h.clientHeight)*100) + "%"; };
+  document.addEventListener("scroll", upd, {passive:true}); upd();
 })();
 
 // 4. Agro / tamanho
