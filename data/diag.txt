@@ -5,8 +5,12 @@
 
 == mun-e006258-cm.json (trecho SP)
 chaves mun: ['dg', 'hg', 'idg', 'f', 'abr'] abr[0] chaves: ['cd', 'ds', 'mu'] cd: ac
+mu[0]: {"cd": "61018", "cdi": "3500105", "nm": "ADAMANTINA", "c": "n", "z": ["0157"]}
+municipio: 71072 SÃO PAULO chaves: ['cd', 'cdi', 'nm', 'c', 'z']
+zonas: 57
+zona exemplo: "0020"
 Traceback (most recent call last):
-  File "/home/runner/work/apuracao-2026/apuracao-2026/scripts/diag.py", line 28, in <module>
-    cap = next(m for m in sp["mu"] if m.get("c") == "S")
-          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-StopIteration
+  File "/home/runner/work/apuracao-2026/apuracao-2026/scripts/diag.py", line 37, in <module>
+    zona = str(z["cd"]).zfill(4)
+               ~^^^^^^
+TypeError: string indices must be integers, not 'str'
