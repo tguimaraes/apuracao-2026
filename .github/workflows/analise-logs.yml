@@ -1,0 +1,22 @@
+name: Análise dos logs de urna
+on:
+  workflow_dispatch:
+    inputs:
+      n: { description: "Tamanho da amostra", default: "3000" }
+      seed: { description: "Semente", default: "2026" }
+permissions: { contents: write }
+jobs:
+  analise:
+    runs-on: ubuntu-latest
+    timeout-minutes: 340
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.12" }
+      - run: pip install py7zr
+      - run: mkdir -p data && python -u scripts/analise_logs.py "${{ github.event.inputs.n }}" "${{ github.event.inputs.seed }}" 2>&1 | tee data/analise_log_run.txt
+      - if: always()
+        run: |
+          git config user.name "robo-apuracao" && git config user.email "robo@users.noreply.github.com"
+          git pull --rebase || true
+          git add data/ && git commit -m "Análise dos logs de urna (n=${{ github.event.inputs.n }})" && git push
