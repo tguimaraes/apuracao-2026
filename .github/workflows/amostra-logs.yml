@@ -1,0 +1,22 @@
+name: Amostra de logs de urna
+on:
+  workflow_dispatch:
+    inputs:
+      n: { description: "Tamanho da amostra (seções)", default: "60" }
+      seed: { description: "Semente do sorteio", default: "2026" }
+permissions: { contents: write }
+jobs:
+  amostra:
+    runs-on: ubuntu-latest
+    timeout-minutes: 340
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.12" }
+      - run: pip install py7zr
+      - run: mkdir -p data && python -u scripts/amostra_logs.py "${{ github.event.inputs.n }}" "${{ github.event.inputs.seed }}" 2>&1 | tee data/amostra_log_run.txt
+      - if: always()
+        run: |
+          git config user.name "robo-apuracao" && git config user.email "robo@users.noreply.github.com"
+          git pull --rebase || true
+          git add data/ && git commit -m "Amostra de logs de urna (n=${{ github.event.inputs.n }}, seed=${{ github.event.inputs.seed }})" && git push
