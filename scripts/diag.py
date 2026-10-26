@@ -25,15 +25,19 @@ print("\n== mun-e006258-cm.json (trecho SP)")
 mun = json.loads(get(f"{BASE}/ele2026/6258/config/mun-e006258-cm.json"))
 print("chaves mun:", list(mun.keys()), "abr[0] chaves:", list(mun["abr"][0].keys()), "cd:", mun["abr"][0]["cd"])
 sp = next(a for a in mun["abr"] if str(a["cd"]).upper() == "SP")
-cap = next(m for m in sp["mu"] if m.get("c") == "S")
-print("capital SP:", cap["cd"], cap["nm"], "zonas:", len(cap["z"]))
-z = cap["z"][0]
+print("mu[0]:", json.dumps(sp["mu"][0], ensure_ascii=False)[:700])
+cap = next((m for m in sp["mu"] if str(m.get("cd")).zfill(5) == "71072"), sp["mu"][0])
+print("municipio:", cap.get("cd"), cap.get("nm"), "chaves:", list(cap.keys()))
+zs = cap.get("z") or cap.get("zonas") or []
+print("zonas:", len(zs))
+z = zs[0] if zs else {}
 print("zona exemplo:", json.dumps(z, ensure_ascii=False)[:600])
 
 # tenta descobrir o código de arquivo-urna
 zona = str(z["cd"]).zfill(4)
-secao = str(z["s"][0]).zfill(4) if isinstance(z["s"][0], (str,int)) else str(z["s"][0]["cd"]).zfill(4)
-mun5 = cap["cd"].zfill(5)
+ss = z.get("s") or z.get("secoes") or []
+secao = (str(ss[0]).zfill(4) if isinstance(ss[0], (str,int)) else str(ss[0].get("cd") or ss[0].get("ns")).zfill(4)) if ss else "0001"
+mun5 = str(cap["cd"]).zfill(5)
 print("\n== testando aux.json em arquivo-urna para SP", mun5, zona, secao)
 cands = [str(x) for x in range(3221, 3232)] + ["3220"] + [str(x) for x in range(3200, 3220)]
 seen = set(); found = None
