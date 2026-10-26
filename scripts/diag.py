@@ -33,41 +33,48 @@ print("zonas:", len(zs))
 z = zs[0] if zs else {}
 print("zona exemplo:", json.dumps(z, ensure_ascii=False)[:600])
 
-# tenta descobrir o código de arquivo-urna
-zona = str(z["cd"]).zfill(4)
-ss = z.get("s") or z.get("secoes") or []
-secao = (str(ss[0]).zfill(4) if isinstance(ss[0], (str,int)) else str(ss[0].get("cd") or ss[0].get("ns")).zfill(4)) if ss else "0001"
+# descobre o pleito do 2º turno pelo arquivo de configuração de seções (cs) do arquivo-urna
 mun5 = str(cap["cd"]).zfill(5)
-print("\n== testando aux.json em arquivo-urna para SP", mun5, zona, secao)
-cands = [str(x) for x in range(3221, 3232)] + ["3220"] + [str(x) for x in range(3200, 3220)]
-seen = set(); found = None
-for c in cands:
-    if c in seen: continue
-    seen.add(c)
-    url = f"{BASE}/ele2026/arquivo-urna/{c}/dados/sp/{mun5}/{zona}/{secao}/p{c.zfill(6)}-sp-m{mun5}-z{zona}-s{secao}-aux.json"
+cs = None; pleito = None
+for c in [str(x) for x in range(3221, 3232)] + ["3220"]:
+    url = f"{BASE}/ele2026/arquivo-urna/{c}/config/sp/sp-p{c.zfill(6)}-cs.json"
     try:
-        j = json.loads(get(url)); print("OK", c, url); print(json.dumps(j, ensure_ascii=False)[:800]); found = (c, j, url); break
+        cs = json.loads(get(url)); pleito = c; print("cs OK pleito", c, url); break
     except Exception as e:
-        print("x", c, type(e).__name__, str(e)[:60])
-if not found:
-    print("Nenhum código funcionou; é preciso inspecionar o app do TSE."); sys.exit(0)
-c, j, url = found
-# baixa o logjez
+        print("x cs", c, type(e).__name__, str(e)[:50])
+if not cs: print("sem cs"); sys.exit(0)
+print("cs chaves:", list(cs.keys()))
+print(json.dumps(cs, ensure_ascii=False)[:1500])
+# acha uma seção de São Paulo capital
+def find_secoes(o, path=()):
+    if isinstance(o, dict):
+        for k,v in o.items(): yield from find_secoes(v, path+(k,))
+    elif isinstance(o, list):
+        for v in o: yield from find_secoes(v, path)
+abr = cs.get("abr", [])
+mu = None
+for a_ in abr:
+    for m in a_.get("mu", []):
+        if str(m.get("cd")).zfill(5) == mun5: mu = m
+print("mu SP capital chaves:", list(mu.keys()) if mu else None)
+z0 = mu["zon"][0] if mu and "zon" in mu else (mu["z"][0] if mu else None)
+print("zona0:", json.dumps(z0, ensure_ascii=False)[:500])
+zona = str(z0.get("cd")).zfill(4)
+sec0 = z0.get("sec", z0.get("s"))[0]
+secao = str(sec0.get("ns") or sec0.get("cd") or sec0).zfill(4)
+print("testando aux:", mun5, zona, secao)
+url = f"{BASE}/ele2026/arquivo-urna/{pleito}/dados/sp/{mun5}/{zona}/{secao}/p{pleito.zfill(6)}-sp-m{mun5}-z{zona}-s{secao}-aux.json"
+j = json.loads(get(url)); print("aux:", json.dumps(j, ensure_ascii=False)[:800])
 h = j["hashes"][0]; hs = h["hash"]; names = h.get("nmarquivos", [])
-print("arquivos:", names)
 log = [n for n in names if n.endswith(".logjez")]
 if log:
     lurl = url.rsplit("/",1)[0] + f"/{hs}/{log[0]}"
     data = get(lurl, binary=True); print("logjez bytes:", len(data), "magic:", data[:6])
-    open("sample.logjez","wb").write(data)
-    try:
-        import py7zr
-        with py7zr.SevenZipFile(io.BytesIO(data)) as z7:
-            files = z7.getnames(); print("dentro do 7z:", files)
-            for name, bio in z7.readall().items():
-                txt = bio.read().decode("latin-1", "replace")
-                lines = txt.splitlines(); print("linhas:", len(lines)); print("\n".join(lines[:15]))
-                votos = [l for l in lines if "voto" in l.lower() and ("confirmado" in l.lower() or "computado" in l.lower())]
-                print("linhas de voto:", len(votos)); print("\n".join(votos[:5])); print("..."); print("\n".join(votos[-5:]))
-    except Exception as e:
-        print("erro 7z:", e)
+    import py7zr
+    with py7zr.SevenZipFile(io.BytesIO(data)) as z7:
+        print("dentro do 7z:", z7.getnames())
+        for name, bio in z7.readall().items():
+            txt = bio.read().decode("latin-1", "replace"); lines = txt.splitlines(); print("linhas:", len(lines)); print("\n".join(lines[:12]))
+            votos = [l for l in lines if "voto" in l.lower() and ("confirmado" in l.lower() or "computado" in l.lower())]
+            print("linhas de voto:", len(votos)); print("\n".join(votos[:6])); print("..."); print("\n".join(votos[-6:]))
+            fim = [l for l in lines if "encerr" in l.lower() or "fim" in l.lower()][:8]; print("encerramento:"); print("\n".join(fim))
