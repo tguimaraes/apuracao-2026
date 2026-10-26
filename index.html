@@ -133,6 +133,33 @@ tr:hover td{background:var(--bg)}
 footer{font-size:.75rem;color:var(--muted);text-align:center;line-height:1.6}
 footer a{color:var(--c1)}
 .vh{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+
+/* Tabelas: no computador cabem na largura; no celular viram cartões, sem rolagem lateral */
+.wrap{max-width:1100px}
+table{min-width:0;font-size:.8rem}
+@media (min-width:761px){td{white-space:normal}}
+th,td{padding:7px 5px}
+.tbl{overflow-x:auto}
+@media (max-width:760px){
+  .tbl{overflow-x:auto;-webkit-overflow-scrolling:touch}
+  table{font-size:.74rem}
+  th,td{padding:6px 4px}
+  .sec{display:none}
+  .chip .nm{display:none}
+  th[scope="row"]{white-space:normal;max-width:96px}
+  #histtbl td{white-space:normal}
+  .delta{font-size:.68rem}
+  td .delta{white-space:nowrap}
+  td .pbar{width:28px}
+  .cands{grid-template-columns:1fr}
+  .cand .pc{font-size:1.7rem}
+  .appbar .in{gap:6px}
+  .appbar h1{font-size:1.1rem}
+  .modes button{padding:6px 10px;font-size:.74rem}
+  .kpi .v{font-size:1.3rem}
+  .mono{font-size:.68rem}
+}
+}
 @media (prefers-reduced-motion:reduce){*{transition:none!important}}
 </style>
 </head>
@@ -189,8 +216,8 @@ footer a{color:var(--c1)}
     </div>
     <svg class="chart" id="chart" viewBox="0 0 720 280" role="img" aria-labelledby="h-evo evo-sub"></svg>
     <div class="legend" id="chart-legend"></div>
-    <div class="tbl"><table id="histtbl" style="min-width:560px"><caption>Últimas leituras, da mais recente para a mais antiga. "Mudança" é a variação da margem em relação à leitura anterior.</caption>
-      <thead><tr><th scope="col">Horário TSE</th><th scope="col">Apurado</th><th scope="col">Lula</th><th scope="col">Flávio</th><th scope="col">Margem</th><th scope="col">Dif. em votos</th><th scope="col">Mudança</th></tr></thead><tbody id="histbody"></tbody></table></div>
+    <div class="tbl"><table id="histtbl"><caption>Últimas leituras, da mais recente para a mais antiga. "Mudança" é a variação da margem em relação à leitura anterior.</caption>
+      <thead><tr><th scope="col">Horário TSE</th><th scope="col">Apurado</th><th scope="col">Lula</th><th scope="col">Flávio</th><th scope="col">Margem</th><th scope="col" class="sec">Dif. em votos</th><th scope="col" class="sec">Mudança</th></tr></thead><tbody id="histbody"></tbody></table></div>
   </section>
 
   <section class="card" aria-labelledby="h-mapa">
@@ -330,8 +357,8 @@ function renderBr(){
     <div class="kpi"><div class="l">Votos em outros candidatos no 1º turno</div><div class="v">${fmtP(outros(d1))}</div>
       <div class="mono">eleitores que precisam escolher de novo</div></div>`;
   document.getElementById("thead").innerHTML =
-    `<tr><th scope="col">UF</th><th scope="col">Apurado</th>${ordered.map(c=>`<th scope="col">${esc(c.nome)}<br>2º T e Δ vs 1º T</th><th scope="col">${esc(c.nome)}<br>1º T</th>`).join("")}
-     <th scope="col">Margem<br>2º T</th><th scope="col">Compare-<br>cimento</th><th scope="col">Eleitores<br>que faltam</th><th scope="col">Abst.<br>2º T</th><th scope="col">Abst.<br>1º T</th><th scope="col">Δ abst.</th></tr>`;
+    `<tr><th scope="col">UF</th><th scope="col" class="sec">Apurado</th>${ordered.map(c=>`<th scope="col">${esc(c.nome.split(" ")[0])}<br>2º T e Δ vs 1º T</th><th scope="col" class="sec">${esc(c.nome)}<br>1º T</th>`).join("")}
+     <th scope="col">Margem<br>2º T</th><th scope="col" class="sec">Compare-<br>cimento</th><th scope="col" class="sec">Eleitores<br>que faltam</th><th scope="col">Abst.<br>2º T</th><th scope="col" class="sec">Abst.<br>1º T</th><th scope="col" class="sec">Δ abst.</th></tr>`;
 }
 
 function renderLegend(){
@@ -532,7 +559,7 @@ function renderChart(){
     const lead = p.m>=0?A:B;
     return `<tr><td style="text-align:left">${p.k.split(" ")[1]||""}</td><td>${fmtP(p.pst)}</td><td style="color:${colorOf[A]}">${fmtP(p[A])}</td><td style="color:${colorOf[B]}">${fmtP(p[B])}</td>
       <td><span class="chip" style="background:${colorOf[lead]}">${esc((br[lead]||{nome:lead}).nome)} ${fmtD(Math.abs(p.m)).replace("+","")}</span></td>
-      <td>${fmtN(Math.abs(p.dv))}</td><td class="delta" style="color:${ch==null?"var(--muted)":ch>0?colorOf[A]:ch<0?colorOf[B]:"var(--muted)"}">${ch==null?"–":(ch>0?"▲ Lula ":ch<0?"▲ Flávio ":"")+fmtD(Math.abs(ch)).replace("+","")}</td></tr>`; }).join("");
+      <td class="sec">${fmtN(Math.abs(p.dv))}</td><td class="delta sec" style="color:${ch==null?"var(--muted)":ch>0?colorOf[A]:ch<0?colorOf[B]:"var(--muted)"}">${ch==null?"–":(ch>0?"▲ Lula ":ch<0?"▲ Flávio ":"")+fmtD(Math.abs(ch)).replace("+","")}</td></tr>`; }).join("");
 }
 
 // Projeção em dois cenários, UF a UF, somados nacionalmente.
@@ -624,15 +651,15 @@ function renderProjection(){
 function rowHtml(label, sub, d2, d1){
   const L = leader(d2), b2 = byN(d2), b1 = byN(d1);
   const dAbs = d2 && d1 && d2.pabs!=null && d1.pabs!=null ? d2.pabs-d1.pabs : null;
-  return `<tr><th scope="row" style="text-align:left;color:var(--fg);font-size:.82rem;text-transform:none;letter-spacing:0"><b>${label}</b> <span class="mono">${sub}</span></th>
-      <td><span class="pbar" aria-hidden="true"><i style="width:${d2?d2.pst:0}%"></i></span>${d2?fmtP(d2.pst):"–"}</td>
+  return `<tr><th scope="row" style="text-align:left;color:var(--fg);font-size:.82rem;text-transform:none;letter-spacing:0"><b>${label}</b> <span class="mono sec">${sub}</span></th>
+      <td class="sec"><span class="pbar" aria-hidden="true"><i style="width:${d2?d2.pst:0}%"></i></span>${d2?fmtP(d2.pst):"–"}</td>
       ${(()=>{ const gs = finalists.map(n => b2[n]&&b1[n] ? b2[n].pvap-b1[n].pvap : null); const best = Math.max(...gs.filter(g=>g!=null));
         return finalists.map((n,i)=>{ const g=gs[i]; const top = g!=null && g===best && gs.filter(x=>x!=null).length>1;
-          return `<td>${b2[n]?fmtP(b2[n].pvap):"–"}${g!=null?`<div class="delta ${g>0?"down":g<0?"up":""}" style="${top?"font-weight:700":""}">${g>0?"▲":g<0?"▼":""} ${fmtD(g)}${top?" ★":""}</div>`:""}</td><td class="t1">${b1[n]?fmtP(b1[n].pvap):"–"}</td>`; }).join(""); })()}
-      <td>${L?`<span class="chip" style="background:${colorOf[L.win.n]}">${esc(L.win.nome)} ${L.margin.toLocaleString("pt-BR",{maximumFractionDigits:1})} p.p.</span>${d2 && (L.win.vap-L.lose.vap) > d2.esnt ? ` <span class="chip" style="background:#2E7D32" title="A diferença em votos já é maior que todo o eleitorado das seções que faltam">✓ definido</span>` : ""}`:"–"}</td>
-      <td>${d2?fmtN(d2.comp):"–"}</td><td>${d2?fmtN(d2.esnt):"–"}${d2&&L?`<div class="mono">vantagem ${fmtN(L.win.vap-L.lose.vap)}</div>`:""}</td>
-      <td>${fmtP(d2&&d2.pabs)}</td><td class="t1">${fmtP(d1&&d1.pabs)}</td>
-      <td class="delta ${dAbs>0?"up":dAbs<0?"down":""}">${fmtD(dAbs)}</td></tr>`;
+          return `<td>${b2[n]?fmtP(b2[n].pvap):"–"}${g!=null?`<div class="delta ${g>0?"down":g<0?"up":""}" style="${top?"font-weight:700":""}">${g>0?"▲":g<0?"▼":""} ${fmtD(g)}${top?" ★":""}</div>`:""}</td><td class="t1 sec">${b1[n]?fmtP(b1[n].pvap):"–"}</td>`; }).join(""); })()}
+      <td>${L?`<span class="chip" style="background:${colorOf[L.win.n]}"><span class="nm">${esc(L.win.nome)} </span>${L.margin.toLocaleString("pt-BR",{maximumFractionDigits:1})} p.p.</span>${d2 && (L.win.vap-L.lose.vap) > d2.esnt ? ` <span class="chip" style="background:#2E7D32" title="A diferença em votos já é maior que todo o eleitorado das seções que faltam">✓ definido</span>` : ""}`:"–"}</td>
+      <td class="sec">${d2?fmtN(d2.comp):"–"}</td><td class="sec">${d2?fmtN(d2.esnt):"–"}${d2&&L?`<div class="mono">vantagem ${fmtN(L.win.vap-L.lose.vap)}</div>`:""}</td>
+      <td>${fmtP(d2&&d2.pabs)}</td><td class="t1 sec">${fmtP(d1&&d1.pabs)}</td>
+      <td class="delta sec ${dAbs>0?"up":dAbs<0?"down":""}">${fmtD(dAbs)}</td></tr>`;
 }
 const byMargin = (x,y) => ((leader(y.d2)||{margin:-1}).margin) - ((leader(x.d2)||{margin:-1}).margin);
 function renderTable(){
@@ -676,6 +703,15 @@ function renderCapitais(){
   document.getElementById("capbody").innerHTML += rowHtml("Todas as capitais", ufs.length+" cidades", agg2, agg1).replace("<tr>", '<tr style="background:var(--bg);font-weight:500">');
   document.getElementById("caphead").innerHTML = document.getElementById("thead").innerHTML.replace(">UF<", ">Capital<");
   document.getElementById("capsub").textContent = `${rows.length} de ${Object.keys(capList).length} capitais com dados.`;
+  labelize();
+}
+
+
+// Rotula cada célula com o cabeçalho da coluna (usado no layout em cartões do celular)
+function labelize(){
+  const n = document.getElementById("secnote"); if (n) n.hidden = window.innerWidth > 760;
+  document.querySelectorAll("table").forEach(t => { const ths = [...t.querySelectorAll("thead th")].map(th => th.textContent.replace(/\s+/g," ").trim()); if (!ths.length) return;
+    t.querySelectorAll("tbody tr").forEach(tr => { [...tr.children].forEach((c,i) => { if (c.tagName === "TD" && ths[i]) c.setAttribute("data-label", ths[i]); }); }); });
 }
 
 document.querySelectorAll("[data-mode]").forEach(b => b.onclick = () => {
@@ -707,7 +743,7 @@ async function load(){
   if (!t1Loaded) msgs.push("Os arquivos do 1º turno não responderam. O resumo nacional do 1º turno usa os números finais do TSE; o comparativo por estado fica vazio.");
   else if (t1Fails) msgs.push(`${t1Fails} arquivo(s) do 1º turno não responderam.`);
   erro.hidden = !msgs.length; erro.innerHTML = msgs.join("<br>");
-  renderBr(); renderEleito(); renderProjection(); recordHistory(); renderRegions(); loadCapitais(); renderChart(); renderMap(); renderDetail(); renderTable();
+  renderBr(); renderEleito(); renderProjection(); recordHistory(); renderRegions(); loadCapitais(); renderChart(); renderMap(); renderDetail(); renderTable(); labelize();
   busy = false; left = 60;
   if (FINAL) { document.getElementById("upd").textContent = S.t2.BR ? `Apuração encerrada · resultado final do TSE (${S.t2.BR.data} ${S.t2.BR.hora})` : "Apuração encerrada"; return; }
   tick(S.t2.BR ? `Dados do TSE de ${S.t2.BR.data} às ${S.t2.BR.hora}` : "");
