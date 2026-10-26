@@ -22,6 +22,7 @@
   color-scheme:light;
 }
 *{box-sizing:border-box}
+[hidden]{display:none!important}
 html,body{margin:0}
 body{background:var(--bg);color:var(--fg);font:15px/1.5 var(--font);
   padding-block:0 48px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
@@ -716,6 +717,10 @@ function tick(base){
   timer = setInterval(()=>{ left--; if(left<=0){ clearInterval(timer); load(); } else draw(); },1000);
 }
 document.getElementById("refresh").onclick = load;
+(function(){ const scrim=document.getElementById("scrim"), close=document.getElementById("modal-close");
+  const dismiss=()=>{ scrim.hidden=true; document.body.style.overflow=""; };
+  close.addEventListener("click", dismiss); scrim.addEventListener("click", e=>{ if(e.target===scrim) dismiss(); });
+  document.addEventListener("keydown", e=>{ if(e.key==="Escape" && !scrim.hidden) dismiss(); }); })();
 buildMap();
 load();
 </script>
