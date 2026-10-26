@@ -10,7 +10,7 @@ def get(url, binary=False):
 
 print("== ele-c.json")
 elec = json.loads(get(f"{BASE}/comum/config/ele-c.json"))
-print(json.dumps(elec, ensure_ascii=False)[:6000])
+print(json.dumps([pl for pl in elec.get("pl",[]) if pl.get("c")=="ele2026"], ensure_ascii=False)[:3000])
 codes = set()
 def walk(o):
     if isinstance(o, dict):
@@ -23,7 +23,8 @@ print("\n== códigos encontrados:", sorted(codes))
 
 print("\n== mun-e006258-cm.json (trecho SP)")
 mun = json.loads(get(f"{BASE}/ele2026/6258/config/mun-e006258-cm.json"))
-sp = next(a for a in mun["abr"] if a["cd"] == "SP")
+print("chaves mun:", list(mun.keys()), "abr[0] chaves:", list(mun["abr"][0].keys()), "cd:", mun["abr"][0]["cd"])
+sp = next(a for a in mun["abr"] if str(a["cd"]).upper() == "SP")
 cap = next(m for m in sp["mu"] if m.get("c") == "S")
 print("capital SP:", cap["cd"], cap["nm"], "zonas:", len(cap["z"]))
 z = cap["z"][0]
@@ -34,12 +35,12 @@ zona = str(z["cd"]).zfill(4)
 secao = str(z["s"][0]).zfill(4) if isinstance(z["s"][0], (str,int)) else str(z["s"][0]["cd"]).zfill(4)
 mun5 = cap["cd"].zfill(5)
 print("\n== testando aux.json em arquivo-urna para SP", mun5, zona, secao)
-cands = [c for c in codes if c.isdigit()] + ["6258", "6257"] + [str(x) for x in range(6250, 6270)] + [str(x) for x in range(400, 420)]
+cands = [str(x) for x in range(3221, 3232)] + ["3220"] + [str(x) for x in range(3200, 3220)]
 seen = set(); found = None
 for c in cands:
     if c in seen: continue
     seen.add(c)
-    url = f"{BASE}/ele2026/arquivo-urna/{c}/dados/sp/{mun5}/{zona}/{secao}/p000{c.zfill(3)}-sp-m{mun5}-z{zona}-s{secao}-aux.json"
+    url = f"{BASE}/ele2026/arquivo-urna/{c}/dados/sp/{mun5}/{zona}/{secao}/p{c.zfill(6)}-sp-m{mun5}-z{zona}-s{secao}-aux.json"
     try:
         j = json.loads(get(url)); print("OK", c, url); print(json.dumps(j, ensure_ascii=False)[:800]); found = (c, j, url); break
     except Exception as e:
