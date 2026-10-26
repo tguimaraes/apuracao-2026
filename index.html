@@ -146,6 +146,7 @@ th,td{padding:7px 5px}
   th,td{padding:6px 4px}
   .sec{display:none}
   .chip .nm{display:none}
+  .chip.def{display:none}
   th[scope="row"]{white-space:normal;max-width:96px}
   #histtbl td{white-space:normal}
   .delta{font-size:.68rem}
@@ -656,7 +657,7 @@ function rowHtml(label, sub, d2, d1){
       ${(()=>{ const gs = finalists.map(n => b2[n]&&b1[n] ? b2[n].pvap-b1[n].pvap : null); const best = Math.max(...gs.filter(g=>g!=null));
         return finalists.map((n,i)=>{ const g=gs[i]; const top = g!=null && g===best && gs.filter(x=>x!=null).length>1;
           return `<td>${b2[n]?fmtP(b2[n].pvap):"–"}${g!=null?`<div class="delta ${g>0?"down":g<0?"up":""}" style="${top?"font-weight:700":""}">${g>0?"▲":g<0?"▼":""} ${fmtD(g)}${top?" ★":""}</div>`:""}</td><td class="t1 sec">${b1[n]?fmtP(b1[n].pvap):"–"}</td>`; }).join(""); })()}
-      <td>${L?`<span class="chip" style="background:${colorOf[L.win.n]}"><span class="nm">${esc(L.win.nome)} </span>${L.margin.toLocaleString("pt-BR",{maximumFractionDigits:1})} p.p.</span>${d2 && (L.win.vap-L.lose.vap) > d2.esnt ? ` <span class="chip" style="background:#2E7D32" title="A diferença em votos já é maior que todo o eleitorado das seções que faltam">✓ definido</span>` : ""}`:"–"}</td>
+      <td>${L?`<span class="chip" style="background:${colorOf[L.win.n]}"><span class="nm">${esc(L.win.nome)} </span>${L.margin.toLocaleString("pt-BR",{maximumFractionDigits:1})} p.p.</span>${d2 && (L.win.vap-L.lose.vap) > d2.esnt ? ` <span class="chip def" style="background:#2E7D32" title="A diferença em votos já é maior que todo o eleitorado das seções que faltam">✓ definido</span>` : ""}`:"–"}</td>
       <td class="sec">${d2?fmtN(d2.comp):"–"}</td><td class="sec">${d2?fmtN(d2.esnt):"–"}${d2&&L?`<div class="mono">vantagem ${fmtN(L.win.vap-L.lose.vap)}</div>`:""}</td>
       <td>${fmtP(d2&&d2.pabs)}</td><td class="t1 sec">${fmtP(d1&&d1.pabs)}</td>
       <td class="delta sec ${dAbs>0?"up":dAbs<0?"down":""}">${fmtD(dAbs)}</td></tr>`;
