@@ -1,0 +1,195 @@
+[
+ {
+  "id": "aritmetica",
+  "num": "1",
+  "slug": "de-onde-vieram-os-votos",
+  "title": "De onde vieram os votos que fizeram Lula virar?",
+  "desc": "Pense no 2º turno como uma segunda rodada de um jogo em que só sobraram dois times. No 1º turno, 9,3 milhões de pessoas tinham votado em outros candidatos, como Caiado e Zema. No 2º turno, esses…",
+  "stat": [
+   "3 em cada 4",
+   "dos 14 milhões de votos que trocaram de mão foram para Lula"
+  ],
+  "paras": [
+   "Pense no 2º turno como uma segunda rodada de um jogo em que só sobraram dois times. No 1º turno, 9,3 milhões de pessoas tinham votado em outros candidatos, como Caiado e Zema. No 2º turno, esses votos ficaram \"sem dono\" e cada uma dessas pessoas precisou escolher de novo: Lula, Flávio, votar em branco ou ficar em casa.",
+   "E tem mais: 4,8 milhões de pessoas que não tinham votado no 1º turno resolveram ir votar no 2º. Somando tudo, 14 milhões de votos estavam em jogo. É como se a eleição fosse decidida por uma cidade inteira do tamanho de São Paulo que ainda não tinha escolhido.",
+   "O resultado: de cada 4 desses votos, 3 foram para Lula. Flávio, que estava na frente, ficou com só 1. Foi isso que virou o jogo. O gráfico abaixo mostra as duas rodadas lado a lado."
+  ],
+  "bullets": []
+ },
+ {
+  "id": "geografia",
+  "num": "2",
+  "slug": "por-que-o-nordeste-decidiu",
+  "title": "Por que o Nordeste decidiu a eleição?",
+  "desc": "Imagine o Brasil como uma balança com cinco pratos, um para cada região. Em quatro deles (Sul, Sudeste, Centro-Oeste e Norte), Flávio colocou mais votos que Lula. Somando esses quatro pratos, ele…",
+  "stat": [
+   "13,7 milhões",
+   "de vantagem para Lula só no Nordeste"
+  ],
+  "paras": [
+   "Imagine o Brasil como uma balança com cinco pratos, um para cada região. Em quatro deles (Sul, Sudeste, Centro-Oeste e Norte), Flávio colocou mais votos que Lula. Somando esses quatro pratos, ele ganhou por 9,3 milhões de votos.",
+   "Mas no quinto prato, o Nordeste, Lula ganhou por 13,7 milhões. Um prato só pesou mais que os outros quatro juntos. A diferença entre os dois lados da balança, 4,4 milhões, é exatamente a vantagem final de Lula.",
+   "E o Nordeste não só votou mais em Lula: foi votar mais. O Ceará teve a menor abstenção do país. Quando uma região inteira comparece em peso e vota 7 em cada 10 no mesmo candidato, ela decide a eleição sozinha."
+  ],
+  "bullets": []
+ },
+ {
+  "id": "estados",
+  "num": "3",
+  "slug": "estado-por-estado",
+  "title": "O que mudou de um turno para o outro, estado por estado?",
+  "desc": "Quando os candidatos menores saem da disputa, os dois que sobram ganham votos em todo lugar. Então Lula subiu nos 27 estados, e isso era esperado. A pergunta certa é: onde ele subiu mais do que…",
+  "stat": [
+   "1 estado",
+   "trocou de lado entre os turnos: Minas Gerais"
+  ],
+  "paras": [
+   "Quando os candidatos menores saem da disputa, os dois que sobram ganham votos em todo lugar. Então Lula subiu nos 27 estados, e isso era esperado. A pergunta certa é: onde ele subiu mais do que Flávio?",
+   "A resposta está em Minas Gerais, o segundo maior estado em eleitores. No 1º turno, Flávio estava 5 pontos na frente lá. No 2º, Lula virou e venceu por pouco. Foi o único estado do país que trocou de lado, e com 16 milhões de eleitores, isso vale quase 1 milhão de votos na conta final.",
+   "No gráfico, cada barra é um estado. A parte colorida mostra quanto Lula teve no 2º turno; o tracinho preto mostra quanto ele tinha no 1º. Quanto mais longe o tracinho da ponta da barra, mais ele cresceu."
+  ],
+  "bullets": []
+ },
+ {
+  "id": "interior",
+  "num": "4",
+  "slug": "cidade-grande-e-pequena",
+  "title": "Cidade grande e cidade pequena votaram diferente?",
+  "desc": "Muito. Olhando o mapa por estado, parece uma disputa do Nordeste contra o resto. Mas quando se olha cidade por cidade, aparece outra divisão: as cidades grandes ficaram com Lula e as pequenas, com…",
+  "stat": [
+   "55% × 54%",
+   "a cidade de SP deu Lula; o estado de SP deu Flávio"
+  ],
+  "paras": [
+   "Muito. Olhando o mapa por estado, parece uma disputa do Nordeste contra o resto. Mas quando se olha cidade por cidade, aparece outra divisão: as cidades grandes ficaram com Lula e as pequenas, com Flávio.",
+   "Um estudo da FGV comparou cada cidade com 2022. Nas cidades com mais de 500 mil habitantes, Lula perdeu quase nada. Nas cidades de até 5 mil habitantes, perdeu 7% dos votos que tinha. E nas cidades pequenas que vivem do agronegócio, perdeu 9%.",
+   "O exemplo mais claro é São Paulo. O estado inteiro deu 54% a Flávio. Mas a cidade de São Paulo, a maior do país, deu 55% a Lula. O interior paulista puxou para um lado, a capital puxou para o outro. Sem a capital, a vantagem de Lula no Brasil ficaria perto de zero."
+  ],
+  "bullets": []
+ },
+ {
+  "id": "perfil",
+  "num": "5",
+  "slug": "quem-votou-em-quem",
+  "title": "Quem votou em quem?",
+  "desc": "O TSE conta os votos, mas não sabe quem é o eleitor por trás de cada um. Para saber como votaram mulheres, jovens ou evangélicos, é preciso perguntar às pessoas: é o trabalho das pesquisas. Em 2026…",
+  "stat": [
+   "58%",
+   "de quem ganha até 2 salários mínimos votou em Lula"
+  ],
+  "paras": [
+   "O TSE conta os votos, mas não sabe quem é o eleitor por trás de cada um. Para saber como votaram mulheres, jovens ou evangélicos, é preciso perguntar às pessoas: é o trabalho das pesquisas. Em 2026 não houve \"boca de urna\" (a pesquisa feita na saída da votação), então usamos a última pesquisa antes da eleição, do Datafolha.",
+   "Os dois cortes que mais dividem o país são renda e religião. Quem ganha até 2 salários mínimos votou em Lula (58%). Quem ganha mais, em Flávio (58%). Entre evangélicos, Flávio teve quase 3 em cada 4 votos; entre católicos, Lula teve 6 em cada 10.",
+   "Mulheres pendem para Lula e homens para Flávio, mas por pouco. Raça e escolaridade dividem menos do que se imagina: entre pessoas pardas, o maior grupo do país, deu empate. Nas barras abaixo, vermelho é Lula e azul é Flávio; a linha do meio marca os 50%."
+  ],
+  "bullets": []
+ },
+ {
+  "id": "2022",
+  "num": "6",
+  "slug": "foi-igual-a-2022",
+  "title": "Foi igual a 2022?",
+  "desc": "Quase. O mapa dos estados em 2026 é praticamente o mesmo de quatro anos atrás: Lula com o Nordeste, três estados do Norte e Minas; Flávio com o Sul, o Centro-Oeste, São Paulo, Rio e Espírito Santo.…",
+  "stat": [
+   "98%",
+   "das cidades deram menos votos a Lula que em 2022, e ele venceu assim mesmo"
+  ],
+  "paras": [
+   "Quase. O mapa dos estados em 2026 é praticamente o mesmo de quatro anos atrás: Lula com o Nordeste, três estados do Norte e Minas; Flávio com o Sul, o Centro-Oeste, São Paulo, Rio e Espírito Santo. Só Tocantins mudou de lado em relação a 2022.",
+   "A diferença está por baixo do mapa. Em relação a 2022, Lula perdeu votos em 98% das cidades no 1º turno, principalmente no interior. Mesmo assim venceu por mais do que em 2022 (4,4 milhões contra 2,1 milhões). Como?",
+   "Porque o 2º turno foi mais generoso com ele: os votos dos candidatos eliminados foram mais para Lula do que tinham ido para ele em 2022, e, pela primeira vez, muita gente a mais foi votar na segunda rodada. Em resumo: Lula ficou um pouco mais fraco no país, mas o 2º turno jogou mais a favor dele."
+  ],
+  "bullets": []
+ },
+ {
+  "id": "fatores",
+  "num": "7",
+  "slug": "o-que-explica-a-vitoria",
+  "title": "Então, o que explica a vitória?",
+  "desc": "Nenhum fator sozinho. Se tivéssemos que colocar numa ordem, do que mais pesou para o que menos pesou, seria esta lista abaixo. Os quatro primeiros jogaram a favor de Lula; o quinto, a favor de…",
+  "stat": [
+   "6 fatores",
+   "em ordem de peso, do que mais importou ao que menos"
+  ],
+  "paras": [
+   "Nenhum fator sozinho. Se tivéssemos que colocar numa ordem, do que mais pesou para o que menos pesou, seria esta lista abaixo. Os quatro primeiros jogaram a favor de Lula; o quinto, a favor de Flávio; o sexto ainda é uma hipótese que ninguém conseguiu medir.",
+   "Uma forma de ver: a redistribuição dos votos e o Nordeste são o motor. Minas e as capitais são a diferença entre ganhar e perder. O interior e o agro foram o freio, mas não bastaram."
+  ],
+  "bullets": []
+ },
+ {
+  "id": "prorrogacao",
+  "num": "8",
+  "slug": "a-prorrogacao-mudou-o-resultado",
+  "title": "A votação foi estendida até as 19h. Isso mudou o resultado?",
+  "desc": "Não. E dá para dizer isso com dado, não com opinião. Vamos por",
+  "stat": [
+   "35.521",
+   "votos depois das 17h, contra 4,43 milhões de margem"
+  ],
+  "paras": [
+   "Não. E dá para dizer isso com dado, não com opinião. Vamos por partes.",
+   "No dia da eleição, as duas campanhas pediram mais tempo de votação: a de Flávio por causa de chuva em cidades de SP, PR e SC; a de Lula por causa de ônibus em nove estados. O ministro Zanin, do STF, estendeu a votação até as 19h, mas só para as seções que ainda estavam abertas às 17h. Urna fechada não reabriu. Na prática, só 1 em cada 100 seções ficou aberta até as 19h.",
+   "Quantos votos entraram nessas duas horas? Cada urna grava a hora de cada voto. O g1 leu os registros de todas as urnas do país e contou: 35.521 votos depois das 17h. Nós fizemos a nossa própria contagem, sorteando 3 mil urnas, e chegamos a algo entre 26 mil e 37 mil. Bateu.",
+   "Agora a comparação: a vantagem de Lula foi de 4,43 milhões de votos. Mesmo que todos os 35 mil votos tardios fossem dele, a vantagem cairia para 4,39 milhões. Mesmo que todos fossem de Flávio, iria a 4,47. É como tentar mudar o resultado de um jogo de 100 a 1 com um ponto a mais. A prorrogação foi mal feita e desigual, e isso merece crítica, mas não mudou quem venceu."
+  ],
+  "bullets": []
+ },
+ {
+  "id": "abstencao",
+  "num": "9",
+  "slug": "mais-gente-foi-votar",
+  "title": "Mais gente foi votar. Isso é normal?",
+  "desc": "Não é. E esse é um dos fatos mais importantes desta eleição. Desde 1989, quando o Brasil voltou a eleger presidente pelo voto direto, aconteceu sempre a mesma coisa: no 2º turno, menos gente vai…",
+  "stat": [
+   "3 milhões",
+   "de pessoas a mais foram votar no 2º turno, a maior alta desde 1989"
+  ],
+  "paras": [
+   "Não é. E esse é um dos fatos mais importantes desta eleição. Desde 1989, quando o Brasil voltou a eleger presidente pelo voto direto, aconteceu sempre a mesma coisa: no 2º turno, menos gente vai votar do que no 1º. O eleitor cujo candidato foi eliminado fica em casa. Em todas as eleições de 1989 a 2018, sem exceção, a abstenção subiu na segunda rodada.",
+   "Em 2022, pela primeira vez, ela caiu um pouquinho. Em 2026, caiu muito: de 21% para 19%. Parece pouco, mas são cerca de 3 milhões de pessoas a mais nas urnas, a maior queda da história entre um turno e outro.",
+   "Por que isso aconteceu? As fontes apontam três coisas que se somam: as campanhas foram para a rua e para o WhatsApp com força nas três semanas finais, houve passe livre em várias cidades e programas de transporte, e a disputa estava empatada nas pesquisas, o que faz o eleitor sentir que o voto dele importa. E onde essas pessoas a mais votaram? Principalmente no Nordeste, onde Lula tem 7 em cada 10 votos. O gráfico abaixo mostra a série inteira."
+  ],
+  "bullets": []
+ },
+ {
+  "id": "redes",
+  "num": "10",
+  "slug": "redes-e-ruas",
+  "title": "As redes sociais e os atos de rua decidiram a eleição?",
+  "desc": "Essa é a pergunta mais difícil do estudo, porque é fácil medir engajamento e difícil ligar engajamento a voto. Mas dá para contar uma história com os dados que",
+  "stat": [
+   "150 milhões",
+   "de views num vídeo do lado que perdeu"
+  ],
+  "paras": [
+   "Essa é a pergunta mais difícil do estudo, porque é fácil medir engajamento e difícil ligar engajamento a voto. Mas dá para contar uma história com os dados que existem.",
+   "Primeira surpresa: o lado com mais alcance perdeu. No Instagram e no TikTok, os aliados de Flávio tinham muito mais seguidores e visualizações (um único vídeo do deputado Nikolas Ferreira passou de 150 milhões de views). No WhatsApp, era o contrário: o canal \"Exército do Lula\" chegou a milhões de pessoas com tarefas diárias de convencer vizinhos e levar gente para votar.",
+   "A diferença é simples: uma rede serve para ser visto, a outra serve para fazer alguém agir. Um vídeo com 150 milhões de views convence quem já concorda. Uma mensagem no grupo da família chega em quem ia ficar em casa.",
+   "Segunda pista: as pesquisas. Nas três semanas finais, Lula subiu devagar e sempre, meio ponto por semana. E no dia da eleição ele teve 2 a 3 pontos a mais do que todas as pesquisas previam. Quando todas as pesquisas erram para o mesmo lado, costuma ser sinal de gente que decidiu ir votar na última hora, justamente o público que a mobilização buscava. Não é prova, mas as três pistas (pesquisas subindo, mais gente votando, votos novos indo para Lula) apontam na mesma direção."
+  ],
+  "bullets": []
+ },
+ {
+  "id": "urnas",
+  "num": "11",
+  "slug": "o-que-as-urnas-contam",
+  "title": "O que as próprias urnas contam sobre o dia da votação?",
+  "desc": "Cada urna eletrônica guarda um \"diário de bordo\": a hora em que foi ligada, a hora em que cada eleitor foi liberado para votar, a hora em que cada voto foi confirmado, a hora em que foi encerrada.…",
+  "stat": [
+   "10 segundos",
+   "é o tempo de um voto, segundo os registros de 3 mil urnas"
+  ],
+  "paras": [
+   "Cada urna eletrônica guarda um \"diário de bordo\": a hora em que foi ligada, a hora em que cada eleitor foi liberado para votar, a hora em que cada voto foi confirmado, a hora em que foi encerrada. Esse diário é público. Ele não registra em quem a pessoa votou, só que ela votou e quando.",
+   "Sorteamos 3 mil urnas entre as 517 mil do país e lemos esses diários com um programa. O que eles contam:",
+   "E foi assim que confirmamos o número da prorrogação: nos diários da nossa amostra, só 178 votos aconteceram depois das 17h, o que, projetado para o país, dá entre 26 mil e 37 mil. Tudo abaixo é agregado por seção, nunca por pessoa."
+  ],
+  "bullets": [
+   "O Brasil vota cedo. O movimento é maior entre 8h e 9h e só cai depois disso. Até o meio-dia, 60% das pessoas já tinham votado. Às 16h30, a seção tinha um quinto do movimento da primeira meia hora.",
+   "Votar no 2º turno leva 10 segundos, do momento em que o mesário libera até a urna confirmar. Com um cargo só na tela, é rápido. E entre um eleitor e o próximo passam, em média, 71 segundos: a seção típica não teve fila.",
+   "7 em cada 100 eleitores precisaram de \"habilitação manual\": a digital não foi reconhecida ou a pessoa não tinha digital cadastrada, e o mesário liberou o voto pelo título ou CPF, conferindo a foto na tela. É o procedimento normal, previsto na lei.",
+   "1 em cada 4 se identificou pelo CPF em vez do número do título, um hábito que cresce a cada eleição."
+  ]
+ }
+]

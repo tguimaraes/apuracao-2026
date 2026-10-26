@@ -6,6 +6,7 @@
 <title>Como Lula venceu o 2º turno de 2026</title>
 <meta name="description" content="Estudo geográfico e demográfico da vitória de Lula sobre Flávio Bolsonaro no 2º turno de 2026, com dados do TSE, Datafolha e FGV/CEPESP.">
 <meta property="og:title" content="Como Lula venceu o 2º turno de 2026">
+<meta property="og:image" content="https://tguimaraes.github.io/apuracao-2026/og/estudo.png"><meta property="og:url" content="https://tguimaraes.github.io/apuracao-2026/estudo.html"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:image" content="https://tguimaraes.github.io/apuracao-2026/og/estudo.png">
 <meta property="og:description" content="A aritmética da virada, a geografia do voto, o interior e o agro, e o perfil do eleitor. Dados do TSE, Datafolha e FGV/CEPESP.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&family=Roboto+Mono:wght@500&display=swap">
@@ -112,6 +113,9 @@ details.more>summary::-webkit-details-marker{display:none}
 abbr[title]{text-decoration:underline dotted;cursor:help;text-underline-offset:3px}
 .gloss dt{font-weight:700;margin-top:12px}
 .gloss dd{margin:2px 0 0;color:var(--muted);max-width:70ch}
+.sharebar{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:14px;padding-top:12px;border-top:1px solid var(--line);font-size:.8rem;color:var(--muted)}
+.sharebar a,.sharebar button{font:inherit;font-size:.8rem;font-weight:500;border:1px solid var(--line);background:var(--card);color:var(--fg);border-radius:16px;padding:6px 12px;text-decoration:none;cursor:pointer}
+.sharebar a:hover,.sharebar button:hover{background:var(--bg)}
 .topo{position:fixed;right:16px;bottom:16px;background:var(--card);box-shadow:var(--e2);border-radius:999px;padding:10px 14px;font-size:.8rem;text-decoration:none;color:var(--fg);z-index:20}
 </style>
 </head>
@@ -523,6 +527,7 @@ abbr[title]{text-decoration:underline dotted;cursor:help;text-underline-offset:3
     <ul>
       <li><b>26/10/2026, fim da tarde:</b> voto no exterior, com resultado por país (seção 2); nota do TSE desmentindo a retirada de fiscais da sala-cofre, reações de Caiado, Zema e Renan Santos, posição de ministros do TSE e do STF e registro de que nenhuma ação de anulação havia sido protocolada até o meio da tarde (seção 8); leitura da Arko Advice sobre a transferência de votos (seção 7) e a previsão da Quaest sobre abstenção na véspera (seção 9). Nenhuma pesquisa pós-eleitoral divulgada até agora; a seção 5 segue inalterada.</li>
       <li><b>26/10/2026, meio-dia:</b> logs das urnas (g1) fecham em 35.521 os votos depois das 17h, 0,8% da margem (seção 8); tabela das 27 capitais com percentuais exatos, 213 municípios virados e abstenção em SP pelo TRE-SP (seção 4); abstenção por UF do TSE (seções 2 e 9); as 12 pesquisas da véspera (seções 7 e 10). Nenhuma pesquisa pós-eleitoral divulgada até agora; a seção 5 segue com o Datafolha de 22/10.</li>
+      <li><b>26/10/2026, fim da tarde:</b> capítulos reescritos em linguagem simples, com os números recolhidos; cada capítulo ganhou página própria com prévia para redes sociais e botões de compartilhar.</li>
       <li><b>26/10/2026, tarde:</b> nova seção 11 com a leitura de 3 mil logs de urna: verificação independente dos votos tardios (31,9 mil, intervalo de 26,5 a 37,2 mil), curva de votação por hora e região, encerramentos às 19h, habilitação manual, CPF e tempo na cabine.</li>
       <li><b>26/10/2026, manhã:</b> nova seção 10 sobre redes sociais e ruas: trajetória de 51 pesquisas, métricas por plataforma, atos medidos e balanço dos indícios.</li>
       <li><b>26/10/2026, manhã:</b> registro de que não houve boca de urna em 2026 (seção 5) e da avaliação jurídica sobre a anulação (seção 8).</li>
@@ -835,6 +840,24 @@ const EST = [
   const bar = document.getElementById("progress");
   const upd = () => { const h = document.documentElement; bar.style.width = (h.scrollTop/(h.scrollHeight-h.clientHeight)*100) + "%"; };
   document.addEventListener("scroll", upd, {passive:true}); upd();
+})();
+
+
+// Botões de compartilhar por capítulo (cada capítulo tem página própria com prévia)
+(function(){
+  const CAPS = [{"id": "aritmetica", "num": "1", "slug": "de-onde-vieram-os-votos", "title": "De onde vieram os votos que fizeram Lula virar?"}, {"id": "geografia", "num": "2", "slug": "por-que-o-nordeste-decidiu", "title": "Por que o Nordeste decidiu a eleição?"}, {"id": "estados", "num": "3", "slug": "estado-por-estado", "title": "O que mudou de um turno para o outro, estado por estado?"}, {"id": "interior", "num": "4", "slug": "cidade-grande-e-pequena", "title": "Cidade grande e cidade pequena votaram diferente?"}, {"id": "perfil", "num": "5", "slug": "quem-votou-em-quem", "title": "Quem votou em quem?"}, {"id": "2022", "num": "6", "slug": "foi-igual-a-2022", "title": "Foi igual a 2022?"}, {"id": "fatores", "num": "7", "slug": "o-que-explica-a-vitoria", "title": "Então, o que explica a vitória?"}, {"id": "prorrogacao", "num": "8", "slug": "a-prorrogacao-mudou-o-resultado", "title": "A votação foi estendida até as 19h. Isso mudou o resultado?"}, {"id": "abstencao", "num": "9", "slug": "mais-gente-foi-votar", "title": "Mais gente foi votar. Isso é normal?"}, {"id": "redes", "num": "10", "slug": "redes-e-ruas", "title": "As redes sociais e os atos de rua decidiram a eleição?"}, {"id": "urnas", "num": "11", "slug": "o-que-as-urnas-contam", "title": "O que as próprias urnas contam sobre o dia da votação?"}]; const BASE = "https://tguimaraes.github.io/apuracao-2026/capitulos/";
+  CAPS.forEach(c => { const sec = document.getElementById(c.id); if (!sec) return;
+    const url = BASE + c.slug + ".html", txt = `Capítulo ${c.num}: ${c.title}`;
+    const d = document.createElement("div"); d.className = "sharebar";
+    d.innerHTML = `<span>Compartilhar este capítulo:</span>
+      <a href="https://wa.me/?text=${encodeURIComponent(txt + " " + url)}" target="_blank" rel="noopener">WhatsApp</a>
+      <a href="https://twitter.com/intent/tweet?text=${encodeURIComponent(txt)}&url=${encodeURIComponent(url)}" target="_blank" rel="noopener">X</a>
+      <a href="https://www.threads.net/intent/post?text=${encodeURIComponent(txt + " " + url)}" target="_blank" rel="noopener">Threads</a>
+      <a href="https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(url)}" target="_blank" rel="noopener">LinkedIn</a>
+      <button type="button">Copiar link</button>`;
+    const b = d.querySelector("button");
+    b.onclick = async () => { try { if (navigator.share) { await navigator.share({title: txt, url}); return; } await navigator.clipboard.writeText(url); b.textContent = "Link copiado"; } catch(e){ b.textContent = url; } setTimeout(()=>b.textContent="Copiar link", 3000); };
+    sec.appendChild(d); });
 })();
 
 // 4. Agro / tamanho
