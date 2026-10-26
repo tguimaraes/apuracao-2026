@@ -1,5 +1,6 @@
 name: Diagnóstico logs de urna
 on: { workflow_dispatch: {} }
+permissions: { contents: write }
 jobs:
   diag:
     runs-on: ubuntu-latest
@@ -8,4 +9,8 @@ jobs:
       - uses: actions/setup-python@v5
         with: { python-version: "3.12" }
       - run: pip install py7zr
-      - run: python scripts/diag.py
+      - run: mkdir -p data && (python -u scripts/diag.py > data/diag.txt 2>&1 || true)
+      - if: always()
+        run: |
+          git config user.name "robo-apuracao" && git config user.email "robo@users.noreply.github.com"
+          git add data/diag.txt && git commit -m "Diagnóstico dos logs de urna" && git push
