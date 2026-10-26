@@ -83,14 +83,15 @@ for i, (uf, mun, zona, sec) in enumerate(sample):
                 msg_types[msg[:80]] += 1
             if VOTE_RE.search(line):
                 d, t = m.group(1), m.group(2)
+                if d != "25/10/2026": continue
                 is_pres = "presidente" in line.lower()
                 row["votos_total"] += 1
                 if is_pres: row["votos_pres_total"] += 1
                 last = f"{d} {t}"
-                if d == "25/10/2026" and t > "17:00:00":
+                if t > "17:00:00":
                     row["apos17_total"] += 1
                     if is_pres: row["apos17_pres"] += 1
-                if len(examples) < 12: examples.append(line[:200])
+                if len(examples) < 12 or (t > "17:00:00" and len(examples) < 40): examples.append(line[:120])
         row["ultimo_voto"] = last
     except Exception as e:
         row["erro"] = f"{type(e).__name__}: {str(e)[:80]}"
