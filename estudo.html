@@ -100,7 +100,7 @@ sup a{text-decoration:none;font-size:.7em}
     </div>
     <div class="toc" aria-label="Seções">
       <a href="#aritmetica">1. A aritmética da virada</a><a href="#geografia">2. A geografia do voto</a><a href="#estados">3. Estado a estado</a>
-      <a href="#interior">4. Capitais, interior e agro</a><a href="#perfil">5. O perfil do eleitor</a><a href="#2022">6. Comparação com 2022</a><a href="#fatores">7. Os fatores</a><a href="#prorrogacao">8. A prorrogação de 2 horas</a><a href="#abstencao">9. Histórico da abstenção</a><a href="#redes">10. Redes e ruas</a><a href="#atualizacoes">Atualizações</a><a href="#metodo">Método e fontes</a>
+      <a href="#interior">4. Capitais, interior e agro</a><a href="#perfil">5. O perfil do eleitor</a><a href="#2022">6. Comparação com 2022</a><a href="#fatores">7. Os fatores</a><a href="#prorrogacao">8. A prorrogação de 2 horas</a><a href="#abstencao">9. Histórico da abstenção</a><a href="#redes">10. Redes e ruas</a><a href="#urnas">11. O dia, urna por urna</a><a href="#atualizacoes">Atualizações</a><a href="#metodo">Método e fontes</a>
     </div>
     <div class="note">Fontes: resultados oficiais do TSE (eleições 6257 e 6258), consolidados pela imprensa; pesquisa Datafolha de 22/10/2026 para o perfil do eleitor; estudo de Marco Antonio Faganello (FGV/CEPESP) sobre interior e agro, publicado pela Agência Pública. Links completos na última seção. Onde as fontes divergem em centésimos, usei o número com 100% das seções totalizadas.</div>
   </section>
@@ -230,10 +230,11 @@ sup a{text-decoration:none;font-size:.7em}
       <li><b>Segunda-feira, 26/10, manhã:</b> o g1 publica a contagem dos votos tardios a partir dos logs das urnas: 35.521 confirmações de voto para presidente depois das 17h, em 497.897 seções analisadas, das quais 30.866 em seções já conferidas com o boletim de urna e 4.655 ainda pendentes de conferência. O log registra o horário de cada voto, não o candidato.</li>
     </ul>
 
-    <h3>Quanta gente votou nas duas horas extras: 35,5 mil</h3>
+    <h3>Quanta gente votou nas duas horas extras: 35,5 mil, confirmados por amostra própria</h3>
     <p>O TSE não divulgou um balanço oficial, mas publica os logs de cada urna, e o g1 os leu: <b>35.521 votos para presidente foram confirmados depois das 17h</b> em todo o país, em 497.897 seções. Desses, 30.866 estão em seções cujos dados já foram conferidos com o boletim de urna (status "totalizado") e 4.655 ainda estavam pendentes de conferência na manhã de 26/10. É 0,03% dos 124 milhões de votos válidos e 0,8% da margem de 4,43 milhões. Um levantamento independente do GPS Brasília nos mesmos logs chega a um total próximo e detalha o ritmo: cerca de 32 mil votos entre 17h e 18h e menos de 2 mil entre 18h e 19h, concentrados nas cidades grandes: São Paulo (4.487), Rio de Janeiro (2.337), Salvador (1.766), Brasília (980), Manaus (621), Belo Horizonte (327), Fortaleza (302) e Recife (300). Os números batem com o relato de campo da Agência Brasil, que descreve <b>baixa procura e frustração</b>: um mesário em São Paulo estimou "no máximo, umas três ou quatro pessoas" na sua seção depois da prorrogação; em Campinas, três escolas visitadas já estavam fechadas; no Distrito Federal, muitas urnas fecharam às 17h em ponto porque a informação não chegou a tempo; no Rio, eleitores foram redirecionados para escolas fechadas e receberam declaração de comparecimento sem voto. Ou seja: a prorrogação valeu só onde a seção ainda estava aberta, e nessas seções o fluxo de fim de tarde já era baixo.</p>
     <div class="note">Os logs registram o horário de cada voto, não o candidato. A divisão desses 35,5 mil votos entre Lula e Flávio não é pública, mas é irrelevante para o resultado: na hipótese extrema de todos serem de um só candidato, a margem mudaria em 35 mil votos, contra uma diferença de 4,43 milhões.</div>
 
+    <div class="note"><b>Verificação independente deste estudo (26/10, tarde):</b> um robô próprio sorteou 3.000 seções e leu os logs no servidor do TSE. Estimativa nacional de <span id="u-est3">–</span> votos para presidente após as 17h (intervalo de 95%: <span id="u-ic3">–</span>). O número do g1 está dentro do intervalo. Detalhes e dados na seção 11.</div>
     <h3>O teste de limite (feito antes da contagem dos logs)</h3>
     <p>Antes de o número dos logs existir, o caminho era perguntar: qual é o <em>máximo</em> que a prorrogação poderia ter mudado? A abstenção caiu de 21,08% no 1º turno para 19,21% no 2º, o que equivale a cerca de <b>3 milhões de eleitores a mais</b> nas urnas. Suponha o cenário mais extremo possível, e sabidamente falso: que todos esses 3 milhões só votaram por causa das duas horas extras, e que todos votaram em Lula. Mesmo assim, o acréscimo líquido seria menor que a margem de <b>4,43 milhões</b>. Na realidade, a queda da abstenção se espalha pelo dia inteiro (a mobilização do 2º turno, o programa de transporte do TSE, que atendeu cerca de 2.500 pessoas, e o passe livre em várias cidades), a adesão tardia foi pequena, e os eleitores tardios se dividem entre os dois candidatos. Qualquer estimativa realista ficaria em algumas centenas de milhares de votos, repartidos, contra uma margem de milhões. A contagem dos logs mostrou que até essa estimativa era generosa: foram 35,5 mil.</p>
     <div class="kpis">
@@ -327,11 +328,47 @@ sup a{text-decoration:none;font-size:.7em}
     <div class="warnbox">Fatos de redes e ruas vêm de Mobile Time, Exame (USP), NSC Total e Poder360, com os limites que cada um declara (impulsionamento pago, número declarado pela campanha, ausência de medição). A leitura causal é deste estudo e está marcada como hipótese.</div>
   </section>
 
+  <section class="card" id="urnas">
+    <div class="eyebrow">11</div>
+    <h2>O dia da votação, urna por urna: o que os logs de 3 mil seções mostram</h2>
+    <p class="lead">Cada urna eletrônica grava um registro de eventos, o log, que o TSE publica por seção. Este estudo sorteou 3.000 das 517.179 seções do 2º turno, proporcionalmente por estado, e leu os logs com um robô próprio (código e dados brutos no repositório do site). O log registra o horário de cada voto confirmado e de cada etapa de habilitação do eleitor, nunca em quem a pessoa votou. Os resultados abaixo são agregados por seção, de 200 a 400 eleitores cada, e nada neles é individual.</p>
+    <div class="kpis">
+      <div class="kpi"><div class="l">Seções lidas</div><div class="v" id="u-lidas">–</div><div class="s">de 3.000 sorteadas; as demais sem arquivo publicado (erro 404)</div></div>
+      <div class="kpi"><div class="l">Votos para presidente lidos</div><div class="v" id="u-votos">–</div><div class="s">no dia 25/10, hora local da urna</div></div>
+      <div class="kpi"><div class="l">Votos após as 17h, estimativa nacional</div><div class="v" id="u-est">–</div><div class="s" id="u-ic">–</div></div>
+      <div class="kpi"><div class="l">Contagem do g1 (todas as seções)</div><div class="v">35.521</div><div class="s" id="u-comp">–</div></div>
+    </div>
+
+    <h3>Verificação independente da prorrogação</h3>
+    <p>A seção 8 usa a contagem do g1. Aqui ela é testada por outro caminho: um sorteio aleatório, lido por outro programa. Na amostra, <span id="u-lidos">–</span> votos para presidente foram confirmados depois das 17h, em <span id="u-sec17">–</span> seções. Extrapolando para o país, a estimativa é de <b id="u-est2">–</b> votos, com intervalo de confiança de 95% entre <span id="u-ic2">–</span>. O número do g1 cai dentro do intervalo. Duas leituras independentes da mesma fonte primária, compatíveis entre si: o universo de votos tardios é de poucas dezenas de milhares, menos de 1% da margem.</p>
+    <p>Um detalhe que a amostra permite ver: só <b id="u-19h">–</b> das seções lidas registraram encerramento às 19h ou depois (cerca de 1,3%). As demais fecharam às 17h, como de costume, ou antes, quando todos os eleitores presentes já tinham votado. A prorrogação, na prática, alcançou pouco mais de uma em cada cem seções.</p>
+
+    <h3>A que horas o Brasil vota</h3>
+    <p>O gráfico mostra a distribuição dos votos para presidente ao longo do dia, em intervalos de meia hora, no país e por região. O padrão é o mesmo em todo lugar: pico entre 8h e 9h, queda contínua e a última meia hora com um quinto do movimento da primeira. Cerca de 60% dos votos entram até o meio-dia. Isso, por si só, explica por que estender o horário rende tão pouco: às 17h a fila já tinha acabado na quase totalidade das seções.</p>
+    <svg class="chart" id="c-horas" viewBox="0 0 860 320" role="img" aria-label="Distribuição dos votos ao longo do dia por região"></svg>
+    <div class="legend" id="l-horas"></div>
+    <div class="tbl"><table><caption>Por região: participação dos votos até o meio-dia, eleitores habilitados manualmente (biometria não reconhecida ou sem cadastro) e identificados por CPF em vez de título.</caption>
+      <thead><tr><th>Região</th><th>Seções</th><th>Votos até 12h</th><th>Habilitação manual</th><th>Identificação por CPF</th></tr></thead><tbody id="t-reg-urnas"></tbody></table></div>
+
+    <h3>Biometria, CPF e o tempo na cabine</h3>
+    <div class="kpis">
+      <div class="kpi"><div class="l">Eleitores habilitados manualmente</div><div class="v" id="u-manual">–</div><div class="s">biometria não reconhecida ou eleitor sem digital cadastrada</div></div>
+      <div class="kpi"><div class="l">Identificados pelo CPF</div><div class="v" id="u-cpf">–</div><div class="s">em vez do número do título</div></div>
+      <div class="kpi"><div class="l">Corrigiram o voto na tela de confirmação</div><div class="v" id="u-corr">–</div><div class="s">dos eleitores</div></div>
+      <div class="kpi"><div class="l">Tempo mediano na cabine</div><div class="v" id="u-cab">–</div><div class="s">entre a habilitação e o voto computado; intervalo mediano entre eleitores: <span id="u-gap">–</span></div></div>
+    </div>
+    <p>Com um único cargo na tela, o voto do 2º turno é rápido: a mediana é de 10 segundos entre o mesário habilitar o eleitor e a urna computar o voto. O intervalo mediano entre um eleitor e o seguinte, 71 segundos, mostra que a maior parte do dia a seção opera com folga, e não com fila. A habilitação manual, em torno de 7% dos eleitores, é maior no Sul e no Nordeste (Piauí, Rio Grande do Norte, Rio Grande do Sul e Bahia acima de 8%) e menor no Norte e no DF; a variação acompanha a cobertura do cadastro biométrico e a idade do eleitorado, e é um indicador de atrito, não de irregularidade. Um em cada quatro eleitores se identificou pelo CPF, hábito que cresce a cada eleição.</p>
+    <div class="tbl"><table><caption>Habilitação manual por UF, em % dos eleitores da amostra. Ordenado do maior para o menor.</caption>
+      <thead><tr><th>UF</th><th>Seções</th><th>Habilitação manual</th><th>Votos após 17h na amostra</th></tr></thead><tbody id="t-uf-urnas"></tbody></table></div>
+    <div class="note">Método: sorteio com semente fixa (2026), estratificado por UF; leitura do arquivo de log de cada seção no servidor do TSE; contagem das linhas "Voto confirmado para [Presidente]" do dia 25/10/2026 em hora local da urna; eventos de habilitação pelos textos exatos do componente de votação. Código em <code>scripts/analise_logs.py</code> e dados em <code>data/analise_logs.json</code> e <code>data/resumo_logs.json</code> no repositório <a href="https://github.com/tguimaraes/apuracao-2026" target="_blank" rel="noopener">tguimaraes/apuracao-2026</a>. As 112 seções sem arquivo (3,7%) não foram substituídas; se tiverem perfil diferente, a estimativa carrega um pequeno viés que o intervalo não captura.</div>
+  </section>
+
   <section class="card" id="atualizacoes">
     <div class="eyebrow">Registro</div>
     <h2>Atualizações do estudo</h2>
     <ul>
       <li><b>26/10/2026, meio-dia:</b> logs das urnas (g1) fecham em 35.521 os votos depois das 17h, 0,8% da margem (seção 8); tabela das 27 capitais com percentuais exatos, 213 municípios virados e abstenção em SP pelo TRE-SP (seção 4); abstenção por UF do TSE (seções 2 e 9); as 12 pesquisas da véspera (seções 7 e 10). Nenhuma pesquisa pós-eleitoral divulgada até agora; a seção 5 segue com o Datafolha de 22/10.</li>
+      <li><b>26/10/2026, tarde:</b> nova seção 11 com a leitura de 3 mil logs de urna: verificação independente dos votos tardios (31,9 mil, intervalo de 26,5 a 37,2 mil), curva de votação por hora e região, encerramentos às 19h, habilitação manual, CPF e tempo na cabine.</li>
       <li><b>26/10/2026, manhã:</b> nova seção 10 sobre redes sociais e ruas: trajetória de 51 pesquisas, métricas por plataforma, atos medidos e balanço dos indícios.</li>
       <li><b>26/10/2026, manhã:</b> registro de que não houve boca de urna em 2026 (seção 5) e da avaliação jurídica sobre a anulação (seção 8).</li>
       <li><b>26/10/2026, madrugada:</b> nova seção 9 com o histórico da abstenção desde 1989 e a leitura do movimento atípico do 2º turno.</li>
@@ -388,6 +425,7 @@ sup a{text-decoration:none;font-size:.7em}
   <footer>Estudo independente, feito a partir de dados públicos. Dados eleitorais: TSE. Perfil do eleitor: Datafolha. Interior e agro: FGV/CEPESP. Nenhum vínculo com candidatos, partidos ou com o TSE.</footer>
 </main>
 
+<script id="resumo-logs" type="application/json">{"gerado_em": "2026-10-26T17:23:24.320663+00:00", "universo": 517179, "amostra": 3000, "lidas": 2888, "erros_404": 112, "votos_pres": 741751, "apos17": {"lidos": 178, "secoes_com": 154, "estimativa": 31876, "ic95": [26541, 37211], "g1": 35521}, "curva_nacional_7h_18h": [0.46, 0.43, 8.76, 8.09, 7.83, 7.79, 7.62, 7.24, 6.63, 5.89, 5.19, 4.65, 4.42, 4.26, 4.23, 4.08, 3.89, 3.61, 3.17, 1.69, 0.02, 0.0], "regioes": {"Norte": {"secoes": 258, "curva": [3.02, 2.9, 9.34, 9.34, 8.71, 8.29, 7.64, 6.74, 5.71, 4.7, 4.1, 3.57, 3.76, 3.74, 3.86, 3.78, 3.48, 3.08, 2.3, 1.23, 0.02, 0.0], "ate12": 60.5, "manual": 5.8, "cpf": 15.5}, "Nordeste": {"secoes": 816, "curva": [0.0, 0.0, 9.75, 9.61, 8.98, 8.58, 7.96, 7.13, 6.15, 5.14, 4.31, 3.81, 3.73, 3.65, 3.86, 3.86, 3.97, 4.03, 3.69, 1.77, 0.02, 0.0], "ate12": 63.3, "manual": 7.6, "cpf": 23.1}, "Centro-Oeste": {"secoes": 215, "curva": [2.99, 2.66, 8.77, 8.42, 7.98, 7.84, 7.63, 7.07, 6.54, 5.52, 4.67, 4.0, 3.87, 4.0, 4.06, 3.97, 3.68, 3.08, 2.1, 1.13, 0.02, 0.0], "ate12": 59.8, "manual": 6.4, "cpf": 31.4}, "Sudeste": {"secoes": 1178, "curva": [0.0, 0.0, 8.1, 7.05, 6.98, 7.1, 7.24, 7.29, 7.06, 6.69, 6.17, 5.62, 5.11, 4.68, 4.37, 4.14, 3.87, 3.53, 3.18, 1.78, 0.02, 0.0], "ate12": 57.5, "manual": 6.7, "cpf": 25.9}, "Sul": {"secoes": 418, "curva": [0.0, 0.0, 8.37, 7.22, 7.43, 7.9, 8.04, 7.69, 6.96, 5.89, 5.01, 4.41, 4.49, 4.7, 4.8, 4.51, 4.1, 3.59, 3.1, 1.77, 0.01, 0.0], "ate12": 59.5, "manual": 7.8, "cpf": 33.5}}, "uf": {"ac": {"secoes": 10, "manual": 5.2, "apos17": 0, "votos": 1829}, "al": {"secoes": 40, "manual": 6.2, "apos17": 3, "votos": 11354}, "am": {"secoes": 48, "manual": 5.1, "apos17": 0, "votos": 12522}, "ap": {"secoes": 11, "manual": 4.7, "apos17": 1, "votos": 2661}, "ba": {"secoes": 205, "manual": 8.4, "apos17": 21, "votos": 54967}, "ce": {"secoes": 142, "manual": 7.4, "apos17": 7, "votos": 36469}, "df": {"secoes": 41, "manual": 4.6, "apos17": 7, "votos": 10979}, "es": {"secoes": 56, "manual": 7.0, "apos17": 3, "votos": 13580}, "go": {"secoes": 92, "manual": 7.5, "apos17": 6, "votos": 23060}, "ma": {"secoes": 106, "manual": 6.9, "apos17": 3, "votos": 24169}, "mg": {"secoes": 302, "manual": 6.9, "apos17": 16, "votos": 76310}, "ms": {"secoes": 37, "manual": 6.5, "apos17": 0, "votos": 8163}, "mt": {"secoes": 45, "manual": 6.1, "apos17": 0, "votos": 11831}, "pa": {"secoes": 125, "manual": 6.2, "apos17": 8, "votos": 28573}, "pb": {"secoes": 62, "manual": 7.2, "apos17": 5, "votos": 16080}, "pe": {"secoes": 125, "manual": 7.0, "apos17": 10, "votos": 36311}, "pi": {"secoes": 56, "manual": 9.2, "apos17": 1, "votos": 12505}, "pr": {"secoes": 157, "manual": 7.2, "apos17": 9, "votos": 41544}, "rj": {"secoes": 218, "manual": 7.9, "apos17": 24, "votos": 57566}, "rn": {"secoes": 46, "manual": 8.7, "apos17": 3, "votos": 12291}, "ro": {"secoes": 29, "manual": 6.4, "apos17": 0, "votos": 6204}, "rr": {"secoes": 9, "manual": 3.8, "apos17": 0, "votos": 1732}, "rs": {"secoes": 160, "manual": 8.5, "apos17": 5, "votos": 39784}, "sc": {"secoes": 101, "manual": 7.8, "apos17": 2, "votos": 27606}, "se": {"secoes": 34, "manual": 6.7, "apos17": 1, "votos": 8296}, "sp": {"secoes": 602, "manual": 6.1, "apos17": 41, "votos": 158722}, "to": {"secoes": 26, "manual": 6.1, "apos17": 1, "votos": 5639}, "zz": {"secoes": 3, "manual": 0.0, "apos17": 1, "votos": 1004}}, "encerramento": {"15": 13, "16": 165, "17": 2670, "18": 3, "19": 37}, "encerradas_19h": 37, "eventos": {"hab_bio": 650518, "solic_manual": 52124, "tent_dedo": 434410, "timeout_dedo": 19867, "id_cpf": 198686, "id_titulo": 572449, "justificativa": 13630, "corrigiu": 8624, "nao_encontrado": 7797, "eleitores": 741754}, "manual_pct": 7.0, "cpf_pct": 25.8, "corrigiu_pct": 1.16, "justificativas_por_secao": 4.7, "cabine_mediana_s": 10.0, "intervalo_mediano_s": 71.0}</script>
 <script>
 const L = "#C62828", F = "#1565C0", O = "#9E9E9E", FG = "#212121", MU = "#616161", LINE = "#E0E0E0";
 const fmtM = n => (n/1e6).toLocaleString("pt-BR",{minimumFractionDigits:1,maximumFractionDigits:1}) + " mi";
@@ -581,6 +619,38 @@ const EST = [
   document.getElementById("t-vespera").innerHTML = V.map(([n,l])=>{ const d = l-51.79, front = l>50 ? "Lula" : l<50 ? "Flávio" : "empate";
     return `<tr><td><b>${n}</b></td><td style="color:${L}">${l.toLocaleString("pt-BR",{minimumFractionDigits:1,maximumFractionDigits:2})}%</td><td style="color:${F}">${(100-l).toLocaleString("pt-BR",{minimumFractionDigits:1,maximumFractionDigits:2})}%</td>
       <td>${front==="empate"?"empate":`<span class="chip" style="background:${front==="Lula"?L:F}">${front}</span>`}</td><td class="d dn">−${Math.abs(d).toLocaleString("pt-BR",{minimumFractionDigits:1,maximumFractionDigits:1})} p.p.</td></tr>`; }).join("");
+})();
+
+// 11. Logs de urna: lê data/resumo_logs.json gerado pelo robô
+(async function(){
+  let S; try { S = JSON.parse(document.getElementById("resumo-logs").textContent); } catch(e){ return; }
+  try { const r = await fetch("data/resumo_logs.json", {cache:"no-store"}); if (r.ok) S = await r.json(); } catch(e){}
+  const n = v => v.toLocaleString("pt-BR"), $ = id => document.getElementById(id);
+  $("u-lidas").textContent = n(S.lidas); $("u-votos").textContent = n(S.votos_pres);
+  $("u-est").textContent = n(S.apos17.estimativa); $("u-ic").textContent = `intervalo de 95%: ${n(S.apos17.ic95[0])} a ${n(S.apos17.ic95[1])}`;
+  const dentro = S.apos17.g1 >= S.apos17.ic95[0] && S.apos17.g1 <= S.apos17.ic95[1];
+  $("u-comp").textContent = dentro ? "dentro do intervalo da amostra: compatível" : "fora do intervalo da amostra";
+  $("u-lidos").textContent = n(S.apos17.lidos); $("u-sec17").textContent = n(S.apos17.secoes_com);
+  $("u-est2").textContent = n(S.apos17.estimativa); $("u-ic2").textContent = `${n(S.apos17.ic95[0])} e ${n(S.apos17.ic95[1])}`;
+  if ($("u-est3")) { $("u-est3").textContent = n(S.apos17.estimativa); $("u-ic3").textContent = `${n(S.apos17.ic95[0])} a ${n(S.apos17.ic95[1])}`; }
+  $("u-19h").textContent = n(S.encerradas_19h);
+  $("u-manual").textContent = S.manual_pct.toLocaleString("pt-BR") + "%"; $("u-cpf").textContent = S.cpf_pct.toLocaleString("pt-BR") + "%";
+  $("u-corr").textContent = S.corrigiu_pct.toLocaleString("pt-BR") + "%"; $("u-cab").textContent = S.cabine_mediana_s + " s"; $("u-gap").textContent = S.intervalo_mediano_s + " s";
+  // gráfico por meia hora, 7h a 18h
+  const svg = $("c-horas"), W=860, ml=48, mr=16, mt=16, mb=36, iw=W-ml-mr, ih=320-mt-mb, labels = [];
+  for (let b=14;b<36;b++) labels.push(`${String(Math.floor(b/2)).padStart(2,"0")}:${b%2?"30":"00"}`);
+  const cols = {"Brasil":"#212121","Nordeste":"#C62828","Sudeste":"#1565C0","Sul":"#00897B","Centro-Oeste":"#EF6C00","Norte":"#6A1B9A"};
+  const series = {"Brasil": S.curva_nacional_7h_18h}; Object.entries(S.regioes).forEach(([k,v])=>series[k]=v.curva);
+  const maxv = Math.max(...Object.values(series).flat()) * 1.1;
+  const x = i => ml + i/(labels.length-1)*iw, y = v => mt + (1-v/maxv)*ih;
+  let g = "";
+  for (let v=0; v<=maxv; v+=2) g += `<line class="grid" x1="${ml}" x2="${W-mr}" y1="${y(v)}" y2="${y(v)}"></line><text class="mu" x="${ml-6}" y="${y(v)+4}" text-anchor="end">${v}%</text>`;
+  labels.forEach((l,i)=>{ if (i%2===0) g += `<text class="mu" x="${x(i)}" y="${320-14}" text-anchor="middle">${l}</text>`; });
+  Object.entries(series).forEach(([k,arr])=>{ g += `<path d="${arr.map((v,i)=>`${i?"L":"M"}${x(i)},${y(v)}`).join(" ")}" fill="none" stroke="${cols[k]}" stroke-width="${k==="Brasil"?4:2}" stroke-linejoin="round" opacity="${k==="Brasil"?1:.8}"></path>`; });
+  svg.innerHTML = g;
+  $("l-horas").innerHTML = Object.keys(series).map(k=>`<span><i class="sw" style="background:${cols[k]}"></i>${k}</span>`).join("") + `<span>% dos votos para presidente em cada meia hora, hora registrada pela urna. Os votos entre 7h e 8h no Norte e no Centro-Oeste refletem urnas com relógio em horário de Brasília em estados com fuso diferente.</span>`;
+  $("t-reg-urnas").innerHTML = Object.entries(S.regioes).map(([k,v])=>`<tr><td>${k}</td><td>${n(v.secoes)}</td><td>${v.ate12.toLocaleString("pt-BR")}%</td><td>${v.manual.toLocaleString("pt-BR")}%</td><td>${v.cpf.toLocaleString("pt-BR")}%</td></tr>`).join("");
+  $("t-uf-urnas").innerHTML = Object.entries(S.uf).filter(([u])=>u!=="zz").sort((a,b)=>b[1].manual-a[1].manual).map(([u,v])=>`<tr><td><b>${u.toUpperCase()}</b></td><td>${v.secoes}</td><td>${v.manual.toLocaleString("pt-BR")}%</td><td>${v.apos17} em ${n(v.votos)} votos</td></tr>`).join("");
 })();
 
 // 4. Agro / tamanho
