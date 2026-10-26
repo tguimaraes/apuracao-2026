@@ -1,6 +1,5 @@
-universo 517179 amostra 299
+universo 517179 amostra 123
 lidas 100
-lidas 200
-ok 287 erros 12 votos 73399 apos17 16
-votos por meia hora (0h..23h30): [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 12, 18, 278, 273, 6274, 5735, 5743, 5598, 5716, 5393, 5158, 4378, 3885, 3459, 3147, 3136, 3072, 3029, 2805, 2673, 2329, 1272, 16, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
-biometria: {'bio_ok': 893, 'bio_falha': 158, 'bio_sem_cadastro': 645, 'liberado_mesario': 4808, 'urna_substituida': 5, 'energia_bateria': 5316}
+ok 116 erros 7 votos 30598 apos17 8
+votos por meia hora (0h..23h30): [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 13, 7, 161, 120, 2594, 2437, 2391, 2438, 2259, 2208, 2056, 1818, 1669, 1504, 1392, 1286, 1278, 1251, 1211, 1029, 935, 533, 7, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+biometria: {'bio_ok': 395, 'bio_falha': 62, 'bio_sem_cadastro': 224, 'liberado_mesario': 1945, 'urna_substituida': 0, 'energia_bateria': 2195}
