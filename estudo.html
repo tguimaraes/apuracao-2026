@@ -113,6 +113,19 @@ details.more>summary::-webkit-details-marker{display:none}
 abbr[title]{text-decoration:underline dotted;cursor:help;text-underline-offset:3px}
 .gloss dt{font-weight:700;margin-top:12px}
 .gloss dd{margin:2px 0 0;color:var(--muted);max-width:70ch}
+.tl{margin:22px 0 6px;position:relative;padding-left:0}
+.tl h3{font-size:1.05rem;margin:0 0 4px}
+.tl .sub{font-size:.9rem;color:var(--muted);margin:0 0 14px}
+.tl .day{font-size:.78rem;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);font-weight:600;margin:18px 0 8px}
+.tl ol{list-style:none;margin:0;padding:0;border-left:3px solid var(--line);margin-left:52px}
+.tl li{position:relative;padding:4px 0 14px 18px;font-size:.98rem;line-height:1.5}
+.tl li::before{content:"";position:absolute;left:-9px;top:10px;width:15px;height:15px;border-radius:50%;background:#fff;border:3px solid var(--line)}
+.tl li.stf::before{border-color:#6A1B9A}.tl li.tse::before{border-color:#00695C}.tl li.e-lula::before{border-color:#C62828}.tl li.e-flavio::before{border-color:#1565C0}.tl li.marco::before{border-color:#F9A825;background:#F9A825}
+.tl .h{position:absolute;left:-70px;top:5px;width:46px;text-align:right;font-weight:700;font-variant-numeric:tabular-nums;font-size:.92rem}
+.tl .who{display:inline-block;font-size:.72rem;font-weight:700;letter-spacing:.04em;padding:2px 8px;border-radius:12px;margin-right:6px;color:#fff;vertical-align:1px}
+.tl .stf .who{background:#6A1B9A}.tl .tse .who{background:#00695C}.tl .e-lula .who{background:#C62828}.tl .e-flavio .who{background:#1565C0}.tl .marco .who{background:#F9A825;color:#222}
+.tl .leg{display:flex;flex-wrap:wrap;gap:8px 14px;font-size:.8rem;color:var(--muted);margin-top:8px}
+@media (max-width:600px){.tl ol{margin-left:0;border-left:0}.tl li{padding-left:0}.tl li::before{display:none}.tl .h{position:static;display:block;width:auto;text-align:left;margin-bottom:2px}}
 .sharebar{margin-top:20px;background:linear-gradient(135deg,#FFF8E1,#FFF3E0);border:1px solid #FFE0B2;border-radius:12px;padding:16px 18px;display:grid;gap:10px}
 .sharebar .t{font-weight:700;font-size:1.02rem;color:var(--fg)}
 .sharebar .t small{display:block;font-weight:400;color:var(--muted);font-size:.85rem;margin-top:2px}
@@ -335,6 +348,40 @@ abbr[title]{text-decoration:underline dotted;cursor:help;text-underline-offset:3
 <p>Agora a comparação: a vantagem de Lula foi de <b>4,43 milhões</b> de votos. Mesmo que todos os 35 mil votos tardios fossem dele, a vantagem cairia para 4,39 milhões. Mesmo que todos fossem de Flávio, iria a 4,47. É como tentar mudar o resultado de um jogo de 100 a 1 com um ponto a mais. A prorrogação foi mal feita e desigual, e isso merece crítica, mas não mudou quem venceu.</p></div>
     <div class="kpis">
       <div class="kpi"><div class="l">Margem de Lula</div><div class="v lula">4,43 mi</div><div class="s">votos</div></div>
+    </div>
+    <div class="tl" id="tl-prorrogacao">
+      <h3>Linha do tempo: tudo que aconteceu no TSE e no STF</h3>
+      <p class="sub">Horário de Brasília. Repare que, até as 17h03, só havia pedidos; a decisão veio três minutos depois de a votação já ter terminado na maior parte do país.</p>
+      <div class="day">Domingo, 25 de outubro</div>
+      <ol>
+<li class="e-lula"><span class="h">13h22</span><span class="who">Campanha Lula</span>Federação Brasil da Esperança pede ao TSE votação até as 19h nas zonas com problema de transporte (falta de ônibus na Bahia e municípios de PI, PB, PR, PA, RJ, SP, AL, PE e RR). Pede também senhas para quem estivesse na fila às 17h e transporte gratuito por mais duas horas.</li>
+<li class="e-lula"><span class="h">15h42</span><span class="who">Campanha Lula</span>Coligação amplia o pedido ao TSE para o país inteiro e pede que os TREs identifiquem as zonas afetadas.</li>
+<li class="e-flavio"><span class="h">15h50</span><span class="who">Campanha Flávio</span>PL pede ao TSE prorrogação em 19 cidades de SP, PR e SC, por chuva, alagamentos, vias interditadas e falta de energia. Pede que a divulgação do resultado presidencial só comece depois do fim da votação nesses locais.</li>
+<li class="tse"><span class="h">~16h</span><span class="who">TSE</span>Nunes Marques, presidente do TSE, dá 30 minutos para o TRE da Bahia se manifestar sobre o pedido do PT. Nenhuma decisão de mérito é tomada pelo TSE antes das 17h.</li>
+<li class="e-lula"><span class="h">16h22</span><span class="who">Campanha Lula</span>Sem resposta do TSE, a campanha aciona o STF com uma reclamação pedindo a extensão para todo o território nacional.</li>
+<li class="stf"><span class="h">16h33</span><span class="who">STF</span>Ministro Cristiano Zanin é sorteado relator.</li>
+<li class="marco"><span class="h">17h00</span><span class="who">Horário oficial</span>Fim regular da votação. A maior parte das seções encerra e emite o boletim de urna. Em SP, 80% das seções fecharam às 17h, segundo o presidente do TRE-SP. O TSE começa a totalizar.</li>
+<li class="stf"><span class="h">17h03</span><span class="who">STF</span>Zanin concede a liminar: votação prorrogada até as 19h em todo o país, cabendo ao TSE cumprir. A decisão não diz, nesse momento, o que fazer com as urnas já fechadas.</li>
+<li class="tse"><span class="h">17h06</span><span class="who">TSE</span>Totalização e divulgação interrompidas, com 0,25% das seções apuradas (parcial do exterior e de seções pequenas).</li>
+<li class="tse"><span class="h">17h20</span><span class="who">TSE</span>Comunicado oficial da suspensão da apuração.</li>
+<li class="tse"><span class="h">17h49</span><span class="who">TSE</span>Comunica às seções eleitorais que a prorrogação vale para as urnas que ainda não haviam sido fechadas. Urna encerrada não reabre.</li>
+<li class="stf"><span class="h">~18h</span><span class="who">STF</span>Zanin divulga nota esclarecendo que a medida vale apenas onde as urnas não foram fechadas, e que os votos das urnas já encerradas serão computados normalmente.</li>
+<li class="tse"><span class="h">18h</span><span class="who">TSE</span>Nunes Marques orienta as seções ainda abertas a funcionar até as 19h "em estrito cumprimento à determinação judicial". Na prática, cerca de 1% das seções do país.</li>
+<li class="marco"><span class="h">19h00</span><span class="who">Horário estendido</span>Votação encerra pela segunda vez. Totalização retomada.</li>
+<li class="tse"><span class="h">21h08</span><span class="who">TSE</span>Lula é declarado matematicamente eleito, com 97,69% das seções apuradas (51,74% dos válidos naquele momento).</li>
+<li class="tse"><span class="h">23h26</span><span class="who">TSE</span>Totalização chega a 100% das 499.248 seções: Lula 51,79%, Flávio 48,21%.</li>
+<li class="tse"><span class="h">noite</span><span class="who">TSE</span>Nunes Marques diz que a decisão "não é convencional", que a Justiça Eleitoral enfrentou a maior fila de boletins de urna já registrada, mas que cumpriu a ordem e que isso não alterou o resultado.</li>
+<li class="e-flavio"><span class="h">noite</span><span class="who">Campanha Flávio</span>Flávio Bolsonaro não reconhece o resultado e anuncia que pedirá a anulação, alegando regra mudada durante o jogo e fiscais do PL retirados da sala-cofre. O TSE responde em nota: "A afirmação é falsa"; dois fiscais do PL acompanharam o teste de integridade, a totalização e a divulgação, com registro filmado.</li>
+      </ol>
+      <div class="day">Segunda-feira, 26 de outubro</div>
+      <ol>
+<li class="marco"><span class="h">manhã</span><span class="who">Imprensa</span>O g1 lê os logs de todas as urnas e conta 35.521 votos para presidente depois das 17h. Este estudo confirma por amostra própria (seção 11).</li>
+<li class="stf"><span class="h">tarde</span><span class="who">STF</span>Edson Fachin, presidente do STF, defende o respeito à "vontade dos eleitores" e diz que divergências devem ser resolvidas dentro dos limites constitucionais. Ministros do STF e do TSE, ouvidos por O Globo, não veem fundamento para anular o 2º turno.</li>
+<li class="tse"><span class="h">tarde</span><span class="who">TSE</span>Nunes Marques reafirma que as dificuldades "não comprometeram a apuração". Até o meio da tarde, nenhuma ação de anulação havia sido protocolada: o pedido seguia só anunciado.</li>
+      </ol>
+      <div class="leg"><span><span class="who" style="background:#6A1B9A">STF</span>Supremo Tribunal Federal</span><span><span class="who" style="background:#00695C">TSE</span>Tribunal Superior Eleitoral</span><span><span class="who" style="background:#C62828">Campanha Lula</span></span><span><span class="who" style="background:#1565C0">Campanha Flávio</span></span><span><span class="who" style="background:#F9A825;color:#222">Marco</span>horário oficial ou fato de referência</span></div>
+      <p class="sub" style="margin-top:10px">Fontes dos horários: cronologias de Exame e Poder360 (25 e 26/10), Metrópoles, Terra e Estadão Conteúdo (declarações da noite), Correio Braziliense, O Globo via Portal R10 e Congresso em Foco (26/10). Horários com "~" são aproximados nas matérias.</p>
+    </div>
     <details class="more deep"><summary>Para quem quiser conferir os números, as tabelas e as fontes</summary>
     <p class="lead">Resposta curta: não. Os logs das urnas, lidos pelo g1 na manhã de 26/10, registram 35.521 votos para presidente confirmados depois das 17h em todo o país, 0,8% da margem de 4,43 milhões; mesmo que todos fossem de Lula, não mudariam nada. Antes desse número, um teste de limite já mostrava que, na hipótese mais extrema a favor dessa tese, as duas horas extras não alcançariam a margem. Mas a medida foi inédita, mal executada e é o principal argumento da campanha de Flávio Bolsonaro para contestar a eleição, então vale entender em detalhe.</p>
 
@@ -358,7 +405,7 @@ abbr[title]{text-decoration:underline dotted;cursor:help;text-underline-offset:3
     <div class="note"><b>Verificação independente deste estudo (26/10, tarde):</b> um robô próprio sorteou 3.000 seções e leu os logs no servidor do TSE. Estimativa nacional de <span id="u-est3">–</span> votos para presidente após as 17h (intervalo de 95%: <span id="u-ic3">–</span>). O número do g1 está dentro do intervalo. Detalhes e dados na seção 11.</div>
     <h3>O teste de limite (feito antes da contagem dos logs)</h3>
     <p>Antes de o número dos logs existir, o caminho era perguntar: qual é o <em>máximo</em> que a prorrogação poderia ter mudado? A abstenção caiu de 21,08% no 1º turno para 19,22% no 2º, o que equivale a cerca de <b>3 milhões de eleitores a mais</b> nas urnas. Suponha o cenário mais extremo possível, e sabidamente falso: que todos esses 3 milhões só votaram por causa das duas horas extras, e que todos votaram em Lula. Mesmo assim, o acréscimo líquido seria menor que a margem de <b>4,43 milhões</b>. Na realidade, a queda da abstenção se espalha pelo dia inteiro (a mobilização do 2º turno, o programa de transporte do TSE, que atendeu cerca de 2.500 pessoas, e o passe livre em várias cidades), a adesão tardia foi pequena, e os eleitores tardios se dividem entre os dois candidatos. Qualquer estimativa realista ficaria em algumas centenas de milhares de votos, repartidos, contra uma margem de milhões. A contagem dos logs mostrou que até essa estimativa era generosa: foram 35,5 mil.</p>
-    
+    <div class="kpis">
       <div class="kpi"><div class="l">Queda da abstenção vs 1º turno</div><div class="v">≈ 3,0 mi</div><div class="s">eleitores a mais, o dia inteiro</div></div>
       <div class="kpi"><div class="l">Votos nas 2 horas extras</div><div class="v">35,5 mil</div><div class="s">logs das urnas (g1), 0,8% da margem</div></div>
       <div class="kpi"><div class="l">Quem pediu prorrogação</div><div class="v">as duas</div><div class="s">campanhas, em áreas diferentes</div></div>
