@@ -1,5 +1,35 @@
-universo 517179 amostra 123
+universo 517179 amostra 3000
 lidas 100
-ok 116 erros 7 votos 30598 apos17 8
-votos por meia hora (0h..23h30): [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 13, 7, 161, 120, 2594, 2437, 2391, 2438, 2259, 2208, 2056, 1818, 1669, 1504, 1392, 1286, 1278, 1251, 1211, 1029, 935, 533, 7, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
-biometria: {'bio_ok': 395, 'bio_falha': 62, 'bio_sem_cadastro': 224, 'liberado_mesario': 1945, 'urna_substituida': 0, 'energia_bateria': 2195}
+lidas 200
+lidas 300
+lidas 400
+lidas 500
+lidas 600
+lidas 700
+lidas 800
+lidas 900
+lidas 1000
+lidas 1100
+lidas 1200
+lidas 1300
+lidas 1400
+lidas 1500
+lidas 1600
+lidas 1700
+lidas 1800
+lidas 1900
+lidas 2000
+lidas 2100
+lidas 2200
+lidas 2300
+lidas 2400
+lidas 2500
+lidas 2600
+lidas 2700
+lidas 2800
+lidas 2900
+lidas 3000
+ok 2888 erros 112 votos 741751 apos17 178
+votos por meia hora (0h..23h30): [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 209, 207, 3402, 3156, 64953, 59976, 58044, 57771, 56547, 53734, 49213, 43685, 38507, 34467, 32820, 31611, 31342, 30229, 28882, 26809, 23504, 12504, 159, 7, 10, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+eventos: {'hab_bio': 650518, 'hab_manual': 0, 'solic_manual': 52124, 'tent_dedo': 434410, 'timeout_dedo': 19867, 'id_cpf': 198686, 'id_titulo': 572449, 'justificativa': 13630, 'corrigiu': 8624, 'nao_encontrado': 7797, 'eleitores': 741754}
+tipos de habilitação: [('biométrica', 650518)]
