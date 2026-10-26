@@ -1,7 +1,19 @@
 """Amostra estratificada de seções do 2º turno de 2026: conta votos confirmados depois das 17h (hora local da urna)
 a partir dos logs públicos do TSE. Uso: python amostra_logs.py N SEED"""
 import json, sys, io, random, re, time, csv, urllib.request, datetime, collections
-import py7zr
+import py7zr, zipfile, gzip, lzma
+
+def decompress(data):
+    """O arquivo .jez pode vir como 7z, zip, gzip ou texto puro."""
+    if data[:6] == b"7z\xbc\xaf\x27\x1c":
+        with py7zr.SevenZipFile(io.BytesIO(data)) as z7: return "".join(b.read().decode("latin-1","replace") for b in z7.readall().values())
+    if data[:2] == b"PK":
+        with zipfile.ZipFile(io.BytesIO(data)) as zf: return "".join(zf.read(n).decode("latin-1","replace") for n in zf.namelist())
+    if data[:2] == b"\x1f\x8b": return gzip.decompress(data).decode("latin-1","replace")
+    if data[:6] == b"\xfd7zXZ\x00": return lzma.decompress(data).decode("latin-1","replace")
+    try: return lzma.decompress(data).decode("latin-1","replace")
+    except Exception: pass
+    raise ValueError("formato desconhecido, magic=" + repr(data[:8]))
 
 BASE = "https://resultados.tse.jus.br/oficial/ele2026"
 PLEITO = "3221"
@@ -61,8 +73,7 @@ for i, (uf, mun, zona, sec) in enumerate(sample):
         h = aux["hashes"][0]; row["status"] = h.get("st", "")
         logname = next(a["nm"] for a in h["arq"] if a.get("tp") == "log")
         data = get(f"{base}/{h['hash']}/{logname}", binary=True)
-        with py7zr.SevenZipFile(io.BytesIO(data)) as z7:
-            txt = "".join(b.read().decode("latin-1", "replace") for b in z7.readall().values())
+        txt = decompress(data)
         last = ""
         for line in txt.splitlines():
             m = TS_RE.match(line)
@@ -99,7 +110,7 @@ mean = statistics.mean(vals) if vals else 0
 sd = statistics.pstdev(vals) if len(vals) > 1 else 0
 se = sd / (len(vals) ** 0.5) if vals else 0
 est = mean * total; lo = max(0, (mean - 1.96 * se) * total); hi = (mean + 1.96 * se) * total
-summary = {"gerado_em": datetime.datetime.utcnow().isoformat() + "Z", "pleito": PLEITO, "universo_secoes": total, "amostra": len(sample), "lidas_ok": len(ok),
+summary = {"gerado_em": datetime.datetime.now(datetime.timezone.utc).isoformat(), "pleito": PLEITO, "universo_secoes": total, "amostra": len(sample), "lidas_ok": len(ok),
   "erros": len(rows) - len(ok), "votos_lidos": tot_v, "votos_presidente_lidos": tot_p, "apos17_lidos": late_v, "apos17_presidente_lidos": late_p,
   "secoes_com_voto_apos17": sum(1 for v in vals if v > 0), "media_por_secao": mean, "estimativa_nacional": round(est), "ic95": [round(lo), round(hi)],
   "ultimo_voto_mais_tarde": max((r["ultimo_voto"] for r in ok), default=""), "por_uf": {}}
