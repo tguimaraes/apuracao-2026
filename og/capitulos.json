@@ -153,8 +153,26 @@
   "bullets": []
  },
  {
-  "id": "redes",
+  "id": "faltas",
   "num": "10",
+  "slug": "quem-faltou-quem-anulou",
+  "title": "Quem faltou, quem anulou e quem voltou a escolher?",
+  "desc": "Tem três jeitos de não escolher um candidato: não ir votar, ir e votar em branco, ou ir e anular. No 1º turno, somando os três, 39,4 milhões de pessoas ficaram fora da disputa, uma em cada quatro. No…",
+  "stat": [
+   "4,8 milhões",
+   "de pessoas que não tinham escolhido ninguém no 1º turno passaram a escolher no 2º"
+  ],
+  "paras": [
+   "Tem três jeitos de não escolher um candidato: não ir votar, ir e votar em branco, ou ir e anular. No 1º turno, somando os três, 39,4 milhões de pessoas ficaram fora da disputa, uma em cada quatro. No 2º turno esse grupo encolheu para 34,7 milhões. Ou seja, 4,8 milhões de pessoas que não tinham escolhido ninguém passaram a escolher: 3,0 milhões deixaram de faltar, 870 mil deixaram de votar em branco e 950 mil deixaram de anular.",
+   "Esses 4,8 milhões, somados aos 9,3 milhões que tinham votado em Caiado, Zema, Cury e outros, são os 14 milhões de votos que \"trocaram de mão\" do capítulo 1. E eles não se espalharam igual pelo país. Os votos brancos e nulos caíram mais justamente onde Lula é mais forte: nas cidades em que ele passou de 70%, brancos e nulos caíram 2,1 pontos; nas cidades em que Flávio passou de 70%, caíram só 0,6. As maiores quedas aconteceram em periferias de grandes cidades, como Francisco Morato e Itaquaquecetuba (SP), Sobral (CE), Campina Grande (PB) e Salvador, lugares onde 7 em cada 100 eleitores tinham anulado ou votado em branco no 1º turno.",
+   "Já a queda da abstenção tem outra cara: foi um fenômeno de cidade grande. Nas 12 cidades com mais de 1 milhão de eleitores, a abstenção caiu 2,6 pontos; nas cidades com menos de 10 mil, 1,2. E a maior queda do Brasil foi na região de Salvador (Lauro de Freitas, Camaçari, Salvador e Feira de Santana, todas com mais de 4 pontos a menos), exatamente onde a falta de ônibus virou briga judicial no dia da eleição. Do outro lado, a abstenção subiu em 1 de cada 5 municípios, e subiu forte no Norte: Amapá (+8 pontos), Roraima (+6) e Acre (+6). Lá, Flávio perdeu votos em número absoluto entre um turno e outro.",
+   "A conclusão que importa: mais gente foi votar nas cidades grandes do Sudeste e do Nordeste, e o Nordeste ainda transformou voto de protesto em voto válido. Os dois movimentos empurraram para o mesmo lado."
+  ],
+  "bullets": []
+ },
+ {
+  "id": "redes",
+  "num": "11",
   "slug": "redes-e-ruas",
   "title": "As redes sociais e os atos de rua decidiram a eleição?",
   "desc": "Essa é a pergunta mais difícil do estudo, porque é fácil medir engajamento e difícil ligar engajamento a voto. Mas dá para contar uma história com os dados que",
@@ -172,7 +190,7 @@
  },
  {
   "id": "urnas",
-  "num": "11",
+  "num": "12",
   "slug": "o-que-as-urnas-contam",
   "title": "O que as próprias urnas contam sobre o dia da votação?",
   "desc": "Cada urna eletrônica guarda um \"diário de bordo\": a hora em que foi ligada, a hora em que cada eleitor foi liberado para votar, a hora em que cada voto foi confirmado, a hora em que foi encerrada.…",
