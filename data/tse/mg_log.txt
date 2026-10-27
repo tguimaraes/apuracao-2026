@@ -1,2 +1,7 @@
-falhou https://servicodados.ibge.gov.br/api/v1/localidades/estados/31/municipios?view=nivelado <urlopen error timed out>
+ibge tentativa 0 https://servicodados.ibge.gov.br/api/v1/localidades/estados/31/municipios?view=nivelado <urlopen error timed out>
+ibge tentativa 1 https://servicodados.ibge.gov.br/api/v1/localidades/estados/31/municipios?view=nivelado <urlopen error timed out>
+ibge tentativa 2 https://servicodados.ibge.gov.br/api/v1/localidades/estados/31/municipios?view=nivelado <urlopen error timed out>
+ibge tentativa 0 https://servicodados.ibge.gov.br/api/v1/localidades/estados/31/mesorregioes <urlopen error timed out>
+ibge tentativa 1 https://servicodados.ibge.gov.br/api/v1/localidades/estados/31/mesorregioes <urlopen error timed out>
+ibge tentativa 2 https://servicodados.ibge.gov.br/api/v1/localidades/estados/31/mesorregioes <urlopen error timed out>
 ibge 0 None
