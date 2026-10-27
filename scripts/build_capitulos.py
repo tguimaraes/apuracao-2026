@@ -3,10 +3,10 @@ import re, json, html
 s = open('estudo.html', encoding='utf-8').read()
 BASE = "https://tguimaraes.github.io/apuracao-2026"
 secs = re.findall(r'<section class="card" id="([a-z0-9]+)">(.*?)</section>', s, re.S)
-SLUG = {'aritmetica':'de-onde-vieram-os-votos','geografia':'por-que-o-nordeste-decidiu','estados':'estado-por-estado','interior':'cidade-grande-e-pequena','perfil':'quem-votou-em-quem','2022':'foi-igual-a-2022','fatores':'o-que-explica-a-vitoria','prorrogacao':'a-prorrogacao-mudou-o-resultado','abstencao':'mais-gente-foi-votar','faltas':'quem-faltou-quem-anulou','redes':'redes-e-ruas','urnas':'o-que-as-urnas-contam'}
+SLUG = {'aritmetica':'de-onde-vieram-os-votos','geografia':'por-que-o-nordeste-decidiu','estados':'estado-por-estado','interior':'cidade-grande-e-pequena','perfil':'quem-votou-em-quem','2022':'foi-igual-a-2022','fatores':'o-que-explica-a-vitoria','prorrogacao':'a-prorrogacao-mudou-o-resultado','abstencao':'mais-gente-foi-votar','faltas':'quem-faltou-quem-anulou','minas':'minas-gerais-como-virou','redes':'redes-e-ruas','urnas':'o-que-as-urnas-contam'}
 STAT = {'aritmetica':('3 em cada 4','dos 14 milhões de votos que trocaram de mão foram para Lula'),'geografia':('13,7 milhões','de vantagem para Lula só no Nordeste'),'estados':('1 estado','trocou de lado entre os turnos: Minas Gerais'),
  'interior':('55% × 54%','a cidade de SP deu Lula; o estado de SP deu Flávio'),'perfil':('58%','de quem ganha até 2 salários mínimos votou em Lula'),'2022':('98%','das cidades deram menos votos a Lula que em 2022, e ele venceu assim mesmo'),
- 'fatores':('6 fatores','em ordem de peso, do que mais importou ao que menos'),'prorrogacao':('35.521','votos depois das 17h, contra 4,43 milhões de margem'),'faltas':('4,8 milhões','de pessoas que não tinham escolhido ninguém no 1º turno passaram a escolher no 2º'),'abstencao':('3 milhões','de pessoas a mais foram votar no 2º turno, a maior alta desde 1989'),
+ 'fatores':('6 fatores','em ordem de peso, do que mais importou ao que menos'),'prorrogacao':('35.521','votos depois das 17h, contra 4,43 milhões de margem'),'minas':('76 municípios','mudaram de lado em Minas, todos para Lula; a virada veio do cinturão de BH'),'faltas':('4,8 milhões','de pessoas que não tinham escolhido ninguém no 1º turno passaram a escolher no 2º'),'abstencao':('3 milhões','de pessoas a mais foram votar no 2º turno, a maior alta desde 1989'),
  'redes':('150 milhões','de views num vídeo do lado que perdeu'),'urnas':('10 segundos','é o tempo de um voto, segundo os registros de 3 mil urnas')}
 caps = []
 for sid, body in secs:
@@ -50,7 +50,7 @@ p{{max-width:68ch;font-size:1.08rem;line-height:1.7}}ul{{max-width:68ch;font-siz
 .nav{{display:flex;justify-content:space-between;gap:12px;margin-top:22px;font-size:.9rem}}.nav a{{color:var(--info)}}
 footer{{max-width:760px;margin:18px auto 0;font-size:.78rem;color:var(--muted);text-align:center}}
 </style></head><body>
-<div class="bar"><a href="../estudo.html">Como Lula venceu o 2º turno de 2026</a> · capítulo {num} de 12</div>
+<div class="bar"><a href="../estudo.html">Como Lula venceu o 2º turno de 2026</a> · capítulo {num} de 13</div>
 <main class="card">
   <div class="eyebrow">Capítulo {num}</div>
   <h1>{html.escape(h2)}</h1>

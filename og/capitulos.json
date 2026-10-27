@@ -46,7 +46,8 @@
   "paras": [
    "Quando os candidatos menores saem da disputa, os dois que sobram ganham votos em todo lugar. Então Lula subiu nos 27 estados, e isso era esperado. A pergunta certa é: onde ele subiu mais do que Flávio?",
    "A resposta está em Minas Gerais, o segundo maior estado em eleitores. No 1º turno, Flávio estava 5 pontos na frente lá. No 2º, Lula virou e venceu por pouco. Foi o único estado do país que trocou de lado, e com 16 milhões de eleitores, isso vale quase 1 milhão de votos na conta final.",
-   "No gráfico, cada barra é um estado. A parte colorida mostra quanto Lula teve no 2º turno; o tracinho preto mostra quanto ele tinha no 1º. Quanto mais longe o tracinho da ponta da barra, mais ele cresceu."
+   "No gráfico, cada barra é um estado. A parte colorida mostra quanto Lula teve no 2º turno; o tracinho preto mostra quanto ele tinha no 1º. Quanto mais longe o tracinho da ponta da barra, mais ele cresceu.",
+   "Minas Gerais, o único estado que trocou de lado, tem uma seção própria, município por município: seção 13."
   ],
   "bullets": []
  },
@@ -209,5 +210,23 @@
    "7 em cada 100 eleitores precisaram de \"habilitação manual\": a digital não foi reconhecida ou a pessoa não tinha digital cadastrada, e o mesário liberou o voto pelo título ou CPF, conferindo a foto na tela. É o procedimento normal, previsto na lei.",
    "1 em cada 4 se identificou pelo CPF em vez do número do título, um hábito que cresce a cada eleição."
   ]
+ },
+ {
+  "id": "minas",
+  "num": "13",
+  "slug": "minas-gerais-como-virou",
+  "title": "Minas Gerais: como o único estado que virou, virou?",
+  "desc": "Minas é o segundo maior colégio eleitoral do país, 16,4 milhões de eleitores, e foi o único estado que trocou de lado entre os turnos. No 1º turno, Flávio ganhou lá por 588 mil votos (48,2% a 43,3%).…",
+  "stat": [
+   "76 municípios",
+   "mudaram de lado em Minas, todos para Lula; a virada veio do cinturão de BH"
+  ],
+  "paras": [
+   "Minas é o segundo maior colégio eleitoral do país, 16,4 milhões de eleitores, e foi o único estado que trocou de lado entre os turnos. No 1º turno, Flávio ganhou lá por 588 mil votos (48,2% a 43,3%). No 2º, Lula ganhou por 109 mil (50,43% a 49,57%). Uma virada de quase 700 mil votos em três semanas.",
+   "De onde vieram? De dois lugares. Primeiro, da \"sobra\": 1,01 milhão de mineiros tinham votado em outros candidatos no 1º turno, principalmente Augusto Cury (410 mil), Renan Santos (247 mil) e Caiado (230 mil). Zema, que governou o estado, teve só 98 mil votos em casa, 0,8%. Segundo, de gente nova: 617 mil votos válidos a mais, porque a abstenção caiu de 22,8% para 20,3% e brancos e nulos caíram de 5,2% para 3,5%. Desses 1,63 milhão de votos redistribuídos, Lula ficou com 71% e Flávio com 29%.",
+   "E onde isso aconteceu? Olhe os mapas: o norte e o leste de Minas já eram de Lula e continuaram; o sul, o oeste e o Triângulo continuaram de Flávio. O que mudou de cor foi o cinturão em volta de Belo Horizonte. Na região metropolitana, Flávio tinha 236 mil votos de vantagem e terminou 4 mil atrás: uma virada de 240 mil votos, um terço de tudo que mudou no estado. Foi ali que Cury e Renan tinham mais votos (1 em cada 10) e foi ali que Lula mais cresceu (+8 pontos). Belo Horizonte em si ficou com Flávio (50,8%), mas Ribeirão das Neves, Santa Luzia, Ibirité, Sabará, Nova Lima, Itabirito, Congonhas e João Monlevade, as cidades operárias e mineradoras do entorno, viraram.",
+   "No total, 76 municípios mineiros mudaram de lado, todos para Lula, e nenhum para Flávio. Lula já liderava em 452 das 853 cidades no 1º turno; passou a liderar em 528."
+  ],
+  "bullets": []
  }
 ]
