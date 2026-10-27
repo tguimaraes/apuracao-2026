@@ -6,7 +6,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - run: python3 scripts/snapshot_mg.py
+      - run: python3 scripts/snapshot_mg.py 2> data/tse/mg_log.txt || true
       - run: |
           git config user.name "robo-tse" && git config user.email "robo@users.noreply.github.com"
-          git add data/tse/mg_*.csv && git commit -m "Snapshot MG: 1º turno por candidato e mesorregiões IBGE" && git pull --rebase && git push
+          git add data/tse/mg_* && git commit -m "Snapshot MG: 1º turno por candidato e mesorregiões IBGE" && git pull --rebase && git push

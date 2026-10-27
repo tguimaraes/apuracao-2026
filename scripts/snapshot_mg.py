@@ -28,14 +28,21 @@ keys=['cd','nm']+sorted({k for r in rows for k in r if k.startswith('c')})
 with open('data/tse/mg_1turno_candidatos.csv','w',newline='') as f:
     w=csv.DictWriter(f, fieldnames=keys); w.writeheader(); [w.writerow({k:r.get(k,0) for k in keys}) for r in rows]
 # IBGE
-ibge=get('https://servicodados.ibge.gov.br/api/v1/localidades/estados/31/municipios?view=nivelado')
+try:
+    ibge=get('https://servicodados.ibge.gov.br/api/v1/localidades/estados/31/municipios?view=nivelado') or []
+except Exception as e:
+    print('ibge erro', e, file=sys.stderr); ibge=[]
+print('ibge', len(ibge), (ibge[0] if ibge else None), file=sys.stderr)
 def norm(s): return ''.join(ch for ch in unicodedata.normalize('NFD',s.upper()) if unicodedata.category(ch)!='Mn').replace("'","")
-mp={norm(m['municipio-nome']):m for m in ibge}
+mp={}
+for m in ibge:
+    try: mp[norm(m['municipio-nome'])]=m
+    except Exception as e: print('chave', list(m.keys())[:8], file=sys.stderr); break
 with open('data/tse/mg_ibge.csv','w',newline='') as f:
     w=csv.writer(f); w.writerow(['cd_tse','nm','cd_ibge','mesorregiao','microrregiao'])
     falt=0
     for cd,nm in muns:
         m=mp.get(norm(nm))
         if not m: falt+=1; w.writerow([cd,nm,'','','']); continue
-        w.writerow([cd,nm,m['municipio-id'],m['mesorregiao-nome'],m['microrregiao-nome']])
+        w.writerow([cd,nm,m.get('municipio-id'),m.get('mesorregiao-nome'),m.get('microrregiao-nome')])
 print('ibge sem par', falt)
