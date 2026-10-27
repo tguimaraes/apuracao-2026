@@ -29,7 +29,20 @@ with open('data/tse/mg_1turno_candidatos.csv','w',newline='') as f:
     w=csv.DictWriter(f, fieldnames=keys); w.writeheader(); [w.writerow({k:r.get(k,0) for k in keys}) for r in rows]
 # IBGE
 try:
-    ibge=get('https://servicodados.ibge.gov.br/api/v1/localidades/estados/31/municipios?view=nivelado') or []
+    def getl(url, timeout=120):
+        for i in range(3):
+            try:
+                req=urllib.request.Request(url, headers={'User-Agent':'Mozilla/5.0','Accept':'application/json'})
+                with urllib.request.urlopen(req, timeout=timeout) as r: return json.loads(r.read().decode())
+            except Exception as e: print('ibge tentativa',i,url,e,file=sys.stderr); time.sleep(5)
+        return None
+    ibge=getl('https://servicodados.ibge.gov.br/api/v1/localidades/estados/31/municipios?view=nivelado') or []
+    if not ibge:
+        # alternativa: por mesorregião (respostas menores)
+        mesos=getl('https://servicodados.ibge.gov.br/api/v1/localidades/estados/31/mesorregioes') or []
+        for ms in mesos:
+            lst=getl(f"https://servicodados.ibge.gov.br/api/v1/localidades/mesorregioes/{ms['id']}/municipios") or []
+            for m in lst: ibge.append({'municipio-id':m['id'],'municipio-nome':m['nome'],'mesorregiao-nome':ms['nome'],'microrregiao-nome':(m.get('microrregiao') or {}).get('nome','')})
 except Exception as e:
     print('ibge erro', e, file=sys.stderr); ibge=[]
 print('ibge', len(ibge), (ibge[0] if ibge else None), file=sys.stderr)
