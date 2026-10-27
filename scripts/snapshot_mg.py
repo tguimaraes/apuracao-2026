@@ -10,7 +10,8 @@ def get(url, tries=4):
         except Exception as e: time.sleep(1.5*(i+1)); err=e
     print('falhou', url, err, file=sys.stderr); return None
 cfg=get(BASE+'6258/config/mun-e006258-cm.json')
-muns=[(m['cd'],m['nm']) for ab in cfg['abr'] if ab['cd']=='MG' for m in ab['mu']]
+muns=[(m['cd'],m['nm']) for ab in cfg['abr'] if str(ab.get('cd','')).upper()=='MG' for m in ab['mu']]
+print('abr cds', [ab.get('cd') for ab in cfg['abr']][:5], 'MG muns', len(muns), file=sys.stderr)
 print('MG municipios', len(muns))
 def one(m):
     cd,nm=m; d=get(f'{BASE}6257/dados/mg/mg{cd}-c0001-e006257-u.json')
@@ -24,38 +25,8 @@ rows=[]
 with cf.ThreadPoolExecutor(16) as ex:
     for r in ex.map(one, muns):
         if r: rows.append(r)
-keys=['cd','nm']+sorted({k for r in rows for k in r if k.startswith('c')})
+keys=['cd','nm']+sorted({k for r in rows for k in r if k[0]=='c' and k[1:].isdigit()})
+print('rows', len(rows), file=sys.stderr)
 with open('data/tse/mg_1turno_candidatos.csv','w',newline='') as f:
     w=csv.DictWriter(f, fieldnames=keys); w.writeheader(); [w.writerow({k:r.get(k,0) for k in keys}) for r in rows]
-# IBGE
-try:
-    def getl(url, timeout=120):
-        for i in range(3):
-            try:
-                req=urllib.request.Request(url, headers={'User-Agent':'Mozilla/5.0','Accept':'application/json'})
-                with urllib.request.urlopen(req, timeout=timeout) as r: return json.loads(r.read().decode())
-            except Exception as e: print('ibge tentativa',i,url,e,file=sys.stderr); time.sleep(5)
-        return None
-    ibge=getl('https://servicodados.ibge.gov.br/api/v1/localidades/estados/31/municipios?view=nivelado') or []
-    if not ibge:
-        # alternativa: por mesorregião (respostas menores)
-        mesos=getl('https://servicodados.ibge.gov.br/api/v1/localidades/estados/31/mesorregioes') or []
-        for ms in mesos:
-            lst=getl(f"https://servicodados.ibge.gov.br/api/v1/localidades/mesorregioes/{ms['id']}/municipios") or []
-            for m in lst: ibge.append({'municipio-id':m['id'],'municipio-nome':m['nome'],'mesorregiao-nome':ms['nome'],'microrregiao-nome':(m.get('microrregiao') or {}).get('nome','')})
-except Exception as e:
-    print('ibge erro', e, file=sys.stderr); ibge=[]
-print('ibge', len(ibge), (ibge[0] if ibge else None), file=sys.stderr)
-def norm(s): return ''.join(ch for ch in unicodedata.normalize('NFD',s.upper()) if unicodedata.category(ch)!='Mn').replace("'","")
-mp={}
-for m in ibge:
-    try: mp[norm(m['municipio-nome'])]=m
-    except Exception as e: print('chave', list(m.keys())[:8], file=sys.stderr); break
-with open('data/tse/mg_ibge.csv','w',newline='') as f:
-    w=csv.writer(f); w.writerow(['cd_tse','nm','cd_ibge','mesorregiao','microrregiao'])
-    falt=0
-    for cd,nm in muns:
-        m=mp.get(norm(nm))
-        if not m: falt+=1; w.writerow([cd,nm,'','','']); continue
-        w.writerow([cd,nm,m.get('municipio-id'),m.get('mesorregiao-nome'),m.get('microrregiao-nome')])
-print('ibge sem par', falt)
+print('fim', file=sys.stderr)
