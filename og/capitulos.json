@@ -132,7 +132,8 @@
    "Não. E dá para dizer isso com dado, não com opinião. Vamos por partes.",
    "No dia da eleição, as duas campanhas pediram mais tempo de votação: a de Flávio por causa de chuva em cidades de SP, PR e SC; a de Lula por causa de ônibus em nove estados. O ministro Zanin, do STF, estendeu a votação até as 19h, mas só para as seções que ainda estavam abertas às 17h. Urna fechada não reabriu. Na prática, só 1 em cada 100 seções ficou aberta até as 19h.",
    "Quantos votos entraram nessas duas horas? Cada urna grava a hora de cada voto. O g1 leu os registros de todas as urnas do país e contou: 35.521 votos depois das 17h. Nós fizemos a nossa própria contagem, sorteando 3 mil urnas, e chegamos a algo entre 26 mil e 37 mil. Bateu. Uma terceira contagem, feita pela setup.news com a CNN Brasil, deu 34.330 e mostra um detalhe importante: 29 mil desses votos entraram nos cinco primeiros minutos depois das 17h, ou seja, de gente que já estava na fila e votaria de qualquer jeito, prorrogação ou não. Das 17h05 até o último voto do país, às 19h06, entraram pouco mais de 5 mil.",
-   "Agora a comparação: a vantagem de Lula foi de 4,43 milhões de votos. Mesmo que todos os 35 mil votos tardios fossem dele, a vantagem cairia para 4,39 milhões. Mesmo que todos fossem de Flávio, iria a 4,47. É como tentar mudar o resultado de um jogo de 100 a 1 com um ponto a mais. A prorrogação foi mal feita e desigual, e isso merece crítica, mas não mudou quem venceu."
+   "Agora a comparação: a vantagem de Lula foi de 4,43 milhões de votos. Mesmo que todos os 35 mil votos tardios fossem dele, a vantagem cairia para 4,39 milhões. Mesmo que todos fossem de Flávio, iria a 4,47. É como tentar mudar o resultado de um jogo de 100 a 1 com um ponto a mais. A prorrogação foi mal feita e desigual, e isso merece crítica, mas não mudou quem venceu.",
+   "Quem pediu, quem decidiu, quem contestou e o que veio depois, hora a hora, está na seção 14."
   ],
   "bullets": []
  },
@@ -226,6 +227,24 @@
    "De onde vieram? De dois lugares. Primeiro, da \"sobra\": 1,01 milhão de mineiros tinham votado em outros candidatos no 1º turno, principalmente Augusto Cury (410 mil), Renan Santos (247 mil) e Caiado (230 mil). Zema, que governou o estado, teve só 98 mil votos em casa, 0,8%. Segundo, de gente nova: 617 mil votos válidos a mais, porque a abstenção caiu de 22,8% para 20,3% e brancos e nulos caíram de 5,2% para 3,5%. Desses 1,63 milhão de votos redistribuídos, Lula ficou com 71% e Flávio com 29%.",
    "E onde isso aconteceu? Olhe os mapas: o norte e o leste de Minas já eram de Lula e continuaram; o sul, o oeste e o Triângulo continuaram de Flávio. O que mudou de cor foi o cinturão em volta de Belo Horizonte. Na região metropolitana, Flávio tinha 236 mil votos de vantagem e terminou 4 mil atrás: uma virada de 240 mil votos, um terço de tudo que mudou no estado. Foi ali que Cury e Renan tinham mais votos (1 em cada 10) e foi ali que Lula mais cresceu (+8 pontos). Belo Horizonte em si ficou com Flávio (50,8%), mas Ribeirão das Neves, Santa Luzia, Ibirité, Sabará, Nova Lima, Itabirito, Congonhas e João Monlevade, as cidades operárias e mineradoras do entorno, viraram.",
    "No total, 76 municípios mineiros mudaram de lado, todos para Lula, e nenhum para Flávio. Lula já liderava em 452 das 853 cidades no 1º turno; passou a liderar em 528."
+  ],
+  "bullets": []
+ },
+ {
+  "id": "disputa",
+  "num": "14",
+  "slug": "o-que-aconteceu-depois",
+  "title": "O que aconteceu no TSE, no STF e na política depois da votação?",
+  "desc": "Este capítulo é o diário da disputa em torno do resultado. Ele não discute quem venceu (a seção 8 mostra que a prorrogação não mudou nada), mas registra, em ordem e com fonte, cada pedido, decisão,…",
+  "stat": [
+   "17h03",
+   "a hora da decisão do STF, três minutos depois do fim regular da votação"
+  ],
+  "paras": [
+   "Este capítulo é o diário da disputa em torno do resultado. Ele não discute quem venceu (a seção 8 mostra que a prorrogação não mudou nada), mas registra, em ordem e com fonte, cada pedido, decisão, nota e recuo. Resumo até agora:",
+   "Domingo, 25/10. As duas campanhas pediram mais tempo de votação ao TSE; a de Lula também foi ao STF. O TSE não decidiu antes das 17h. Às 17h03, três minutos depois do fim regular da votação, o ministro Zanin prorrogou até as 19h; o TSE pausou a totalização e avisou que só urna ainda aberta continuaria. Às 21h08 Lula foi declarado eleito. À noite, Nunes Marques chamou a decisão de \"não convencional\", e Flávio Bolsonaro disse que não reconhecia o resultado e pediria a anulação.",
+   "Segunda, 26/10. Candidatos derrotados do 1º turno e os dirigentes do Centrão reconheceram o resultado. Ministros do STF e do TSE disseram não ver fundamento para anular. No fim da tarde, Flávio recuou da anulação e passou a falar em cassação da chapa por abuso de poder; às 19h40 o PL reconheceu em nota \"o resultado presidencial, proclamado pelo TSE\". Parlamentares da oposição pediram o impeachment de Zanin no Senado.",
+   "Terça, 27/10. O ministro Dino mandou a PF investigar suposta interferência estrangeira na campanha de Flávio, a pedido do PT. As ações de cassação correm nos dois sentidos, e nenhuma delas discute a contagem dos votos."
   ],
   "bullets": []
  }
