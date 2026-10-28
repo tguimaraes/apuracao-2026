@@ -1,0 +1,343 @@
+<!doctype html>
+<html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>A saída de Flávio Bolsonaro do Brasil: linha do tempo e repercussão</title>
+<meta name="description" content="Do pedido da PF sete minutos depois do resultado ao pouso em Miami: a linha do tempo, a rota do voo, o que está em jogo e como o mundo reagiu. Com fontes.">
+<meta property="og:title" content="A saída de Flávio Bolsonaro do Brasil"><meta property="og:description" content="Linha do tempo hora a hora, rota do voo, o que está em jogo e a repercussão internacional. Dados e fontes."><meta property="og:image" content="https://tguimaraes.github.io/apuracao-2026/og/saida.png"><meta property="og:type" content="article"><meta property="og:url" content="https://tguimaraes.github.io/apuracao-2026/saida.html"><meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+/* Material Design: fundo cinza claro, cards brancos, acentos da paleta; Lula vermelho, Flávio azul, como no painel */
+:root{
+  --bg:#F5F5F5; --card:#FFFFFF; --fg:#212121; --muted:#616161; --line:#E0E0E0;
+  --lula:#C62828; --flavio:#1565C0; --outros:#9E9E9E; --ok:#2E7D32; --warn:#E65100; --bar:#37474F; --info:#1565C0;
+  --font:"Roboto",system-ui,-apple-system,"Segoe UI",sans-serif; --mono:"Roboto Mono",ui-monospace,Menlo,monospace;
+  --e1:0 1px 3px rgba(0,0,0,.12),0 1px 2px rgba(0,0,0,.24); --e2:0 3px 6px rgba(0,0,0,.16),0 3px 6px rgba(0,0,0,.23);
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{background:var(--bg);color:var(--fg);font:16px/1.6 var(--font);padding-block:0 56px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.appbar{margin:0 calc(-1*max(16px,env(safe-area-inset-left,0px))) 24px calc(-1*max(16px,env(safe-area-inset-right,0px)));background:var(--bar);color:#fff;box-shadow:var(--e2);padding:14px max(16px,env(safe-area-inset-left,0px))}
+.appbar .in{max-width:900px;margin:0 auto;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:8px 16px}
+.appbar h1{font-size:1.25rem;font-weight:500;margin:0}
+.appbar a{color:#fff;font-size:.85rem;font-weight:500;text-transform:uppercase;letter-spacing:.04em;text-decoration:none;background:rgba(255,255,255,.16);padding:7px 14px;border-radius:20px}
+.eyebrow{font-size:.72rem;text-transform:uppercase;letter-spacing:.09em;color:var(--muted);font-weight:500}
+.appbar .eyebrow{color:rgba(255,255,255,.8)}
+.wrap{max-width:900px;margin:0 auto;display:grid;gap:18px}
+.card{background:var(--card);border-radius:8px;box-shadow:var(--e1);padding:24px;min-width:0}
+.card>p,.card>ul,.card>ol{max-width:68ch}
+h2{margin:0 0 6px;font-size:1.3rem;font-weight:500;text-wrap:balance}
+h3{margin:18px 0 6px;font-size:1.02rem;font-weight:500}
+p{margin:8px 0}
+a{color:var(--info)}
+.lead{font-size:1.1rem;max-width:68ch}
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:12px;margin-top:12px}
+.kpi{background:var(--bg);border-radius:8px;padding:12px 14px;min-width:0}
+.kpi .v{font-size:1.5rem;font-weight:700;font-variant-numeric:tabular-nums;line-height:1.2}
+.kpi .l{font-size:.76rem;color:var(--muted)}
+.kpi .s{font-size:.8rem;margin-top:2px}
+.lula{color:var(--lula)} .flavio{color:var(--flavio)}
+.toc{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+.toc a{font-size:.82rem;text-decoration:none;border:1px solid var(--line);border-radius:20px;padding:5px 12px;color:var(--fg)}
+.note{background:#E3F2FD;color:#0D47A1;border-left:4px solid var(--info);border-radius:8px;padding:10px 14px;font-size:.9rem;margin-top:12px}
+.warnbox{background:#FFF3E0;color:#6D3B00;border-left:4px solid var(--warn);border-radius:8px;padding:10px 14px;font-size:.9rem;margin-top:12px}
+.chart{width:100%;height:auto;display:block;margin-top:10px}
+.chart text{font-family:var(--font);fill:var(--fg);font-size:12px}
+.chart .mu{fill:var(--muted);font-size:11px}
+.chart .grid{stroke:var(--line)}
+.legend{display:flex;flex-wrap:wrap;gap:8px 16px;font-size:.8rem;color:var(--muted);margin-top:8px}
+.legend span{display:inline-flex;align-items:center;gap:6px}
+.sw{width:22px;height:10px;border-radius:3px;display:inline-block}
+.tbl{overflow-x:auto;margin-top:10px}
+table{width:100%;border-collapse:collapse;font-size:.84rem;font-variant-numeric:tabular-nums}
+caption{text-align:left;font-size:.8rem;color:var(--muted);padding:0 0 8px}
+th{font-size:.68rem;text-transform:uppercase;letter-spacing:.05em;color:var(--muted);font-weight:500;text-align:right;padding:8px 6px;border-bottom:1px solid var(--line);vertical-align:bottom}
+th:first-child,td:first-child{text-align:left}
+td{padding:7px 6px;border-bottom:1px solid var(--line);text-align:right;white-space:nowrap}
+tr:hover td{background:var(--bg)}
+.chip{display:inline-block;padding:1px 9px;border-radius:12px;color:#fff;font-size:.72rem;font-weight:500}
+.d{font-weight:500}
+.d.up{color:var(--ok)} .d.dn{color:var(--warn)}
+.demo{display:grid;gap:14px;margin-top:10px}
+.demo .g{display:grid;grid-template-columns:150px minmax(0,1fr) 110px;gap:4px 12px;align-items:center}
+.demo .g .lab{font-size:.85rem}
+.demo .g .sub{font-size:.74rem;color:var(--muted)}
+.demo .bar{height:16px;border-radius:8px;overflow:hidden;display:flex;background:var(--line);position:relative}
+.demo .bar i{display:block;height:100%}
+.demo .bar::after{content:"";position:absolute;left:50%;top:-2px;bottom:-2px;width:2px;background:var(--fg);opacity:.5}
+.demo .num{font-size:.82rem;font-variant-numeric:tabular-nums;text-align:right;white-space:nowrap}
+@media (max-width:560px){.demo .g{grid-template-columns:1fr;gap:2px}.demo .num{text-align:left}}
+.fatores{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px;margin-top:10px}
+.fator{border-left:4px solid var(--c);padding:4px 0 4px 12px}
+.fator b{display:block;margin-bottom:2px}
+.fator span{font-size:.9rem;color:var(--muted)}
+.src{font-size:.82rem;color:var(--muted)}
+.fig{margin:18px 0}.fig figcaption{font-size:.85rem;color:var(--muted);margin-top:8px}
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px}.grid2 ul{margin:6px 0 0;padding-left:20px}
+.src li{margin:4px 0}
+footer{font-size:.78rem;color:var(--muted);text-align:center;line-height:1.6}
+sup a{text-decoration:none;font-size:.7em}
+
+/* Leitura: medida, navegação lateral, resumos, tabelas recolhidas */
+body{font-size:17px;line-height:1.65}
+.card>p,.card>ul,.card>ol{max-width:66ch}
+.card p{margin:10px 0}
+h2{font-size:1.25rem;line-height:1.3}
+.progress{position:fixed;left:0;top:0;height:4px;background:var(--info);width:0;z-index:30}
+.layout{max-width:1180px;margin:0 auto;display:grid;grid-template-columns:230px minmax(0,900px);gap:28px;align-items:start}
+.sidenav{position:sticky;top:16px;background:var(--card);border-radius:8px;box-shadow:var(--e1);padding:12px 8px;font-size:.82rem;max-height:calc(100vh - 32px);overflow:auto}
+.sidenav a{display:block;padding:6px 10px;border-radius:6px;color:var(--fg);text-decoration:none;line-height:1.3}
+.sidenav a.on{background:#E3F2FD;color:var(--info);font-weight:500}
+.sidenav .h{font-size:.68rem;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);padding:6px 10px 2px}
+@media (max-width:1000px){.layout{grid-template-columns:1fr}.sidenav{position:static;display:none}}
+.story{max-width:68ch}
+.story p{font-size:1.08rem;line-height:1.7;margin:12px 0}
+.story ul{font-size:1.05rem;line-height:1.6;max-width:68ch}
+.story li{margin:8px 0}
+details.deep{margin-top:18px;background:var(--bg);border:0}
+details.deep>summary{font-size:.92rem}
+details.deep>*:not(summary){margin-top:8px}
+.resumo{background:#E8F5E9;border-left:4px solid var(--ok);border-radius:8px;padding:12px 16px;margin:10px 0 14px;font-size:1rem;max-width:72ch}
+.resumo b{color:#1B5E20}
+.pontos{counter-reset:p;display:grid;gap:10px;margin:14px 0}
+.pontos div{display:grid;grid-template-columns:38px 1fr;gap:12px;align-items:start;font-size:1.02rem}
+.pontos div::before{counter-increment:p;content:counter(p);width:32px;height:32px;border-radius:50%;background:var(--fg);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.9rem}
+details.more{margin-top:10px;border:1px solid var(--line);border-radius:8px;padding:0 14px}
+details.more>summary{cursor:pointer;padding:12px 0;font-weight:500;color:var(--info);list-style:none;display:flex;align-items:center;gap:8px}
+details.more>summary::before{content:"▸";display:inline-block;transition:transform .2s}
+details.more[open]>summary::before{transform:rotate(90deg)}
+details.more>summary::-webkit-details-marker{display:none}
+abbr[title]{text-decoration:underline dotted;cursor:help;text-underline-offset:3px}
+.gloss dt{font-weight:700;margin-top:12px}
+.gloss dd{margin:2px 0 0;color:var(--muted);max-width:70ch}
+.tl{margin:22px 0 6px;position:relative;padding-left:0}
+.tl h3{font-size:1.05rem;margin:0 0 4px}
+.tl .sub{font-size:.9rem;color:var(--muted);margin:0 0 14px}
+.tl .day{font-size:.78rem;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);font-weight:600;margin:18px 0 8px}
+.tl ol{list-style:none;margin:0;padding:0;border-left:3px solid var(--line);margin-left:52px}
+.tl li{position:relative;padding:4px 0 14px 18px;font-size:.98rem;line-height:1.5}
+.tl li::before{content:"";position:absolute;left:-9px;top:10px;width:15px;height:15px;border-radius:50%;background:#fff;border:3px solid var(--line)}
+.tl li.stf::before{border-color:#6A1B9A}.tl li.tse::before{border-color:#00695C}.tl li.e-lula::before{border-color:#C62828}.tl li.e-flavio::before{border-color:#1565C0}.tl li.marco::before{border-color:#F9A825;background:#F9A825}
+.tl .h{position:absolute;left:-70px;top:5px;width:46px;text-align:right;font-weight:700;font-variant-numeric:tabular-nums;font-size:.92rem}
+.tl .who{display:inline-block;font-size:.72rem;font-weight:700;letter-spacing:.04em;padding:2px 8px;border-radius:12px;margin-right:6px;color:#fff;vertical-align:1px}
+.tl .stf .who{background:#6A1B9A}.tl .tse .who{background:#00695C}.tl .e-lula .who{background:#C62828}.tl .e-flavio .who{background:#1565C0}.tl .marco .who{background:#F9A825;color:#222}
+.tl .leg{display:flex;flex-wrap:wrap;gap:8px 14px;font-size:.8rem;color:var(--muted);margin-top:8px}
+@media (max-width:600px){.tl ol{margin-left:0;border-left:0}.tl li{padding-left:0}.tl li::before{display:none}.tl .h{position:static;display:block;width:auto;text-align:left;margin-bottom:2px}}
+.sharebar{margin-top:20px;background:linear-gradient(135deg,#FFF8E1,#FFF3E0);border:1px solid #FFE0B2;border-radius:12px;padding:16px 18px;display:grid;gap:10px}
+.sharebar .t{font-weight:700;font-size:1.02rem;color:var(--fg)}
+.sharebar .t small{display:block;font-weight:400;color:var(--muted);font-size:.85rem;margin-top:2px}
+.sharebar .bt{display:flex;flex-wrap:wrap;gap:10px}
+.sharebar a,.sharebar button{font:inherit;font-size:.9rem;font-weight:500;display:inline-flex;align-items:center;gap:8px;border:0;border-radius:24px;padding:10px 16px;text-decoration:none;cursor:pointer;color:#fff;box-shadow:var(--e1)}
+.sharebar a:hover,.sharebar button:hover{filter:brightness(1.08)}
+.sharebar svg{width:18px;height:18px;fill:currentColor}
+.sb-wa{background:#25D366}.sb-x{background:#111}.sb-th{background:#000}.sb-li{background:#0A66C2}.sb-ig{background:linear-gradient(45deg,#F58529,#DD2A7B 55%,#8134AF)}.sb-cp{background:#fff;color:var(--fg)!important;border:1px solid var(--line)!important}
+.sharetop{display:flex;flex-wrap:wrap;gap:10px;margin-top:14px}
+.sharetop a,.sharetop button{font:inherit;font-size:.86rem;font-weight:500;display:inline-flex;align-items:center;gap:8px;border:0;border-radius:24px;padding:9px 14px;text-decoration:none;cursor:pointer;color:#fff;box-shadow:var(--e1)}
+.sharetop .lbl{width:100%;font-weight:600;font-size:.9rem;color:var(--fg)}
+.sharetop svg{width:16px;height:16px;fill:currentColor}
+.fab{position:fixed;right:16px;bottom:72px;background:#25D366;color:#fff;border:0;border-radius:999px;padding:12px 16px;font:500 .9rem Roboto,sans-serif;box-shadow:var(--e2);cursor:pointer;display:none;align-items:center;gap:8px;z-index:20}
+.fab svg{width:18px;height:18px;fill:currentColor}
+@media (max-width:1000px){.fab{display:inline-flex}}
+.topo{position:fixed;right:16px;bottom:16px;background:var(--card);box-shadow:var(--e2);border-radius:999px;padding:10px 14px;font-size:.8rem;text-decoration:none;color:var(--fg);z-index:20}
+
+.layout{display:block;max-width:960px;margin:0 auto}
+.hero{background:#fff;border-radius:16px;box-shadow:var(--e1);padding:28px 28px 22px;margin-bottom:18px}
+.hero h1{font-size:2rem;line-height:1.15;margin:6px 0 10px}
+.hero .sub{font-size:1.08rem;color:var(--muted);max-width:70ch}
+.status{display:inline-flex;gap:8px;align-items:center;font-size:.8rem;background:#FFF8E1;border:1px solid #FFE0B2;border-radius:999px;padding:6px 12px;margin-top:12px}
+.status i{width:8px;height:8px;border-radius:50%;background:#F9A825;display:inline-block}
+.mapwrap{background:#E3F2FD;border-radius:12px;padding:10px;overflow:hidden}
+.map .c{fill:#CFD8DC;stroke:#fff;stroke-width:.8}
+.map .c.br{fill:#B0BEC5}
+.map .route{fill:none;stroke:#1565C0;stroke-width:3.5;stroke-dasharray:10 7;stroke-linecap:round}
+.map .route.land{stroke:#E65100;stroke-dasharray:none}
+.map .pt{fill:#fff;stroke:#1565C0;stroke-width:3}
+.map .pt.end{fill:#1565C0}
+.map text{font-family:Roboto,sans-serif;font-size:14px;font-weight:700;fill:#0D1B2A;paint-order:stroke;stroke:#E3F2FD;stroke-width:4px;stroke-linejoin:round}
+.map text.sm{font-weight:400;font-size:12px;fill:#455A64}
+.legs{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:10px;margin-top:12px}
+.leg{background:#fff;border:1px solid var(--line);border-radius:10px;padding:10px 12px;font-size:.86rem}
+.leg b{display:block;font-size:1rem}
+.leg small{color:var(--muted)}
+.stat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:12px}
+.st{background:#fff;border:1px solid var(--line);border-radius:12px;padding:14px 16px;box-shadow:var(--e1)}
+.st .t{font-weight:700;margin-bottom:6px}
+.st .chip{display:inline-block;font-size:.72rem;font-weight:700;letter-spacing:.04em;text-transform:uppercase;padding:3px 10px;border-radius:999px;margin-bottom:8px}
+.chip.red{background:#FFEBEE;color:#B71C1C}.chip.amber{background:#FFF8E1;color:#E65100}.chip.green{background:#E8F5E9;color:#1B5E20}.chip.grey{background:#ECEFF1;color:#37474F}.chip.blue{background:#E3F2FD;color:#0D47A1}
+.st p{font-size:.9rem;margin:0;color:#263238}
+.repgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:12px}
+.rep{display:grid;grid-template-columns:44px 1fr;gap:10px;background:#fff;border:1px solid var(--line);border-radius:12px;padding:12px 14px;position:relative}
+.rep .flag{font-size:1.8rem;line-height:1}
+.rep p{font-size:.88rem;margin:4px 0 0;color:#37474F}
+.rep .fr{position:absolute;top:10px;right:10px;font-size:.68rem;font-weight:700;text-transform:uppercase;letter-spacing:.04em;padding:2px 8px;border-radius:999px;background:#ECEFF1;color:#37474F}
+.fr-fuga{background:#FFEBEE;color:#B71C1C}.fr-descumprimento{background:#FFF3E0;color:#E65100}.fr-incerteza,.fr-explosivo{background:#F3E5F5;color:#6A1B9A}.fr-isolamento,.fr-contradição{background:#E8EAF6;color:#283593}.fr-neutro,.fr-contexto{background:#ECEFF1;color:#37474F}
+.fbars{display:grid;gap:8px;max-width:620px;margin:12px 0 18px}
+.fbar{display:grid;grid-template-columns:140px 1fr 36px;gap:10px;align-items:center;font-size:.85rem}
+.fbar .ft{height:14px;background:#ECEFF1;border-radius:999px;overflow:hidden}
+.fbar .ft i{display:block;height:100%;background:#1565C0;border-radius:999px}
+.fbar .fn{text-align:right;font-weight:700}
+.gov{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px}
+.gov .g{background:#fff;border-left:5px solid #1565C0;border-radius:10px;padding:12px 14px;box-shadow:var(--e1)}
+.gov .g b{font-size:1rem}
+.gov .g p{font-size:.9rem;margin:6px 0 0}
+</style></head>
+<body>
+<div class="layout"><main>
+<section class="hero">
+  <div class="eyebrow">Eleição 2026 · dossiê</div>
+  <h1>A saída de Flávio Bolsonaro do Brasil</h1>
+  <p class="sub">Do pedido da Polícia Federal, sete minutos depois do resultado, ao pouso em Miami: a linha do tempo hora a hora, a rota do voo, o que está em jogo e como o mundo reagiu. Tudo com fonte. Esta página é um anexo do estudo <a href="estudo.html">Como Lula venceu o 2º turno</a>.</p>
+  <div class="status"><i></i> Atualizado em 28/10/2026, 18h30 (Brasília). A história está em andamento.</div>
+</section>
+
+<section class="card" id="resumo">
+  <div class="eyebrow">Em um minuto</div>
+  <h2>O que aconteceu, em palavras simples</h2>
+  <div class="story"><p>Flávio Bolsonaro perdeu a eleição no domingo. Naquela mesma noite, a Polícia Federal pediu ao STF que ele entregasse os passaportes, porque havia sinais de que poderia deixar o país: o irmão, Eduardo, tinha dito dias antes que ele deveria ir embora se perdesse. O ministro Alexandre de Moraes concordou. O caso não tem a ver com a eleição: é um inquérito sobre lavagem de dinheiro que envolve o advogado Willer Tomaz.</p>
+<p>Na segunda, Flávio recebeu a ordem e disse em vídeo que não pretendia sair do Brasil. Na terça, o prazo venceu e ele não entregou nada. À noite, atravessou a ponte de Foz do Iguaçu para a Argentina com a mulher e as duas filhas, usando o passaporte italiano, que o Brasil não pode cancelar. Um jato argentino esperava por ele desde segunda. Decolou na madrugada, fez uma escala no Equador e pousou em Miami às 10h25 de quarta, onde o irmão o esperava.</p>
+<p>Ele descumpriu uma ordem judicial, mas, pela lei, não é "foragido": não existe mandado de prisão contra ele. A própria PF disse isso em nota. O governo americano prometeu vistos para a família. O que pode acontecer agora: prisão preventiva (que, por ele ser senador, teria de passar pelo Senado), bloqueio de bens, e um alerta da Interpol, que o PT já pediu. Nada disso muda o resultado da eleição.</p></div>
+  <div class="kpis">
+    <div class="kpi"><div class="l">Tempo entre o resultado e o pedido da PF</div><div class="v">7 min</div><div class="s">segundo Rogério Marinho, coordenador da campanha</div></div>
+    <div class="kpi"><div class="l">Da fronteira ao pouso em Miami</div><div class="v">11h35</div><div class="s">22h50 de terça a 10h25 de quarta, com escala no Equador</div></div>
+    <div class="kpi"><div class="l">Mandado de prisão</div><div class="v">não há</div><div class="s">PF: "não caracteriza fuga", por ora; PT pediu a preventiva</div></div>
+  </div>
+</section>
+
+<section class="card" id="rota">
+  <div class="eyebrow">A rota</div>
+  <h2>Por onde ele passou</h2>
+  <div class="story"><p>A rota evitou o espaço aéreo brasileiro: do sul, o jato subiu por Paraguai, Bolívia e Peru até o Equador, e de lá seguiu pelo Pacífico e pelo Caribe até a Flórida.</p></div>
+  <div class="mapwrap"><svg class="map" viewBox="0 0 900 760" role="img" aria-label="Mapa das Américas com a rota de Foz do Iguaçu a Miami, com escala em Guayaquil">
+  <path class="c " d="M450.5,587.1 L458.0,595.0 L463.0,586.2 L477.7,586.7 L479.8,589.0 L503.4,606.7 L513.9,608.4 L529.6,616.4 L542.9,620.6 L544.7,625.4 L532.1,641.9 L545.0,644.9 L559.5,646.5 L569.6,644.8 L581.3,636.5 L583.4,626.9 L589.8,624.8 L596.2,631.1 L595.9,639.7 L585.1,645.7 L576.5,650.1 L562.0,660.7 L544.8,675.5 L541.6,684.2 L538.2,695.3 L538.3,706.2 L535.5,708.6 L534.5,715.6 L533.6,721.3 L550.0,730.6 L548.2,738.0 L556.2,742.8 L555.6,748.1 L543.2,762.0 L524.2,767.8 L498.4,770.1 L484.3,769.0 L487.0,775.5 L484.3,783.6 L486.7,789.1 L479.0,792.9 L465.8,794.4 L453.4,790.4 L448.5,793.3 L450.3,804.1 L459.0,807.3 L466.0,803.9 L469.8,809.5 L458.0,812.9 L447.7,819.7 L445.8,830.6 L442.7,836.4 L430.6,836.4 L420.5,842.0 L416.8,850.1 L429.5,858.1 L441.8,860.3 L437.3,870.0 L422.1,876.1 L413.8,888.9 L402.1,893.2 L396.8,898.2 L400.9,909.5 L409.5,915.8 L404.1,915.3 L392.2,913.5 L361.1,912.1 L355.8,905.8 L356.0,897.6 L347.5,898.3 L342.9,894.4 L341.8,882.9 L351.7,878.1 L355.7,871.2 L354.2,865.7 L361.1,856.5 L365.8,842.1 L364.4,835.7 L370.0,833.7 L368.6,829.6 L362.7,827.4 L366.9,822.8 L361.1,818.7 L358.1,806.2 L363.3,804.0 L361.1,790.8 L364.1,779.6 L367.5,769.9 L375.2,766.0 L371.3,755.4 L371.3,745.4 L381.0,738.3 L380.7,729.3 L388.1,718.7 L388.1,708.7 L384.8,706.7 L378.8,688.0 L386.8,676.8 L385.5,666.3 L390.1,656.4 L398.6,646.2 L407.6,639.5 L403.8,635.2 L406.5,631.7 L406.1,613.6 L420.1,608.3 L424.5,597.0 L422.9,594.3 L433.6,584.5 L450.5,587.1Z "/><path class="c " d="M288.8,89.5 L285.7,90.0 L282.4,83.8 L277.6,80.6 L280.4,73.7 L284.3,74.2 L288.8,83.2 L288.8,89.5Z M285.2,58.8 L271.2,60.6 L270.3,56.6 L276.3,55.7 L284.8,56.0 L285.2,58.8Z M295.7,58.7 L293.5,66.5 L291.1,65.1 L291.3,59.4 L285.6,55.1 L285.6,53.9 L295.7,58.7Z "/><path class="c " d="M139.6,154.1 L139.5,152.5 L141.0,152.0 L143.4,153.3 L148.0,146.7 L150.4,146.6 L150.5,148.2 L152.9,148.2 L152.7,151.2 L150.6,155.9 L151.7,157.5 L150.4,161.4 L151.2,162.5 L149.7,168.0 L147.2,170.8 L144.9,171.2 L142.3,174.9 L138.5,174.9 L139.5,162.7 L139.6,154.1Z "/><path class="c " d="M452.8,-3.3 L452.7,-3.3 L452.6,-3.3 L452.5,-3.4 L452.4,-3.3 L452.4,-3.3 L452.6,-3.2 L452.8,-3.1 L452.6,-3.0 L452.5,-3.0 L452.3,-2.9 L452.2,-2.9 L452.2,-2.8 L452.1,-2.8 L451.8,-2.8 L451.7,-2.8 L451.8,-3.0 L451.6,-3.0 L451.6,-3.1 L451.7,-3.2 L451.9,-3.2 L451.8,-3.3 L452.0,-3.4 L452.1,-3.5 L452.1,-3.6 L451.9,-3.4 L451.8,-3.3 L451.7,-3.4 L451.6,-3.3 L451.6,-3.3 L451.6,-3.2 L451.5,-3.1 L451.6,-2.8 L451.8,-2.7 L451.9,-2.7 L452.0,-2.7 L452.1,-2.7 L452.1,-2.7 L452.2,-2.7 L452.3,-2.7 L452.4,-2.8 L452.7,-2.9 L452.9,-3.0 L453.0,-3.1 L453.1,-3.2 L453.3,-3.3 L453.6,-3.4 L453.7,-3.4 L453.9,-3.6 L454.2,-3.6 L454.4,-3.7 L454.5,-3.8 L454.4,-3.9 L454.5,-3.9 L454.5,-4.0 L454.4,-4.1 L454.3,-4.2 L454.1,-4.2 L453.9,-4.1 L453.8,-4.0 L453.7,-4.0 L453.8,-3.9 L453.9,-3.9 L453.9,-4.0 L454.0,-3.9 L454.0,-3.9 L454.1,-3.8 L454.1,-3.9 L454.1,-3.9 L454.3,-3.9 L454.4,-3.8 L454.2,-3.7 L454.0,-3.6 L453.8,-3.7 L453.7,-3.9 L453.6,-3.9 L453.6,-3.8 L453.5,-3.8 L453.4,-3.7 L453.4,-3.7 L453.3,-3.6 L453.3,-3.5 L453.3,-3.5 L453.1,-3.4 L453.0,-3.4 L452.8,-3.3Z "/><path class="c " d="M477.7,586.7 L463.0,586.2 L458.0,595.0 L450.5,587.1 L433.6,584.5 L422.9,594.3 L413.6,595.8 L408.6,580.8 L401.7,568.6 L405.7,558.1 L399.0,553.5 L397.3,545.7 L391.0,538.3 L399.1,526.6 L393.6,517.5 L396.5,513.8 L394.2,509.8 L399.2,504.4 L399.5,495.1 L400.1,487.5 L402.9,483.8 L391.8,466.3 L401.3,467.3 L407.9,467.0 L410.8,463.7 L422.1,459.3 L428.8,455.3 L445.6,453.4 L444.3,461.6 L445.9,465.7 L444.8,473.0 L458.8,482.7 L473.2,484.5 L478.2,488.6 L486.9,490.7 L492.3,493.9 L500.3,493.8 L507.8,497.0 L508.4,503.3 L510.9,506.4 L511.1,511.1 L507.3,511.3 L512.2,523.9 L536.9,524.4 L535.0,530.7 L536.4,534.9 L543.4,538.0 L546.4,544.7 L544.2,553.3 L540.6,558.1 L541.9,564.2 L537.9,566.5 L537.6,563.1 L525.7,557.6 L513.7,557.4 L491.3,560.6 L485.2,570.1 L484.8,576.0 L479.8,589.0 L477.7,586.7Z "/><path class="c br" d="M544.8,675.5 L562.0,660.7 L576.5,650.1 L585.1,645.7 L595.9,639.7 L596.2,631.1 L589.8,624.8 L583.4,626.9 L585.9,620.6 L587.7,614.2 L587.7,608.2 L583.0,606.3 L578.2,608.0 L573.4,607.5 L571.9,603.4 L570.7,593.4 L568.3,590.2 L559.6,587.2 L554.4,589.3 L540.8,587.3 L541.7,572.5 L537.9,566.5 L541.9,564.2 L540.6,558.1 L544.2,553.3 L546.4,544.7 L543.4,538.0 L536.4,534.9 L535.0,530.7 L536.9,524.4 L512.2,523.9 L507.3,511.3 L511.1,511.1 L510.9,506.4 L508.4,503.3 L507.8,497.0 L500.3,493.8 L492.3,493.9 L486.9,490.7 L478.2,488.6 L473.2,484.5 L458.8,482.7 L444.8,473.0 L445.9,465.7 L444.3,461.6 L445.6,453.4 L428.8,455.3 L422.1,459.3 L410.8,463.7 L407.9,467.0 L401.3,467.3 L391.8,466.3 L384.5,468.2 L378.7,467.0 L379.5,450.5 L369.0,456.9 L357.6,456.6 L352.8,450.8 L344.2,450.2 L346.9,445.5 L339.8,438.9 L334.4,429.1 L337.8,427.1 L337.8,422.5 L345.6,419.4 L344.3,413.5 L347.6,409.8 L348.5,404.7 L363.2,397.3 L373.8,395.2 L375.5,393.6 L387.1,394.1 L392.9,364.3 L393.2,359.6 L391.2,353.4 L385.4,349.4 L385.5,341.6 L392.8,339.8 L395.3,340.9 L395.8,336.7 L388.2,335.6 L388.1,328.8 L413.1,329.1 L417.4,325.3 L420.9,328.8 L423.4,335.2 L425.9,333.8 L433.0,339.6 L443.0,338.9 L445.4,335.5 L455.0,333.0 L460.3,331.2 L461.8,326.6 L471.0,323.5 L470.3,321.3 L459.4,320.3 L457.6,313.5 L458.1,306.2 L452.4,303.4 L454.8,302.4 L464.3,303.8 L474.5,306.5 L478.2,303.9 L487.5,302.2 L501.9,298.2 L506.6,294.0 L504.9,291.0 L511.5,290.5 L514.5,293.0 L512.9,297.8 L517.3,299.4 L520.2,304.4 L516.7,308.3 L514.6,317.5 L517.9,323.0 L518.8,328.0 L526.7,333.1 L533.1,333.7 L534.5,331.5 L538.5,331.1 L544.4,329.2 L548.5,326.3 L555.7,327.2 L558.8,326.8 L565.8,327.7 L566.9,325.5 L564.8,323.3 L566.1,320.2 L571.2,321.1 L577.3,320.0 L584.7,322.3 L590.3,324.6 L594.3,321.6 L597.2,322.1 L598.9,325.1 L605.1,324.4 L610.0,320.2 L613.9,312.2 L621.5,302.3 L625.9,301.8 L629.1,307.8 L636.3,326.8 L643.2,328.6 L643.5,336.1 L633.9,345.0 L637.9,348.3 L660.6,350.0 L661.1,360.9 L670.8,353.7 L687.0,357.6 L708.4,364.3 L714.6,370.6 L712.5,376.6 L727.5,373.3 L752.5,379.0 L771.7,378.6 L790.7,387.6 L807.1,399.8 L817.0,402.9 L828.0,403.3 L832.7,406.8 L837.1,420.6 L839.2,427.2 L834.1,445.1 L827.5,452.2 L809.4,467.3 L801.2,479.6 L791.7,489.0 L788.5,489.2 L784.9,497.2 L785.8,517.5 L782.2,534.3 L780.8,541.4 L776.8,545.7 L774.5,560.2 L761.5,574.4 L759.3,585.6 L748.9,590.3 L745.9,596.8 L731.9,596.8 L711.7,601.0 L702.6,605.8 L688.2,609.0 L673.1,617.6 L662.2,628.4 L660.3,636.5 L662.5,642.5 L660.1,653.4 L657.1,658.7 L648.2,664.7 L633.9,683.8 L622.6,692.4 L613.9,697.5 L608.0,707.8 L599.5,714.1 L595.9,707.9 L601.6,702.8 L594.2,695.4 L584.1,689.4 L570.8,682.4 L566.1,682.7 L553.2,674.3 L544.8,675.5Z "/><path class="c " d="M408.6,580.8 L413.6,595.8 L422.9,594.3 L424.5,597.0 L420.1,608.3 L406.1,613.6 L406.5,631.7 L403.8,635.2 L407.6,639.5 L398.6,646.2 L390.1,656.4 L385.5,666.3 L386.8,676.8 L378.8,688.0 L384.8,706.7 L388.1,708.7 L388.1,718.7 L380.7,729.3 L381.0,738.3 L371.3,745.4 L371.3,755.4 L375.2,766.0 L367.5,769.9 L364.1,779.6 L361.1,790.8 L363.3,804.0 L358.1,806.2 L361.1,818.7 L366.9,822.8 L362.7,827.4 L368.6,829.6 L370.0,833.7 L364.4,835.7 L365.8,842.1 L361.1,856.5 L354.2,865.7 L355.7,871.2 L351.7,878.1 L341.8,882.9 L342.9,894.4 L347.5,898.3 L356.0,897.6 L355.8,905.8 L361.1,912.1 L392.2,913.5 L404.1,915.3 L392.6,915.2 L386.4,917.8 L374.8,921.8 L372.8,931.9 L367.3,932.2 L352.8,928.6 L338.1,921.1 L338.1,921.1 L322.1,914.9 L318.1,908.0 L321.7,901.6 L315.3,894.4 L313.6,875.9 L319.1,865.4 L332.7,857.1 L313.1,853.9 L325.4,844.3 L329.8,826.3 L344.1,830.1 L350.8,807.6 L342.1,804.7 L338.1,818.3 L330.0,816.7 L334.1,801.2 L338.4,781.1 L344.3,773.7 L340.6,763.1 L339.6,750.8 L345.0,750.5 L352.9,733.0 L361.8,715.6 L367.2,699.4 L364.3,683.1 L368.1,674.2 L366.6,660.8 L374.1,647.5 L376.4,626.5 L380.5,604.0 L384.5,579.7 L383.6,561.9 L380.9,546.6 L387.5,543.9 L391.0,538.3 L397.3,545.7 L399.0,553.5 L405.7,558.1 L401.7,568.6 L408.6,580.8Z "/><path class="c " d="M316.6,349.1 L311.1,346.5 L304.8,342.9 L301.2,344.6 L290.3,343.1 L287.1,338.5 L284.7,338.6 L271.9,332.4 L270.1,329.1 L274.9,328.3 L274.3,322.8 L277.4,318.9 L283.7,318.2 L289.2,311.3 L294.1,305.6 L289.3,303.0 L291.8,296.7 L288.9,286.8 L291.6,284.0 L289.6,274.8 L284.4,269.0 L286.0,263.7 L290.2,264.5 L292.6,261.3 L289.6,254.9 L291.2,253.3 L297.8,253.6 L307.5,246.1 L312.8,244.9 L312.9,241.3 L315.3,232.1 L322.6,227.1 L330.7,226.9 L331.7,224.6 L341.8,225.5 L351.9,220.1 L356.9,217.6 L363.2,212.4 L367.7,213.1 L371.1,215.9 L368.6,219.6 L360.3,221.4 L357.1,226.8 L352.1,229.9 L348.4,234.0 L346.8,241.7 L343.2,248.1 L349.9,248.8 L351.5,253.8 L354.3,256.2 L355.4,260.5 L353.8,264.6 L354.3,266.8 L357.4,267.7 L360.5,271.5 L377.0,270.5 L384.5,271.9 L393.6,281.2 L398.8,280.0 L408.0,280.6 L415.3,279.4 L419.9,281.2 L417.6,287.1 L414.7,290.7 L413.7,298.5 L416.3,305.7 L419.9,309.0 L420.4,311.4 L413.9,316.8 L418.5,319.2 L422.0,323.0 L425.9,333.8 L423.4,335.2 L420.9,328.8 L417.4,325.3 L413.1,329.1 L388.1,328.8 L388.2,335.6 L395.8,336.7 L395.3,340.9 L392.8,339.8 L385.5,341.6 L385.4,349.4 L391.2,353.4 L393.2,359.6 L392.9,364.3 L387.1,394.1 L380.6,388.3 L376.8,388.1 L385.1,377.0 L375.3,371.9 L367.5,372.9 L362.9,371.0 L355.8,373.9 L346.2,372.5 L338.7,361.1 L332.7,358.3 L328.6,353.2 L320.1,348.0 L316.6,349.1Z "/><path class="c " d="M219.0,258.1 L212.0,255.7 L209.4,253.4 L210.9,251.6 L210.4,249.2 L206.9,246.6 L201.8,244.4 L197.4,243.0 L196.5,239.9 L193.2,237.9 L194.0,241.1 L191.4,243.7 L188.5,240.7 L184.4,239.6 L182.6,237.4 L182.7,234.1 L184.4,230.7 L180.7,229.1 L183.7,227.0 L185.6,225.6 L194.1,228.5 L197.1,227.1 L201.1,228.0 L203.3,230.2 L207.1,231.0 L210.1,228.7 L213.4,234.6 L218.4,238.9 L224.4,243.6 L219.4,244.5 L219.5,248.9 L222.2,250.5 L220.3,251.8 L220.8,253.8 L219.7,256.0 L219.0,258.1Z "/><path class="c " d="M228.0,95.7 L239.1,96.4 L249.2,96.6 L261.3,100.3 L266.4,104.2 L278.4,103.0 L282.9,105.6 L293.8,112.3 L301.8,117.2 L306.1,117.0 L313.7,119.2 L312.8,122.3 L322.3,122.8 L332.0,127.2 L330.5,129.7 L321.9,131.1 L313.3,131.7 L304.4,130.8 L286.0,131.9 L294.6,125.8 L289.4,123.0 L281.1,122.3 L276.6,119.1 L273.6,112.9 L266.3,113.4 L254.3,110.4 L250.5,108.2 L233.7,106.5 L229.2,104.4 L234.1,101.7 L221.5,101.1 L212.2,106.7 L206.9,106.9 L205.0,109.5 L198.7,110.7 L193.2,109.7 L200.0,106.3 L202.8,102.4 L208.6,100.0 L215.1,97.9 L224.9,96.9 L228.0,95.7Z "/><path class="c " d="M363.7,133.4 L365.3,131.5 L375.3,131.6 L383.0,134.4 L386.3,134.1 L388.7,138.0 L395.7,137.7 L395.3,141.0 L401.0,141.4 L407.3,145.4 L402.6,149.8 L396.5,147.4 L390.5,147.9 L386.3,147.3 L384.0,149.3 L379.1,150.0 L377.1,147.4 L372.9,148.9 L367.7,156.4 L364.4,154.6 L363.8,151.5 L364.0,148.6 L360.7,145.3 L363.8,143.5 L364.8,139.3 L363.7,133.4Z "/><path class="c " d="M253.3,384.4 L260.1,376.3 L257.3,371.5 L252.4,376.6 L244.7,371.8 L247.3,368.8 L245.1,358.9 L249.6,357.3 L252.0,350.5 L256.9,343.5 L256.0,339.1 L263.0,336.8 L271.9,332.4 L284.7,338.6 L287.1,338.5 L290.3,343.1 L301.2,344.6 L304.8,342.9 L311.1,346.5 L316.6,349.1 L318.4,357.3 L314.4,364.4 L300.4,375.8 L284.9,380.0 L277.1,389.5 L274.6,396.8 L267.4,401.3 L262.0,395.8 L256.8,394.6 L251.5,395.5 L251.1,391.5 L254.8,388.9 L253.3,384.4Z "/><path class="c " d="M127.3,198.3 L120.7,196.4 L112.7,196.2 L106.8,194.1 L99.9,189.6 L100.2,186.4 L101.7,183.9 L99.9,181.8 L106.1,173.0 L122.6,173.0 L122.9,169.3 L120.8,168.6 L119.4,166.3 L114.7,163.7 L109.9,160.1 L115.7,160.1 L115.7,154.0 L127.7,154.0 L139.6,154.1 L139.5,162.7 L138.5,174.9 L142.3,174.9 L146.5,176.9 L147.6,175.3 L151.4,176.7 L145.5,180.8 L139.4,183.9 L138.5,185.9 L139.6,188.1 L136.9,190.8 L133.9,191.5 L134.6,192.8 L132.1,194.0 L127.7,196.7 L127.3,198.3Z "/><path class="c " d="M610.0,320.2 L605.1,324.4 L598.9,325.1 L597.2,322.1 L594.3,321.6 L590.3,324.6 L584.7,322.3 L587.9,317.7 L589.1,312.7 L591.3,308.1 L586.3,301.7 L585.3,294.3 L592.0,284.9 L596.3,286.1 L605.8,288.7 L619.4,297.9 L621.5,302.3 L613.9,312.2 L610.0,320.2Z "/><path class="c " d="M517.4,256.6 L525.8,260.6 L533.8,267.7 L534.2,273.2 L539.0,273.5 L545.9,278.8 L551.0,282.6 L548.9,292.3 L541.1,295.2 L541.8,297.7 L539.4,303.3 L545.1,311.2 L549.2,311.2 L550.9,317.4 L558.8,326.8 L555.7,327.2 L548.5,326.3 L544.4,329.2 L538.5,331.1 L534.5,331.5 L533.1,333.7 L526.7,333.1 L518.8,328.0 L517.9,323.0 L514.6,317.5 L516.7,308.3 L520.2,304.4 L517.3,299.4 L512.9,297.8 L514.5,293.0 L511.5,290.5 L504.9,291.0 L496.2,282.7 L499.6,279.7 L499.4,274.7 L507.3,273.0 L510.5,271.0 L506.1,266.9 L507.2,263.0 L517.4,256.6Z "/><path class="c " d="M163.1,206.5 L160.9,203.1 L156.9,202.1 L157.8,197.8 L156.1,196.6 L153.4,195.8 L147.8,197.1 L147.3,195.6 L143.4,193.9 L140.7,191.7 L136.9,190.8 L139.6,188.1 L138.5,185.9 L139.4,183.9 L145.5,180.8 L151.4,176.7 L152.7,177.1 L155.5,175.2 L159.2,175.0 L160.4,175.9 L162.4,175.4 L168.4,176.4 L174.3,176.1 L178.5,174.9 L180.0,173.7 L184.1,174.2 L187.1,175.0 L190.5,174.7 L193.1,173.8 L198.9,175.3 L201.0,175.5 L204.9,177.5 L208.6,180.0 L213.3,181.6 L216.7,184.6 L212.3,184.4 L210.5,185.9 L206.0,187.3 L202.8,187.3 L199.9,188.7 L197.4,188.2 L195.2,186.5 L193.8,186.8 L192.2,189.4 L190.9,189.3 L190.7,191.6 L186.2,194.6 L183.9,195.9 L182.6,197.2 L178.8,195.0 L176.0,197.9 L173.3,197.8 L170.3,198.1 L170.6,203.4 L168.7,203.5 L167.1,206.0 L163.1,206.5Z "/><path class="c " d="M344.7,131.2 L352.5,131.7 L363.7,133.4 L364.8,139.3 L363.8,143.5 L360.7,145.3 L364.0,148.6 L363.8,151.5 L355.2,149.7 L349.1,150.4 L341.3,149.6 L335.3,151.7 L328.4,148.3 L329.5,144.8 L341.4,146.3 L351.1,147.2 L355.7,144.7 L349.8,140.0 L349.9,135.9 L341.8,134.2 L344.7,131.2Z "/><path class="c " d="M288.4,146.7 L297.0,147.6 L303.9,150.3 L306.0,153.2 L297.0,153.4 L293.1,155.2 L285.9,153.5 L278.5,149.5 L280.1,147.1 L285.5,146.3 L288.4,146.7Z "/><path class="c " d="M36.8,66.6 L31.8,76.1 L29.5,83.9 L28.6,98.4 L27.4,103.7 L29.6,109.7 L33.6,115.0 L36.1,123.4 L44.7,131.5 L47.7,137.7 L52.7,143.0 L66.4,145.9 L71.7,150.4 L82.9,147.4 L92.7,146.3 L102.4,144.4 L110.5,142.5 L118.6,138.1 L121.7,131.7 L122.8,122.6 L125.0,119.4 L133.7,116.6 L147.3,114.1 L158.7,114.4 L166.5,113.5 L169.6,115.8 L169.1,121.1 L162.2,127.5 L159.2,134.1 L161.5,136.0 L159.6,140.7 L156.4,149.2 L153.1,146.4 L150.4,146.6 L148.0,146.7 L143.4,153.3 L141.0,152.0 L139.5,152.5 L139.6,154.1 L127.7,154.0 L115.7,154.0 L115.7,160.1 L109.9,160.1 L114.7,163.7 L119.4,166.3 L120.8,168.6 L122.9,169.3 L122.6,173.0 L106.1,173.0 L99.9,181.8 L101.7,183.9 L100.2,186.4 L99.9,189.6 L85.4,177.9 L78.7,174.4 L68.3,171.5 L61.1,172.3 L50.7,176.4 L44.3,177.5 L35.2,174.6 L25.5,172.5 L13.5,167.6 L3.9,166.0 L-10.7,161.0 L-21.4,155.8 L-24.7,152.9 L-31.9,152.3 L-45.0,148.8 L-50.4,143.9 L-64.2,137.7 L-70.6,130.9 L-73.7,125.6 L-69.4,124.5 L-70.7,121.4 L-67.8,118.6 L-67.7,114.8 L-72.0,110.0 L-73.2,105.6 L-77.5,100.2 L-88.8,89.4 L-101.8,80.9 L-108.0,74.1 L-119.1,69.7 L-121.4,67.0 L-119.5,60.3 L-126.0,57.8 L-133.6,52.5 L-136.8,44.9 L-143.7,44.1 L-151.2,38.3 L-157.2,33.1 L-157.8,29.7 L-164.7,21.5 L-169.2,13.2 L-169.1,9.0 L-178.4,4.7 L-182.6,5.2 L-190.0,2.2 L-192.0,6.6 L-189.9,11.8 L-188.7,19.9 L-184.3,24.4 L-174.7,31.9 L-172.6,34.5 L-170.6,35.2 L-168.9,39.0 L-166.7,38.8 L-164.1,45.8 L-160.2,48.6 L-157.4,52.4 L-149.4,57.9 L-145.1,68.0 L-141.3,72.8 L-137.7,77.9 L-137.0,83.6 L-130.8,84.0 L-125.6,88.9 L-121.0,93.8 L-121.3,95.7 L-126.7,99.7 L-129.0,99.6 L-132.4,93.0 L-140.8,86.8 L-150.1,81.6 L-156.6,78.8 L-156.2,70.9 L-158.2,65.0 L-164.3,61.6 L-173.1,56.8 L-174.8,58.2 L-178.1,55.4 L-186.0,52.7 L-193.6,46.4 L-192.6,45.6 L-187.3,46.2 L-182.6,42.2 L-182.1,37.3 L-192.0,29.5 L-199.5,26.5 L-204.3,19.8 L-209.0,12.6 L-215.0,4.0 L-220.2,-5.8 L-205.6,-6.6 L-189.3,-7.8 L-190.5,-5.7 L-171.1,-0.4 L-141.7,7.2 L-116.2,7.1 L-106.0,7.1 L-105.9,2.7 L-83.7,2.7 L-79.0,6.5 L-72.4,9.9 L-64.8,14.7 L-60.5,20.4 L-57.3,26.4 L-50.7,29.6 L-40.0,32.9 L-31.9,24.3 L-21.4,24.1 L-12.3,28.4 L-5.9,35.9 L-1.4,42.2 L6.2,48.4 L9.0,56.0 L12.6,61.1 L22.6,64.5 L31.8,66.9 L36.8,66.6Z "/><path class="c " d="M183.7,227.0 L179.2,223.6 L173.2,219.2 L170.4,215.6 L165.0,212.2 L158.5,207.3 L160.0,205.6 L162.1,207.2 L163.1,206.5 L167.1,206.0 L168.7,203.5 L170.6,203.4 L170.3,198.1 L173.3,197.8 L176.0,197.9 L178.8,195.0 L182.6,197.2 L183.9,195.9 L186.2,194.6 L190.7,191.6 L190.9,189.3 L192.2,189.4 L193.8,186.8 L195.2,186.5 L197.4,188.2 L199.9,188.7 L202.8,187.3 L206.0,187.3 L210.5,185.9 L212.3,184.4 L216.7,184.6 L215.6,185.7 L214.9,188.1 L216.2,192.1 L213.3,195.8 L211.9,200.1 L211.5,204.9 L212.2,207.7 L212.5,212.6 L210.5,213.7 L209.3,218.3 L210.2,221.2 L207.6,223.9 L208.2,226.9 L210.1,228.7 L207.1,231.0 L203.3,230.2 L201.1,228.0 L197.1,227.1 L194.1,228.5 L185.6,225.6 L183.7,227.0Z "/><path class="c " d="M284.4,269.0 L280.1,265.9 L277.3,260.0 L280.5,257.1 L277.3,256.4 L274.9,252.8 L268.5,249.8 L262.8,250.4 L260.2,254.2 L255.0,257.0 L252.2,257.3 L251.0,259.6 L257.1,265.5 L253.6,266.9 L251.7,268.5 L245.7,269.0 L243.5,262.5 L241.8,264.4 L237.6,263.8 L235.0,259.4 L229.7,258.7 L226.4,257.4 L220.9,257.4 L220.5,259.8 L219.0,258.1 L219.7,256.0 L220.8,253.8 L220.3,251.8 L222.2,250.5 L219.5,248.9 L219.4,244.5 L224.4,243.6 L229.0,247.5 L228.8,249.8 L233.9,250.3 L235.1,249.4 L238.6,252.0 L245.0,251.3 L250.4,248.5 L258.2,246.3 L262.6,243.1 L269.7,243.7 L269.2,244.8 L276.4,245.1 L282.1,247.0 L286.3,250.3 L291.2,253.3 L289.6,254.9 L292.6,261.3 L290.2,264.5 L286.0,263.7 L284.4,269.0Z "/><path class="c " d="M391.0,538.3 L387.5,543.9 L380.9,546.6 L368.0,540.4 L366.9,535.9 L341.4,525.0 L318.4,513.2 L308.5,506.5 L303.1,497.5 L305.2,494.4 L294.3,480.1 L281.7,460.1 L269.5,438.5 L264.3,433.5 L260.2,425.5 L250.2,418.5 L241.1,414.1 L245.2,409.2 L239.0,398.9 L243.0,391.3 L253.3,384.4 L254.8,388.9 L251.1,391.5 L251.5,395.5 L256.8,394.6 L262.0,395.8 L267.4,401.3 L274.6,396.8 L277.1,389.5 L284.9,380.0 L300.4,375.8 L314.4,364.4 L318.4,357.3 L316.6,349.1 L320.1,348.0 L328.6,353.2 L332.7,358.3 L338.7,361.1 L346.2,372.5 L355.8,373.9 L362.9,371.0 L367.5,372.9 L375.3,371.9 L385.1,377.0 L376.8,388.1 L380.6,388.3 L387.1,394.1 L375.5,393.6 L373.8,395.2 L363.2,397.3 L348.5,404.7 L347.6,409.8 L344.3,413.5 L345.6,419.4 L337.8,422.5 L337.8,427.1 L334.4,429.1 L339.8,438.9 L346.9,445.5 L344.2,450.2 L352.8,450.8 L357.6,456.6 L369.0,456.9 L379.5,450.5 L378.7,467.0 L384.5,468.2 L391.8,466.3 L402.9,483.8 L400.1,487.5 L399.5,495.1 L399.2,504.4 L394.2,509.8 L396.5,513.8 L393.6,517.5 L399.1,526.6 L391.0,538.3Z "/><path class="c " d="M433.5,146.4 L440.1,147.4 L442.4,149.5 L439.1,152.3 L429.4,152.2 L421.9,152.6 L421.2,147.9 L423.0,146.3 L433.5,146.4Z "/><path class="c " d="M479.8,589.0 L484.8,576.0 L485.2,570.1 L491.3,560.6 L513.7,557.4 L525.7,557.6 L537.6,563.1 L537.9,566.5 L541.7,572.5 L540.8,587.3 L554.4,589.3 L559.6,587.2 L568.3,590.2 L570.7,593.4 L571.9,603.4 L573.4,607.5 L578.2,608.0 L583.0,606.3 L587.7,608.2 L587.7,614.2 L585.9,620.6 L583.4,626.9 L581.3,636.5 L569.6,644.8 L559.5,646.5 L545.0,644.9 L532.1,641.9 L544.7,625.4 L542.9,620.6 L529.6,616.4 L513.9,608.4 L503.4,606.7 L479.8,589.0Z "/><path class="c " d="M156.9,202.1 L155.5,204.7 L148.1,204.5 L143.4,203.5 L138.1,201.3 L131.0,200.6 L127.3,198.3 L127.7,196.7 L132.1,194.0 L134.6,192.8 L133.9,191.5 L136.9,190.8 L140.7,191.7 L143.4,193.9 L147.3,195.6 L147.8,197.1 L153.4,195.8 L156.1,196.6 L157.8,197.8 L156.9,202.1Z "/><path class="c " d="M551.0,282.6 L566.4,284.8 L567.7,282.8 L578.1,282.0 L592.0,284.9 L585.3,294.3 L586.3,301.7 L591.3,308.1 L589.1,312.8 L588.0,317.8 L584.7,322.3 L577.3,320.0 L571.2,321.1 L566.1,320.2 L564.8,323.3 L566.9,325.5 L565.8,327.7 L558.8,326.8 L550.9,317.4 L549.2,311.2 L545.1,311.2 L539.4,303.3 L541.8,297.7 L541.1,295.2 L548.9,292.3 L551.0,282.6Z "/><path class="c " d="M492.7,230.6 L500.1,229.2 L502.8,229.6 L502.3,237.7 L491.5,238.9 L489.2,237.9 L492.9,234.9 L492.7,230.6Z "/><path class="c " d="M544.8,675.5 L553.2,674.3 L566.1,682.7 L570.8,682.4 L584.1,689.4 L594.2,695.4 L601.6,702.8 L595.9,707.9 L599.5,714.1 L593.9,720.9 L579.4,726.9 L569.9,724.7 L562.9,725.9 L551.1,721.2 L542.3,721.6 L534.5,715.6 L535.5,708.6 L538.3,706.2 L538.2,695.3 L541.6,684.2 L544.8,675.5Z "/><path class="c " d="M66.6,-188.8 L68.9,-182.8 L72.9,-181.0 L81.9,-180.3 L95.0,-178.6 L107.5,-175.2 L117.9,-176.6 L133.7,-173.8 L137.9,-173.9 L149.4,-177.0 L161.5,-173.1 L174.1,-168.9 L184.5,-165.2 L194.5,-161.8 L195.7,-158.9 L198.7,-157.8 L197.9,-156.8 L201.4,-156.4 L203.9,-157.6 L204.5,-155.0 L207.1,-153.3 L210.6,-153.3 L212.5,-151.9 L210.9,-150.0 L224.3,-144.9 L227.1,-135.1 L229.7,-125.6 L225.9,-119.2 L219.9,-113.2 L217.0,-109.4 L216.7,-108.3 L218.2,-106.8 L222.6,-105.0 L225.8,-105.0 L240.7,-110.8 L254.0,-112.5 L270.8,-117.9 L271.0,-119.0 L269.9,-122.4 L267.8,-124.5 L273.6,-126.2 L286.2,-126.3 L298.0,-126.3 L302.1,-130.5 L303.8,-131.3 L317.3,-139.2 L323.1,-141.1 L342.7,-141.2 L366.4,-141.2 L367.6,-143.9 L371.8,-144.5 L377.2,-146.1 L381.8,-151.1 L385.7,-159.5 L395.5,-167.7 L399.8,-164.9 L408.4,-166.7 L414.1,-163.6 L414.1,-148.8 L422.5,-142.6 L424.7,-139.1 L411.0,-133.8 L397.8,-130.1 L384.2,-126.9 L377.4,-120.4 L375.2,-118.0 L375.1,-112.2 L379.3,-106.5 L384.7,-106.2 L383.3,-110.1 L387.2,-107.7 L386.2,-104.6 L377.5,-102.9 L371.3,-103.1 L361.8,-101.2 L356.2,-100.6 L348.7,-100.1 L338.0,-97.0 L356.9,-99.0 L360.7,-97.0 L342.7,-93.7 L334.5,-93.7 L334.9,-95.0 L331.0,-92.0 L334.8,-91.5 L332.0,-83.7 L322.6,-75.3 L321.7,-78.1 L318.9,-78.7 L314.6,-81.4 L317.3,-75.6 L320.5,-73.6 L320.7,-69.5 L316.6,-65.3 L309.3,-56.6 L308.2,-57.1 L312.1,-64.5 L305.6,-68.6 L304.1,-77.6 L301.6,-72.9 L304.3,-66.0 L295.8,-67.7 L304.7,-64.3 L305.2,-53.9 L308.9,-53.2 L310.3,-49.4 L312.1,-38.6 L303.9,-30.5 L290.6,-27.3 L282.2,-20.9 L275.7,-20.2 L269.2,-16.2 L267.4,-12.6 L253.3,-5.5 L246.0,-0.4 L240.0,6.1 L238.0,13.8 L240.3,21.3 L244.5,30.6 L250.3,38.3 L250.3,43.0 L256.4,55.6 L256.0,62.9 L255.5,67.1 L252.2,73.8 L248.4,75.1 L242.1,73.8 L240.0,69.1 L235.2,66.6 L228.3,57.2 L222.4,48.9 L220.4,44.7 L223.1,37.5 L219.5,31.5 L209.4,22.4 L204.4,20.7 L191.5,25.7 L189.2,25.1 L182.9,20.1 L174.9,17.4 L160.3,18.7 L148.9,17.5 L139.1,18.3 L133.8,20.0 L136.1,22.9 L135.9,27.3 L138.6,29.4 L136.2,30.8 L131.4,29.2 L126.6,31.3 L117.3,31.0 L107.7,25.2 L96.4,26.6 L87.1,24.1 L79.1,24.8 L68.3,27.4 L56.6,35.4 L43.8,40.1 L36.8,45.3 L33.8,50.2 L33.7,57.7 L34.3,62.9 L36.8,66.6 L31.8,66.9 L22.6,64.5 L12.6,61.1 L9.0,56.0 L6.2,48.4 L-1.4,42.2 L-5.9,35.9 L-12.3,28.4 L-21.4,24.1 L-31.9,24.3 L-40.0,32.9 L-50.7,29.6 L-57.3,26.4 L-60.5,20.4 L-64.8,14.7 L-72.4,9.9 L-79.0,6.5 L-83.7,2.7 L-105.9,2.7 L-106.0,7.1 L-116.2,7.1 L-141.7,7.2 L-171.1,-0.4 L-190.5,-5.7 L-189.3,-7.8 L-205.6,-6.6 L-220.2,-5.8 L-222.4,-11.4 L-230.7,-17.6 L-236.7,-18.9 L-238.1,-22.0 L-245.3,-22.6 L-249.9,-25.5 L-261.9,-26.6 L-265.2,-28.3 L-266.7,-34.3 L-279.2,-45.2 L-289.9,-60.3 L-289.4,-62.8 L-295.1,-66.4 L-305.1,-75.5 L-306.8,-84.3 L-313.7,-90.3 L-310.9,-99.3 L-311.3,-108.6 L-315.4,-116.9 L-310.4,-127.1 L-308.8,-137.0 L-307.3,-146.8 L-309.6,-161.4 L-313.7,-170.7 L-317.4,-175.7 L-315.8,-177.8 L-297.3,-174.1 L-290.4,-163.9 L-287.2,-166.8 L-289.3,-175.7 L-293.7,-184.6 L-257.1,-184.6 L-219.0,-184.6 L-206.3,-184.6 L-167.1,-184.6 L-129.2,-184.6 L-90.6,-184.6 L-52.0,-184.6 L-8.4,-184.6 L35.6,-184.6 L62.2,-184.6 L62.3,-188.7 L66.6,-188.8Z "/><path class="c " d="M368.6,219.6 L368.2,222.1 L360.7,223.4 L364.9,228.3 L364.7,234.0 L359.0,240.3 L363.9,248.9 L369.5,248.2 L372.3,240.4 L368.4,236.6 L367.7,228.3 L383.7,223.9 L381.9,218.8 L386.4,215.4 L391.1,223.0 L400.1,223.2 L408.4,229.2 L408.9,232.8 L420.5,232.9 L434.2,231.8 L441.6,236.7 L451.4,238.0 L458.6,234.6 L458.8,231.9 L474.7,231.2 L490.1,231.1 L479.2,234.3 L483.6,239.4 L493.9,240.2 L503.6,245.6 L505.7,254.3 L512.4,254.0 L517.4,256.6 L507.2,263.0 L506.1,266.9 L510.5,271.0 L507.3,273.0 L499.4,274.7 L499.6,279.7 L496.2,282.7 L504.9,291.0 L506.6,294.0 L501.9,298.2 L487.5,302.2 L478.2,303.9 L474.5,306.5 L464.3,303.8 L454.8,302.4 L452.4,303.4 L458.1,306.2 L457.6,313.5 L459.4,320.3 L470.3,321.3 L471.0,323.5 L461.8,326.6 L460.3,331.2 L455.0,333.0 L445.4,335.5 L443.0,338.9 L433.0,339.6 L425.9,333.8 L422.0,323.0 L418.5,319.2 L413.9,316.8 L420.4,311.4 L419.9,309.0 L416.3,305.7 L413.7,298.5 L414.7,290.7 L417.6,287.1 L419.9,281.2 L415.3,279.4 L408.0,280.6 L398.8,280.0 L393.6,281.2 L384.5,271.9 L377.0,270.5 L360.5,271.5 L357.4,267.7 L354.3,266.8 L353.8,264.6 L355.4,260.5 L354.3,256.2 L351.5,253.8 L349.9,248.8 L343.2,248.1 L346.8,241.7 L348.4,234.0 L352.1,229.9 L357.1,226.8 L360.3,221.4 L368.6,219.6Z "/>
+  <path class="route land" d="M583.8,624.8 L584.1,625.4"/>
+  <path class="route" d="M584.1,625.4 C 470,560 330,470 258.6,371"/>
+  <path class="route" d="M258.6,371 C 200,260 190,150 253.5,66.1"/>
+  <circle class="pt" cx="669.5" cy="518.8" r="5"/><text x="680" y="515">Brasília</text><text class="sm" x="680" y="531">ordem do STF, 25 e 26/10</text>
+  <circle class="pt" cx="583.8" cy="624.8" r="7"/><text x="596" y="648">Foz do Iguaçu → Puerto Iguazú</text><text class="sm" x="596" y="664">a pé, pela ponte, 22h50 (27/10) · embarque 23h30</text>
+  <circle class="pt" cx="258.6" cy="371" r="7"/><text x="270" y="395">Guayaquil (Equador)</text><text class="sm" x="270" y="411">escala técnica, 5h46 a 6h22 (28/10)</text>
+  <circle class="pt end" cx="253.5" cy="66.1" r="8"/><text x="268" y="62">Miami (Opa-Locka)</text><text class="sm" x="268" y="78">pouso às 10h25 (28/10), recebido por Eduardo</text>
+  <text class="sm" x="470" y="600">rota contorna o espaço aéreo brasileiro</text>
+  </svg></div>
+  <div class="legs">
+    <div class="leg"><b>Trecho 1 · a pé</b>Ponte Tancredo Neves, Foz do Iguaçu a Puerto Iguazú<small><br>22h50 de terça. Passaporte italiano.</small></div>
+    <div class="leg"><b>Trecho 2 · 5h25 de voo</b>Puerto Iguazú a Guayaquil<small><br>Gulfstream G400 argentino (LV-JQW), decola 0h21.</small></div>
+    <div class="leg"><b>Trecho 3 · 4h03 de voo</b>Guayaquil a Miami<small><br>Decola 6h22, pousa 10h25 em Opa-Locka.</small></div>
+    <div class="leg"><b>Horários</b>Todos em horário de Brasília<small><br>Fontes: Migrações da Argentina, Flightradar24, CNN, La Nación.</small></div>
+  </div>
+</section>
+
+<section class="card" id="linha">
+  <div class="eyebrow">Linha do tempo</div>
+  <h2>Hora a hora, do inquérito ao pouso</h2>
+  <div class="tl" id="tl-saida">
+  <p class="sub">Horário de Brasília. Chips: STF, PF e órgãos em verde e roxo; Flávio e família em azul; Lula em vermelho; marcos e terceiros em amarelo.</p>
+  <div class="day">Antes da eleição</div>
+<ol>
+<li class="tse"><span class="h">18/10</span><span class="who">Inquérito</span>Torna-se público o inquérito sigiloso no STF, relatado por Moraes, sobre suspeita de lavagem de dinheiro envolvendo Flávio Bolsonaro e o advogado Willer Tomaz. Moraes autoriza a quebra de sigilo da offshore Alcazar Holdings e bloqueia até R$ 6 bilhões em bens de Tomaz. A defesa de Flávio diz que a relação com Tomaz é só de amizade.</li>
+<li class="e-flavio"><span class="h">23/10</span><span class="who">Eduardo Bolsonaro</span>Nos Estados Unidos, onde vive com mandado de prisão aberto no Brasil, diz que o irmão deveria deixar o país se Lula vencesse. A frase vai parar no pedido da PF.</li>
+</ol>
+<div class="day">Domingo, 25 de outubro</div>
+<ol>
+<li class="marco"><span class="h">21h08</span><span class="who">TSE</span>Lula é declarado eleito.</li>
+<li class="marco"><span class="h">~21h15</span><span class="who">PF</span>Sete minutos depois do anúncio, segundo Rogério Marinho, a Polícia Federal pede ao STF medidas cautelares contra Flávio: risco de saída do país, com base na fala de Eduardo e na capacidade de Tomaz de bancar o senador em Miami por longo período.</li>
+<li class="stf"><span class="h">~22h45</span><span class="who">STF</span>Moraes assina o despacho cerca de uma hora e meia depois do pedido.</li>
+</ol>
+<div class="day">Segunda-feira, 26 de outubro</div>
+<ol>
+<li class="stf"><span class="h">dia</span><span class="who">STF</span>A decisão é cumprida: Flávio tem 24 horas para entregar os passaportes comum, diplomático e italiano, fica proibido de deixar o Brasil e de falar com Willer Tomaz.</li>
+<li class="e-flavio"><span class="h">fim da tarde</span><span class="who">Flávio</span>Em vídeo, diz que foi intimado pela PF, que a ordem se baseia nas falas do irmão, que é intimidação, e que não tem intenção de sair do país. Depois disso não é mais visto em público.</li>
+</ol>
+<div class="day">Terça-feira, 27 de outubro</div>
+<ol>
+<li class="marco"><span class="h">meio-dia</span><span class="who">PF</span>Vence o prazo. Os passaportes não são entregues; a PF cancela os brasileiros e os registra no sistema global de monitoramento. O italiano, emitido por outro país, não pode ser cancelado pelo Brasil.</li>
+<li class="e-flavio"><span class="h">~13h40</span><span class="who">Imprensa</span>Metrópoles e Reuters informam que Flávio viajou aos Estados Unidos. Marinho diz ter recebido só uma mensagem: ele estaria "esfriando a cabeça". O governo Milei nega que ele tenha entrado na Argentina.</li>
+<li class="marco"><span class="h">~16h40</span><span class="who">PL</span>Valdemar Costa Neto convoca reunião de emergência na sede do partido; nem todos sabiam da decisão. À noite recebe Michelle Bolsonaro.</li>
+<li class="marco"><span class="h">18h28</span><span class="who">EUA</span>Um alto funcionário do Departamento de Estado: "emitirá vistos para Flávio Bolsonaro e sua família e permitirá a entrada deles". Não há pedido de asilo.</li>
+<li class="e-lula"><span class="h">noite</span><span class="who">Lula</span>Na festa de 81 anos, em frente ao Alvorada: "ato vergonhoso. O cidadão que sai escondido do seu país é porque deve alguma coisa". Lembra que ficou no Brasil em 2018.</li>
+<li class="e-flavio"><span class="h">22h50</span><span class="who">Fronteira</span>Flávio, a mulher, Fernanda, e as filhas cruzam a Ponte Internacional Tancredo Neves, de Foz do Iguaçu para Puerto Iguazú, "com documentação de viagem válida", segundo a Direção Nacional de Migrações da Argentina. Ele usa o passaporte italiano; a família, os brasileiros. A PF não registra a saída em posto brasileiro.</li>
+<li class="e-flavio"><span class="h">23h30</span><span class="who">Embarque</span>Em Puerto Iguazú, embarcam num Gulfstream G400 de matrícula argentina (LV-JQW, Baires Fly), que esperava no aeroporto desde segunda, com destino declarado Guayaquil.</li>
+</ol>
+<div class="day">Quarta-feira, 28 de outubro</div>
+<ol>
+<li class="e-flavio"><span class="h">0h21</span><span class="who">Voo</span>Decolagem. A rota passa por Paraguai, Bolívia e Peru e não entra no espaço aéreo brasileiro.</li>
+<li class="e-flavio"><span class="h">5h46</span><span class="who">Equador</span>Pouso em Guayaquil para escala técnica. Às 6h22 decola para Miami.</li>
+<li class="marco"><span class="h">madrugada</span><span class="who">EUA</span>Trump, ao desembarcar em Maryland: "certamente aprovaria" a entrada da família, "acho que eles são boas pessoas". Volta a chamar a eleição de "muito estranha", sem apresentar elementos.</li>
+<li class="e-flavio"><span class="h">10h25</span><span class="who">Miami</span>O jato pousa no Miami-Opa Locka Executive Airport (CNN; La Nación registra 10h40). Eduardo Bolsonaro recebe a família, que sai em dois carros sem falar com a imprensa.</li>
+<li class="marco"><span class="h">manhã</span><span class="who">Congresso</span>Deputados do PT pedem a Moraes a prisão preventiva de Flávio e a inclusão no alerta vermelho da Interpol. Segundo O Globo, a PF avalia pedir bloqueio de bens e prisão preventiva.</li>
+<li class="marco"><span class="h">~14h30</span><span class="who">PF</span>Nota oficial: a viagem "não caracteriza fuga" nem justifica, por ora, prisão ou vigilância permanente; "a existência de restrições relacionadas a documentos de viagem, por si só, não caracteriza a condição de foragido". A PF apura o descumprimento da ordem.</li>
+<li class="marco"><span class="h">18h</span><span class="who">Juristas</span>Agência Estado ouve Thiago Bottino (FGV) e Wellington Arruda: Flávio fugiu de uma proibição, mas não é foragido, porque não há mandado de prisão; o descumprimento de cautelar abre caminho para a preventiva (arts. 282 e 312 do CPP), e a prisão de um senador precisa ser validada pelo Senado.</li>
+</ol>
+  <div class="leg" style="margin-top:14px"><b>Fontes dos horários</b>Gazeta do Povo (27/10, 22h08 e 28/10, 2h09 e 14h27), Metrópoles (28/10, 6h02), O Tempo (28/10, 7h27), CNN Brasil, Painel Político (28/10, 10h56), Direção Nacional de Migrações da Argentina, Agência Estado via O Povo (28/10, 18h19), Agência Brasil, Exame.</div>
+  </div>
+</section>
+
+<section class="card" id="jogo">
+  <div class="eyebrow">O que está em jogo</div>
+  <h2>Situação de cada frente, agora</h2>
+  <div class="stat-grid">
+    <div class="st"><span class="chip red">descumprida</span><div class="t">Ordem judicial</div><p>Moraes deu 24h para a entrega dos passaportes e proibiu a saída do país. O prazo venceu ao meio-dia de terça sem entrega. A PF apura o descumprimento "nos limites da legislação".</p></div>
+    <div class="st"><span class="chip red">cancelados</span><div class="t">Passaportes brasileiros</div><p>O comum e o diplomático foram cancelados pela PF na terça e registrados no sistema global de monitoramento. O italiano, emitido pela Itália, segue válido e foi o usado na fronteira.</p></div>
+    <div class="st"><span class="chip grey">não há</span><div class="t">Mandado de prisão</div><p>Nenhum foi expedido. A PF disse em nota que a viagem "não caracteriza fuga" nem justifica, por ora, prisão ou vigilância. Deputados do PT pediram a preventiva; segundo O Globo, a PF avalia pedir.</p></div>
+    <div class="st"><span class="chip amber">pedido</span><div class="t">Interpol</div><p>O alerta vermelho foi pedido pelo PT a Moraes. Não há decisão. Sem mandado de prisão, não há base para o alerta.</p></div>
+    <div class="st"><span class="chip green">prometido</span><div class="t">Visto nos Estados Unidos</div><p>Um alto funcionário do Departamento de Estado disse que o governo "emitirá vistos" e permitirá a entrada da família. Não há pedido de asilo, segundo um porta-voz de Milei e a imprensa americana.</p></div>
+    <div class="st"><span class="chip blue">mantido</span><div class="t">Mandato de senador</div><p>Flávio é senador pelo Rio de Janeiro, com mandato até o fim de janeiro de 2027. Pela Constituição, a prisão de um senador precisa ser comunicada ao Senado, que decide se a mantém. Perda de mandato por ausência exige faltar a mais de um terço das sessões do ano.</p></div>
+    <div class="st"><span class="chip amber">em curso</span><div class="t">O inquérito de origem</div><p>Lavagem de dinheiro, sigiloso, relatado por Moraes. Envolve o advogado Willer Tomaz e a offshore Alcazar Holdings; até R$ 6 bilhões de Tomaz estão bloqueados. Flávio não está entre os usuários registrados da conta da Alcazar, segundo o Santander.</p></div>
+    <div class="st"><span class="chip green">inalterado</span><div class="t">O resultado da eleição</div><p>Nada aqui discute a contagem. O TSE apurou 34.393 votos depois das 17h contra 4,43 milhões de diferença. A campanha de Flávio abandonou a anulação; as ações de cassação, dos dois lados, tratam de conduta das campanhas.</p></div>
+  </div>
+</section>
+
+<section class="card" id="mundo">
+  <div class="eyebrow">Repercussão internacional</div>
+  <h2>Como o mundo contou a história</h2>
+  <div class="story"><p>Entre 27 e 28 de outubro, os grandes jornais do mundo trataram o caso de jeitos diferentes. A palavra "fuga" aparece em francês, espanhol e, a partir do pouso em Miami, também no New York Times. Os britânicos preferiram falar do futuro da extrema direita; os argentinos, do "refúgio do clã" e do papel da Casa Rosada.</p></div>
+  <h3>Como cada veículo enquadrou</h3>
+  <div class="fbars"><div class="fbar"><span class="fl">fuga</span><div class="ft"><i style="width:31%"></i></div><span class="fn">4</span></div><div class="fbar"><span class="fl">neutro</span><div class="ft"><i style="width:23%"></i></div><span class="fn">3</span></div><div class="fbar"><span class="fl">descumprimento</span><div class="ft"><i style="width:8%"></i></div><span class="fn">1</span></div><div class="fbar"><span class="fl">contexto</span><div class="ft"><i style="width:8%"></i></div><span class="fn">1</span></div><div class="fbar"><span class="fl">incerteza</span><div class="ft"><i style="width:8%"></i></div><span class="fn">1</span></div><div class="fbar"><span class="fl">explosivo</span><div class="ft"><i style="width:8%"></i></div><span class="fn">1</span></div><div class="fbar"><span class="fl">isolamento</span><div class="ft"><i style="width:8%"></i></div><span class="fn">1</span></div><div class="fbar"><span class="fl">contradição</span><div class="ft"><i style="width:8%"></i></div><span class="fn">1</span></div></div>
+  <div class="repgrid"><div class="rep"><div class="flag">🇺🇸</div><div><b>The New York Times</b><p>"Flávio Bolsonaro desembarca em Miami após fugir do Brasil" (28/10). Na véspera, título neutro: deixou o país "após a derrota eleitoral".</p></div><span class="fr fr-fuga">fuga</span></div><div class="rep"><div class="flag">🇺🇸</div><div><b>The Washington Post</b><p>"Onde ele está?" (27/10); "chegou a Miami nesta quarta, vindo do Equador, após descumprir uma ordem judicial brasileira" (28/10).</p></div><span class="fr fr-descumprimento">descumprimento</span></div><div class="rep"><div class="flag">🇺🇸</div><div><b>The Wall Street Journal</b><p>Contexto: a ida de Jair à Flórida em 2022, a condenação dele, e Eduardo, que "mudou-se para os EUA no início de 2025" e tem green card.</p></div><span class="fr fr-contexto">contexto</span></div><div class="rep"><div class="flag">🇬🇧</div><div><b>BBC News</b><p>"O candidato derrotado à presidência do Brasil é fotografado chegando aos EUA."</p></div><span class="fr fr-neutro">neutro</span></div><div class="rep"><div class="flag">🇬🇧</div><div><b>The Guardian</b><p>"Um avião que transportava o senador brasileiro de extrema-direita pousou em Miami"; a saída "torna o futuro da extrema-direita ainda mais incerto".</p></div><span class="fr fr-incerteza">incerteza</span></div><div class="rep"><div class="flag">🇬🇧</div><div><b>Financial Times</b><p>"Reviravolta dramática"; a saída "adicionará um elemento explosivo" ao cenário político.</p></div><span class="fr fr-explosivo">explosivo</span></div><div class="rep"><div class="flag">🇫🇷</div><div><b>Le Figaro</b><p>"Encurralado por escândalos, Flávio Bolsonaro foge para os Estados Unidos após derrota para Lula."</p></div><span class="fr fr-fuga">fuga</span></div><div class="rep"><div class="flag">🇫🇷</div><div><b>Le Monde</b><p>"Isolado, abandonou os esforços para pedir a anulação da eleição."</p></div><span class="fr fr-isolamento">isolamento</span></div><div class="rep"><div class="flag">🇫🇷</div><div><b>Libération</b><p>"Após fugir do Brasil, finalmente desembarcou na Flórida."</p></div><span class="fr fr-fuga">fuga</span></div><div class="rep"><div class="flag">🇪🇸</div><div><b>El País</b><p>Destaca a contradição: Flávio tinha dito que não fugiria e que se defenderia de uma "farsa".</p></div><span class="fr fr-contradição">contradição</span></div><div class="rep"><div class="flag">🇦🇷</div><div><b>La Nación</b><p>"Refúgio do clã"; "fugir do Brasil em flagrante desrespeito a uma ordem judicial"; registra a entrada às 22h50 e o pouso às 10h40, e fala em suspeitas sobre a Casa Rosada.</p></div><span class="fr fr-fuga">fuga</span></div><div class="rep"><div class="flag">🇨🇴</div><div><b>El Tiempo</b><p>Lembra que "o filho mais velho do ex-presidente perdeu o segundo turno no domingo".</p></div><span class="fr fr-neutro">neutro</span></div><div class="rep"><div class="flag">🇵🇹</div><div><b>Público</b><p>A família embarcou em dois carros que já esperavam e partiu sem declarações.</p></div><span class="fr fr-neutro">neutro</span></div></div>
+  <h3 style="margin-top:22px">Governos</h3>
+  <div class="gov">
+    <div class="g"><b>🇺🇸 Estados Unidos</b><p>Departamento de Estado promete vistos (27/10, 18h28). Trump: "certamente aprovaria", "boas pessoas", e volta a dizer que a eleição foi "muito estranha", sem elementos. Um advogado ligado a Trump disse à imprensa que Marco Rubio arquitetou a saída; não há confirmação oficial.</p></div>
+    <div class="g"><b>🇦🇷 Argentina</b><p>Na terça à tarde, o governo Milei negou a entrada. De madrugada, a Direção Nacional de Migrações confirmou: entrada às 22h50 "com documentação válida", embarque às 23h30. A deputada Marcela Pagano apresentou denúncia; La Nación fala em suspeitas sobre a Casa Rosada.</p></div>
+    <div class="g"><b>🇪🇨 Equador</b><p>Sem manifestação oficial. A escala em Guayaquil durou 36 minutos.</p></div>
+    <div class="g"><b>🇧🇷 Brasil</b><p>Lula: "ato vergonhoso". PF: "não caracteriza fuga". Tarcísio reconheceu o resultado da eleição no mesmo dia. O PL fez reunião de emergência; Marinho disse ter sido surpreendido. Nenhuma nota do Itamaraty até o fechamento.</p></div>
+  </div>
+</section>
+
+<section class="card" id="juristas">
+  <div class="eyebrow">O que dizem os juristas</div>
+  <h2>Fugir é diferente de ser foragido</h2>
+  <div class="story"><p>Ele fugiu de uma proibição, mas não é foragido: foragido é quem tem mandado de prisão, e não há nenhum. O que a lei permite agora, segundo Thiago Bottino (FGV Direito Rio) e Wellington Arruda (criminalista), ouvidos pela Agência Estado:</p>
+  <ul>
+    <li><b>Prisão preventiva.</b> Descumprir medida cautelar é uma das causas previstas (artigos 282 e 312 do Código de Processo Penal). Não é obrigatória: o juiz deve escolher a medida menos grave que resolva o problema. O precedente é a prisão domiciliar de Jair Bolsonaro, em agosto de 2025, depois de descumprir cautelares.</li>
+    <li><b>Senado.</b> Como Flávio é senador, uma prisão precisa ser validada pelo Senado.</li>
+    <li><b>Bens e contas.</b> Bloqueio de patrimônio e tornozeleira são possíveis, mas "paliativos" com ele fora do país.</li>
+    <li><b>Quem pede.</b> O caminho mais adequado é um pedido da PF ou do Ministério Público, não de deputados.</li>
+    <li><b>Extradição.</b> Brasil e Estados Unidos têm tratado, mas o pedido depende de haver processo e mandado; hoje não há. Eduardo Bolsonaro, condenado e com mandado aberto, segue nos EUA desde 2025 sem ter sido extraditado.</li>
+  </ul></div>
+</section>
+
+<section class="card" id="fontes">
+  <div class="eyebrow">Fontes</div>
+  <h2>De onde vem cada informação</h2>
+  <ul class="src" style="font-size:.9rem;line-height:1.6">
+    <li><a href="https://www.gazetadopovo.com.br/republica/o-que-se-sabe-sobre-a-saida-de-flavio-bolsonaro-do-brasil-apos-ordem-de-moraes/" target="_blank" rel="noopener">Gazeta do Povo: o que se sabe sobre a saída (27/10, 22h08)</a>: inquérito, Alcazar, pedido da PF sete minutos depois, decisão de Moraes, vídeo de Flávio, Eduardo e Jair.</li>
+    <li><a href="https://www.gazetadopovo.com.br/republica/flavio-bolsonaro-desembarca-nos-estados-unidos-apos-proibicao-judicial/" target="_blank" rel="noopener">Gazeta do Povo: chega aos EUA (28/10, 2h09)</a> e <a href="https://www.gazetadopovo.com.br/republica/pf-viagem-flavio-eua-nao-caracteriza-fuga-nem-prisao/" target="_blank" rel="noopener">nota da PF (28/10, 14h27)</a>.</li>
+    <li><a href="https://www.otempo.com.br/politica/2026/10/28/flavio-bolsonaro-deixa-a-argentina-em-voo-para-miami-veja-a-cronologia" target="_blank" rel="noopener">O Tempo: cronologia do voo (28/10, 7h27)</a> e <a href="https://www.metropoles.com/mundo/aviao-que-flavio-teria-embarcado-pousa-no-equador-e-deve-ir-aos-eua" target="_blank" rel="noopener">Metrópoles: Migrações da Argentina e rota (28/10, 6h02)</a>.</li>
+    <li><a href="https://painelpolitico.com/flavio-bolsonaro-e-familia-desembarcam-em-miami-apos-fuga-do-brasil" target="_blank" rel="noopener">Painel Político, com CNN: pouso às 10h25 (28/10)</a>.</li>
+    <li><a href="https://www.cnnbrasil.com.br/eleicoes/fuga-de-flavio-bolsonaro-repercute-na-imprensa-internacional/" target="_blank" rel="noopener">CNN Brasil: repercussão internacional (27/10, 19h11)</a> e <a href="https://www.tribunadosertao.com.br/poder-e-governo/2026/10/28/1008202-senador-de-extrema-direita-pousou-em-miami-midia-internacional-repercute-chegada-de-flavio-bolsonaro-nos-eua" target="_blank" rel="noopener">Tribuna do Sertão: manchetes após o pouso (28/10)</a>.</li>
+    <li><a href="https://www.opovo.com.br/noticias/politica/2026/10/28/fugir-x-foragido-juristas-explicam-situacao-de-flavio-bolsonaro-e-o-que-pode-acontecer-agora.html" target="_blank" rel="noopener">O Povo / Agência Estado: juristas (28/10, 18h19)</a>.</li>
+    <li>Reações do dia 27 (Lula, Tarcísio, PL, Departamento de Estado, Trump): registradas com fonte na <a href="estudo.html#disputa">seção 14 do estudo</a>.</li>
+    <li>Mapa: contornos de países do repositório público johan/world.geo.json; coordenadas das cidades aproximadas; rota ilustrativa a partir dos relatos do Flightradar24 e do Flightaware citados pela imprensa.</li>
+  </ul>
+  <p class="src">Página mantida por Taís Lima como anexo do estudo "Como Lula venceu o 2º turno de 2026". Interpretações estão atribuídas a quem as fez; fatos sem confirmação oficial estão marcados como tal.</p>
+</section>
+</main></div>
+<script>
+(function(){
+  const url="https://tguimaraes.github.io/apuracao-2026/saida.html", txt="A saída de Flávio Bolsonaro do Brasil: linha do tempo, rota e repercussão, com fontes";
+  const e=encodeURIComponent;
+  const d=document.createElement("div"); d.className="sharebar";
+  d.innerHTML=`<div class="t">Compartilhe esta página.<small>Linha do tempo com fonte em cada linha.</small></div><div class="bt"><a class="sb-wa" href="https://wa.me/?text=${e(txt+" "+url)}" target="_blank" rel="noopener">WhatsApp</a><a class="sb-x" href="https://twitter.com/intent/tweet?text=${e(txt)}&url=${e(url)}" target="_blank" rel="noopener">X</a><a class="sb-th" href="https://www.threads.net/intent/post?text=${e(txt+" "+url)}" target="_blank" rel="noopener">Threads</a><a class="sb-li" href="https://www.linkedin.com/sharing/share-offsite/?url=${e(url)}" target="_blank" rel="noopener">LinkedIn</a><button type="button" class="sb-cp">Copiar link</button></div>`;
+  document.getElementById("resumo").appendChild(d);
+  d.querySelector(".sb-cp").onclick=async function(){ try{ if(navigator.share&&innerWidth<=1000){await navigator.share({title:txt,text:txt,url});return;} await navigator.clipboard.writeText(url); this.textContent="Link copiado"; }catch(x){ this.textContent=url; } setTimeout(()=>this.textContent="Copiar link",3000); };
+})();
+</script>
+</body></html>
